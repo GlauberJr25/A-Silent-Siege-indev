@@ -1,0 +1,18 @@
+{
+  "id": "poggers_old_legion", # For the convenience of troubleshooters, include your name and the mod name, not just an acronym.
+  "name": "A Silent Siege", # Displayed to the player
+  "author": "poggers_duo",
+  "utility": false,
+  "version": { "major": '0', "minor": '2', "patch": '3' },
+  "description": "Placeholder: Starsector IntelliJ template and Domain Stuff",
+  "gameVersion": "0.98a-RC8",
+  "jars": [ "jars/Legion.jar" ],
+  "modPlugin": "poggers.oldlegion.OldLegionModPlugin",
+  "dependencies": [
+    {
+        "id": "lw_lazylib",
+        "name": "LazyLib", # Optional (recommended)
+        "version": "3.0.0", # Optional
+    }
+  ]
+}
