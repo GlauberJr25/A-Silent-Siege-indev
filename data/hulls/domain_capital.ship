@@ -12,8 +12,8 @@
   "shieldRadius": 190.5,
   "viewOffset": 0,
   "builtInMods": [
-    "DomainTestingStuff",
-    "blast_doors"
+    "blast_doors",
+    "DomainEngineeringMod"
   ],
   "weaponSlots": [
     {

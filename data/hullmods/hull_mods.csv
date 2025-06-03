@@ -1,8 +1,9 @@
 name,id,tier,rarity,tech/manufacturer,tags,uiTags,base value,unlocked,hidden,hiddenEverywhere,cost_frigate,cost_dest,cost_cruiser,cost_capital,script,desc,short,sModDesc,sprite
-Testing Magazines,DomainTestingStuff,1,,,"offensive, merc, standard",Weapons,2500,,,,3,5,7,10,poggers.oldlegion.data.hullmods.DomainRetrofit,"Reduces the chance for missiles launched by the ship to be affected by electronic counter-measures and flares by %s.
+Domain Retrofit,DomainTestingStuff,1,,,"offensive, merc, standard",Weapons,2500,TRUE,,,3,5,7,10,poggers.oldlegion.data.hullmods.DomainRetrofit,"Reduces the chance for missiles launched by the ship to be affected by electronic counter-measures and flares by %s.
 
 A CPU core adjunct in each missile increases missile top speed by %s and missile maneuverability by %s, as well as significantly improving the guidance algorithm.
 
 Also reduces the weapon range reduction due to enemy ECM by %s.
 
 When deployed in combat, grants %s/%s/%s/%s ECM rating, depending on this ship's hull size.",Increases ammo/charges for ballistic and energy weapons.,"Fully negates the weapon range reduction, and makes the ship's missiles always ignore flares.",graphics/hullmods/domain_imresizer.png
+Domain Engineering,DomainEngineeringMod,1,,,"defensive, merc, standard",Weapons,2500,TRUE,,,3,5,7,10,poggers.oldlegion.data.hullmods.DomainEngineering,[PH] Placeholder description because im busy.,Increases ammo/charges for ballistic and energy weapons.,[PH] Currently no effects,graphics/hullmods/domain_imresizer.png
