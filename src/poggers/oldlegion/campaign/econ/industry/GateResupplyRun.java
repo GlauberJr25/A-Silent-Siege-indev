@@ -36,7 +36,7 @@ public class GateResupplyRun extends BaseIndustry {
     }
 
     public boolean isAvailableToBuild() {
-        return true;
+        return false;
     }
 
     public boolean isDemandLegal(CommodityOnMarketAPI com) {
@@ -48,12 +48,12 @@ public class GateResupplyRun extends BaseIndustry {
     }
 
     public boolean showWhenUnavailable() {
-        return true;
+        return false;
     }
 
-    public String getUnavailableReason() {
-        return "Needs to be allied with Domain FOB";
-    }
+    //public String getUnavailableReason() {
+    //return "Needs to be allied with Domain FOB";
+    //}
 
     protected boolean canImproveToIncreaseProduction() {
         return true;
