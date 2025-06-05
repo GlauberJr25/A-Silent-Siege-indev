@@ -1,3 +1,18 @@
 id,trigger,conditions,script,text,options,notes
-# This file is not required by the game and can be deleted if you aren't using it, but doesn't hurt to keep either.
-# Official rules.csv guide: https://fractalsoftworks.com/2023/11/13/you-merely-adopted-rules-csv-i-was-born-into-it/
+# This file is not required by the game and can be deleted if you aren't using it, but doesn't hurt to keep either.,,,,,
+# Official rules.csv guide: https://fractalsoftworks.com/2023/11/13/you-merely-adopted-rules-csv-i-was-born-into-it/,,,,,,
+#RULESET_NAME ASS,,,,,,
+,,,,,,
+#Domain Gate,,,,,,
+,,,,,,
+oldlegionDomainGateOpt,PopulateGateOptions,"$global.gatesActive
+$global.playerCanUseGates
+$gateScanned
+DomainGateCMD CanBeAdded",,,16:DOMAIN_GATE:Travel towards Domain Space,
+oldlegionDomainGateOptDescription,PopulateGateOptions,"$global.gatesActive
+$global.playerCanUseGates
+$gateScanned
+DomainGateCMD CanBeAdded",DomainGateCMD Highlight,,,
+oldlegionDomainGateUseOpt,DialogOptionSelected,$option == DOMAIN_GATE,DomainGateCMD Traverse,,,
+,,,,,,
+#End Domain Gate,,,,,,

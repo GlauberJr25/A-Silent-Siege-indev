@@ -8,8 +8,10 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="starfarer.api" level="project" />
-    <orderEntry type="library" name="LazyLib" level="project" />
+    <orderEntry type="library" exported="" name="LazyLib" level="project" />
     <orderEntry type="library" name="ExerelinCore" level="project" />
+    <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
+    <orderEntry type="library" name="KotlinJavaScript" level="project" />
     <orderEntry type="library" name="Vok" level="project" />
     <orderEntry type="library" name="RandomAssortmentofThings" level="project" />
     <orderEntry type="library" name="KnightsOfSelkie" level="project" />
