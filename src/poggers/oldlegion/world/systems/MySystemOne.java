@@ -39,6 +39,7 @@ public class MySystemOne {
         system.addTag(Tags.THEME_SPECIAL);
         system.addTag(Tags.STAR_HIDDEN_ON_MAP);
         system.addTag(Tags.THEME_UNSAFE);
+        system.addTag(Tags.NOT_RANDOM_MISSION_TARGET);
         system.addTag("star_hidden_on_map");
 
         system.setBackgroundTextureFilename("graphics/mymod/backgrounds/mybackground.jpg");

@@ -9,6 +9,7 @@ import com.fs.starfarer.api.characters.FullName.Gender;
 import org.apache.log4j.Logger;
 
 public class oldlegion_people {
+
     public static String OLDLEGION_NATAH = "oldlegion_natah";
     public static Logger log = Global.getLogger(oldlegion_people.class);
 
