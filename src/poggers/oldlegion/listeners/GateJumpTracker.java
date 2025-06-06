@@ -11,12 +11,13 @@ import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.campaign.BaseScript;
 import com.fs.starfarer.campaign.fleet.CampaignFleet;
 import org.lazywizard.console.Console;
-import org.selkie.kol.ReflectionUtils;
+//import org.selkie.kol.ReflectionUtils;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import com.fs.starfarer.api.campaign.listeners.GateTransitListener;
+import org.selkie.kol.ReflectionUtils;
 import poggers.oldlegion.utils.OldLegionStrings;
 
 public class GateJumpTracker implements GateTransitListener {
@@ -34,33 +35,51 @@ public class GateJumpTracker implements GateTransitListener {
             Console.showMessage("If-Statement TWO fired their return");
             return; //Prevent it from happening during the story-jump
             }
-        if (!fleet.isPlayerFleet() || gateFrom == null || Global.getSector().getClock().getCycle() <= 206 || gateFrom.getContainingLocation() == destSys) {
+
+
+        boolean isNotPlayerFleet = !fleet.isPlayerFleet();
+        boolean sendingGateNull = gateFrom == null;
+        boolean tooLowCycle = Global.getSector().getClock().getCycle() < 206;
+        boolean sendingGateIsDomain = gateFrom.getContainingLocation() == destSys;
+        // TODO | IF wanted, put this back as it was, set like this so it's easier to debug which are true or false when the below condition is breakpointed.
+        ///  ~Purple
+        if (isNotPlayerFleet || sendingGateNull || tooLowCycle || sendingGateIsDomain) {
             Console.showMessage("If-Statement THREE fired their return");
             return;
         }
 
         Console.showMessage("Before the Math.Random() if-statement");
-        if (((int)Math.random()*101) <= 99)                     //(/*true*/ Math.random() <= 0.95f) { //0.05f = 5% chance to trigger.
+        // TODO | Change the condition to be more proper, and remove any unnecessary " Console.showMessage " pieces of code :P
+        // TODO | I also added the { } below here behind the if-statement and all the way at the bottom.
+        // TODO | The moment more than 1 line of code comes after an if, you NEED the { } afaik
+        ///  ~Purple
+        if (((int)Math.random()*101) <= 99) {                    //(/*true*/ Math.random() <= 0.95f) { //0.05f = 5% chance to trigger.
             Console.showMessage("After the Math.Random() if-statement");
             if (destSys == null) return;
             SectorEntityToken dest = destSys.getEntityById("domain_ops_gate");
             float dist = Misc.getDistanceLY(dest, gateTo);
-            if (dist < 12f) {
+
+            // TODO | (1) Idea, change the beneath condition to a memKey value in " Global.getSector().getPlayerMemoryWithoutUpdate() "
+            // TODO | (2) This value is to be raised every time the condition isn't met yet (so the value isn't exceeding the given amount yet)
+            // TODO | (3) Best to increase the value each time is to have a Random Number Picker between valueA and valueB,
+            // TODO | NOTE, it currently ALWAYS fires whenever the gate you jump to is not within 12ly of the Nataruk system
+            ///  ~Purple
+            if (dist > 12f) {
 
                 //Old Version
 
-				//fleet.getContainingLocation().removeEntity(fleet);
-				//dest.getContainingLocation().addEntity(fleet);
-				//Global.getSector().setCurrentLocation(dest.getContainingLocation());
-				//fleet.setLocation(dest.getLocation().x,
+                //fleet.getContainingLocation().removeEntity(fleet);
+                //dest.getContainingLocation().addEntity(fleet);
+                //Global.getSector().setCurrentLocation(dest.getContainingLocation());
+                //fleet.setLocation(dest.getLocation().x,
                 //dest.getLocation().y);
-				//fleet.setNoEngaging(1.0f);
-				//fleet.clearAssignments();
+                //fleet.setNoEngaging(1.0f);
+                //fleet.clearAssignments();
 
                 for (EveryFrameScript script : new ArrayList<>(Global.getSector().getScripts())) {
-                   if (ReflectionUtils.INSTANCE.hasVariableOfName("untilCanWarpOut", script)) {
-                       Global.getSector().removeScript(script);
-                   }
+                    if (ReflectionUtils.INSTANCE.hasVariableOfName("untilCanWarpOut", script)) {
+                        Global.getSector().removeScript(script);
+                    }
                 }
                 ReflectionUtils.INSTANCE.invoke("setInJumpTransition", fleet, new Object[]{false}, false);
 
@@ -78,7 +97,8 @@ public class GateJumpTracker implements GateTransitListener {
 
                 Global.getSector().getMemoryWithoutUpdate().set(memoryKey, true);
             }
-
         }
+
     }
-// }
+}
+
