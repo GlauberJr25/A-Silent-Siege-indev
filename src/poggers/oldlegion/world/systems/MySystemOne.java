@@ -182,15 +182,15 @@ public class MySystemOne {
         gate.setCircularOrbit(argonStar, 10, 6736, 233);
 
         //auto jump point generation
-        system.autogenerateHyperspaceJumpPoints(true, false);
+        //system.autogenerateHyperspaceJumpPoints(true, false);
 
-        HyperspaceTerrainPlugin plugin = (HyperspaceTerrainPlugin) Misc.getHyperspaceTerrain().getPlugin();
-        NebulaEditor editor = new NebulaEditor(plugin);
-        float minRadius = plugin.getTileSize() * 2f;
+        //HyperspaceTerrainPlugin plugin = (HyperspaceTerrainPlugin) Misc.getHyperspaceTerrain().getPlugin();
+        //NebulaEditor editor = new NebulaEditor(plugin);
+        //float minRadius = plugin.getTileSize() * 2f;
 
-        float radius = system.getMaxRadiusInHyperspace();
-        editor.clearArc(system.getLocation().x, system.getLocation().y, 0, radius + minRadius, 0, 360f);
-        editor.clearArc(system.getLocation().x, system.getLocation().y, 0, radius + minRadius, 0, 360f, 0.25f);
+        //float radius = system.getMaxRadiusInHyperspace();
+        //editor.clearArc(system.getLocation().x, system.getLocation().y, 0, radius + minRadius, 0, 360f);
+        //editor.clearArc(system.getLocation().x, system.getLocation().y, 0, radius + minRadius, 0, 360f, 0.25f);
 
 
     }
