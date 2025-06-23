@@ -145,11 +145,12 @@ public class MySystemOne {
         //Adding orbital station will place a station in orbit and add station commander npc to Comms
         market.addIndustry(Industries.STARFORTRESS_MID);
 
-        market.addIndustry(Industries.ORBITALWORKS);
+        market.addIndustry(Industries.ORBITALWORKS, new ArrayList(Arrays.asList("pristine_nanoforge")));
         market.addIndustry(Industries.MINING);
         market.addIndustry(Industries.HEAVYBATTERIES);
         market.addIndustry(Industries.HIGHCOMMAND);
         market.addIndustry(Industries.WAYSTATION);
+
         market.addIndustry("oldlegion_gate_infrastructure");
 
 

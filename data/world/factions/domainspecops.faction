@@ -19,7 +19,7 @@
 		"GENERAL":1,
 	},
 
-	"showInIntelTab":true,
+	"showInIntelTab":false,
 
 	"description":"Domain of Man FOB",
 	"names":{
@@ -50,7 +50,7 @@
 		],
 	},
 	"knownShips":{
-		"tags":["ind", "independent","heg_aux_bp", "XIV_bp", "hegemony"],
+		"tags":["ind", "independent","heg_aux_bp", "XIV_bp", "hegemony", "domain"],
 		"hulls":[
 		         "cerberus",
                  "crig",
@@ -80,21 +80,19 @@
                  #"vanguard", ? - no, LC
 
                  "condor",
-                 "enforcer",
                  "enforcer_xiv",
                  #"manticore", ? - no, LC
 
                  "eagle",
-                 "dominator",
                  "dominator_xiv",
                  "eagle_xiv",
                  "falcon_xiv",
                  "mora",
                  "grendel", # 0 phase doctrine, but added to combatLarge elsewhere in this file
 
-                 "legion",
-                 "onslaught",
+                 "legion_xiv",
                  "onslaught_xiv",
+                 "domain_capital"
 		],
 	},
 	# listing ships here will make the faction mostly use them even if other hulls become available
@@ -104,10 +102,9 @@
         # without concern for matching the doctrine, i.e. a Legion will be as likely a pick as an Onslaught
         # despite the Legion being a carrier and the carrier portion of the doctrine being low
 		"hulls":[
-		    "legion",
             "legion_xiv",
-            "onslaught",
             "onslaught_xiv",
+            "domain_capital",
 
             # need to be prioritized otherwise the Legion eats any and all carrier points
             "condor",
