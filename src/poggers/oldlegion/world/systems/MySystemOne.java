@@ -45,9 +45,9 @@ public class MySystemOne {
         system.setBackgroundTextureFilename("graphics/mymod/backgrounds/mybackground.jpg");
 
         // create the star and generate the hyperspace anchor for this system
-        PlanetAPI argonStar = system.initStar("Argon", // unique id for this star
+        PlanetAPI argonStar = system.initStar("Argonian", // unique id for this star
                 "star_red_giant", // id in planets.json
-                1100f, // radius (in pixels at default zoom)
+                0f, // radius (in pixels at default zoom)
                 450); // corona radius, from star edge
         system.setLightColor(new Color(239, 155, 128)); // light color in entire system, affects all entities
 

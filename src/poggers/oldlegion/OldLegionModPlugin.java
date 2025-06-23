@@ -22,8 +22,6 @@ public class OldLegionModPlugin extends BaseModPlugin {
         }
 
         if (!Global.getSector().getListenerManager().hasListenerOfClass(GateJumpTracker.class)) Global.getSector().getListenerManager().addListener(new GateJumpTracker(), true);
-
-
     }
 
 

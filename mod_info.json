@@ -3,7 +3,7 @@
   "name": "A Silent Siege", # Displayed to the player
   "author": "poggers_duo",
   "utility": false,
-  "version": { "major": '0', "minor": '2', "patch": '3' },
+  "version": { "major": '0', "minor": '3', "patch": '1' },
   "description": "Placeholder: Starsector IntelliJ template and Domain Stuff",
   "gameVersion": "0.98a-RC8",
   "jars": [ "jars/Legion.jar" ],

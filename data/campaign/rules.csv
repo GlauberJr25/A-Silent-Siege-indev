@@ -20,5 +20,5 @@ oldlegionDomainGateUseOpt,DialogOptionSelected,$option == DOMAIN_GATE,DomainGate
 #Natah (faction leader) Dialog (DFL introduction option),,,,,,
 ,,,,,,
 dfl_IntroductionOption,PopulateOptions,"$isPerson 
-$id == oldlegion_natah",,[PH] this is rules.csv TEXT,"dfl_Introduction:""May I introduce Myself?""",
-dfl_Introduction,DialogOptionSelected,$option == dfl_intro,,"[PH] this is rules.csv TEXT, for Introduction (not option).",,
+$id == oldlegion_natah",,"[PH] this is rules.csv TEXT (Hi, this is what shows up when first opening the interaction with the NPC).","dfl_Introduction:""May I introduce Myself?""",
+dfl_Introduction,DialogOptionSelected,$option == dfl_Introduction,,"[PH] this is rules.csv TEXT, for Introduction (not option).",,
