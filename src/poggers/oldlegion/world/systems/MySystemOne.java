@@ -3,31 +3,18 @@ package poggers.oldlegion.world.systems;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.concurrent.locks.Condition;
 
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.campaign.econ.EconomyAPI;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
-import com.fs.starfarer.api.campaign.FactionAPI;
-import com.fs.starfarer.api.campaign.RepLevel;
-import com.fs.starfarer.api.characters.PersonAPI;
-import com.fs.starfarer.api.impl.campaign.shared.SharedData;
 import com.fs.starfarer.api.impl.campaign.ids.*;
 import com.fs.starfarer.api.impl.campaign.ids.Factions;
-import com.fs.starfarer.api.impl.campaign.procgen.NebulaEditor;
-import com.fs.starfarer.api.impl.campaign.procgen.PlanetConditionGenerator;
-import com.fs.starfarer.api.impl.campaign.procgen.StarAge;
-import com.fs.starfarer.api.impl.campaign.procgen.StarSystemGenerator;
 import com.fs.starfarer.api.impl.campaign.terrain.AsteroidFieldTerrainPlugin;
-import com.fs.starfarer.api.impl.campaign.terrain.AsteroidFieldTerrainPlugin.AsteroidFieldParams;
-import com.fs.starfarer.api.impl.campaign.terrain.HyperspaceTerrainPlugin;
-import com.fs.starfarer.api.util.Misc;
-import com.fs.starfarer.api.impl.campaign.terrain.MagneticFieldTerrainPlugin.MagneticFieldParams;
 
-import poggers.oldlegion.campaign.econ.industry.GateResupplyRun;
-
+import data.scripts.world.mia.SotfPersonalFleetSeraph;
 import org.lazywizard.lazylib.MathUtils;
+import poggers.oldlegion.world.talandar.OldLegionPersonalFleetZeratul;
 
 public class MySystemOne {
     public void generate(SectorAPI sector) {
@@ -51,13 +38,10 @@ public class MySystemOne {
                 450); // corona radius, from star edge
         system.setLightColor(new Color(239, 155, 128)); // light color in entire system, affects all entities
 
-
         //setup all distances here
         final float asteroids1Dist = 2750f;
         final float stable1Dist = 4200f;
         final float asteroidBelt1Dist = 5700f;
-
-
         SectorEntityToken argonAF1 = system.addTerrain(Terrain.ASTEROID_FIELD,
                 new AsteroidFieldTerrainPlugin.AsteroidFieldParams(
                         200f, // min radius
@@ -79,10 +63,8 @@ public class MySystemOne {
         system.addRingBand(argonStar, "misc", "rings_asteroids0", 256f, 0, Color.gray, 256f, asteroidBelt1Dist, 350f);
         system.addRingBand(argonStar, "misc", "rings_asteroids0", 256f, 2, Color.gray, 256f, asteroidBelt1Dist + 200, 400f);
 
-
         PlanetAPI planet = system.addPlanet("Hunhow", argonStar, "Hunhow's Fall", "barren", 0, 273, 7777, 157);
         planet.setFaction("domainspecops");
-
         //create and initialize market:
         //A size 1 market's population industry will only demand supplies and produce nothing
         MarketAPI market = Global.getFactory().createMarket(
@@ -90,14 +72,11 @@ public class MySystemOne {
                 planet.getName(), //market display name, usually the planet's name
                 6
         );
-
         planet.setMarket(market);
         //market global property settings
         market.setPrimaryEntity(planet);
-
         market.setHidden(true);
         market.setInvalidMissionTarget(true);
-
         //setting survey level to fully surveyed to automatically reveal normally hidden resources on the planet overview and remove unexplored description.
         market.setSurveyLevel(MarketAPI.SurveyLevel.FULL);
         //set tariff percentage of 30%
@@ -106,16 +85,13 @@ public class MySystemOne {
         //here it is important to simply know that "generator" is the id of the tariff value
         //and that you set it using the modifyFlat() function with a decimal value.
         market.getTariff().modifyFlat("generator", 0.3f);
-
         //planet surface/market conditions
         market.setPlanetConditionMarketOnly(false);
-        //some tags, like thin atmosphere will affect industry and upkeep costs
         market.addCondition(Conditions.THIN_ATMOSPHERE);
         market.addCondition(Conditions.ORE_ULTRARICH);
         market.addCondition(Conditions.RARE_ORE_ULTRARICH);
         //population tag is purely decorative. Can set to whatever you want or Omit it. For player colonies, adjusts to match growth of the market size.
         market.addCondition(Conditions.POPULATION_4);
-
         //the following settings must be implemented in the correct order to function properly
         //1) set the market faction ID
         //2) add industries and sub-markets to the market
@@ -123,7 +99,6 @@ public class MySystemOne {
 
         //the markets owning faction must be set before adding sub-markets and industries or the game will crash.
         market.setFactionId("domainspecops");
-
         //Planet colony industries
         //if no industries are added, the game wont crash...
         //weapons and such will be available for purchase from black and open markets.
@@ -136,29 +111,24 @@ public class MySystemOne {
         //there will be severe accessibility penalty from lack of spaceport
         //finally, population adds an admnistrator npc to the comm directiory
         market.addIndustry(Industries.POPULATION);
-
         //spaceport isnt required, but lack gives -100% accessibility to the colony
         //spaceport enables repair option in the main menu
         //spaceport adds quartermaster and portmaster npcs in Comms
         market.addIndustry(Industries.MEGAPORT);
-
+        market.addIndustry(Industries.WAYSTATION);
         //Adding orbital station will place a station in orbit and add station commander npc to Comms
         market.addIndustry(Industries.STARFORTRESS_MID);
-
         market.addIndustry(Industries.ORBITALWORKS, new ArrayList(Arrays.asList("pristine_nanoforge")));
-        market.addIndustry(Industries.MINING);
-        market.addIndustry(Industries.HEAVYBATTERIES);
         market.addIndustry(Industries.HIGHCOMMAND);
-        market.addIndustry(Industries.WAYSTATION);
+        market.addIndustry(Industries.HEAVYBATTERIES);
+        market.addIndustry(Industries.MINING);
 
         market.addIndustry("oldlegion_gate_infrastructure");
-
 
         //planet sub-markets
         market.addSubmarket(Submarkets.SUBMARKET_STORAGE);
         market.addSubmarket(Submarkets.SUBMARKET_BLACK);
         market.addSubmarket(Submarkets.SUBMARKET_OPEN);
-
 
         //Market needs to be added to the global economy after sub-markets and industries
         //if you dont do this, at best commodities will be 1$, at worst the game will crash
@@ -167,7 +137,6 @@ public class MySystemOne {
                         market, //the market to add obviously!
                         false //the ''WithJunkerAndChatter'' flag. it will add space debris in orbit and radio chatter sound effects.
                 );
-
         //sectorEntityToken relay = system.addCustomEntity("mam_relay", "Comm Relay", "comm_relay", "domainspecops"
         //relay.setCircularOrbit(star, 0, 1831, 23)
         SectorEntityToken relay = system.addCustomEntity("mam_relay", "Comm Relay", "comm_relay", "domainspecops");
@@ -181,6 +150,9 @@ public class MySystemOne {
 
         SectorEntityToken gate = system.addCustomEntity("domain_ops_gate", "Domain Gate", "inactive_gate", "domainspecops");
         gate.setCircularOrbit(argonStar, 10, 6736, 233);
+
+
+        Global.getSector().addScript(new OldLegionPersonalFleetZeratul());
 
         //auto jump point generation
         //system.autogenerateHyperspaceJumpPoints(true, false);

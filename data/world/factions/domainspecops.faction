@@ -19,7 +19,7 @@
 		"GENERAL":1,
 	},
 
-	"showInIntelTab":false,
+	"showInIntelTab":true,
 
 	"description":"Domain of Man FOB",
 	"names":{
