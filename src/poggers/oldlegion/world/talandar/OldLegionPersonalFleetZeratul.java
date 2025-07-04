@@ -33,8 +33,8 @@ public class OldLegionPersonalFleetZeratul extends PersonalFleetScript {
 
     public CampaignFleetAPI spawnFleet() {
         MarketAPI holdout = this.getSourceMarket();
-        SectorEntityToken hallowhall = holdout.getStarSystem().getEntityById("Hunhow's Fall");
-        if (hallowhall == null) {
+        SectorEntityToken hallowhaill = holdout.getStarSystem().getEntityById("Hunhow");
+        if (hallowhaill == null) {
             return null;
         } else {
             FleetCreatorMission m = new FleetCreatorMission(this.random);

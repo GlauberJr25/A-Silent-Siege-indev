@@ -18,5 +18,6 @@
     <orderEntry type="library" name="secretsofthefrontier" level="project" />
     <orderEntry type="library" name="JaydeePiracy" level="project" />
     <orderEntry type="library" name="lw_Console" level="project" />
+    <orderEntry type="library" name="UAF" level="project" />
   </component>
 </module>

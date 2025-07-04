@@ -18,13 +18,9 @@ public class oldlegion_people {
     public static String ZERATUL = "oldlegion_zeratul";
     public static Logger log = Global.getLogger(oldlegion_people.class);
 
-
-
     public static PersonAPI getPerson(String id) {
         return Global.getSector().getImportantPeople().getPerson(id);
     }
-
-
 
     public static void oldlegion_createMiscCharacters() {
         ImportantPeopleAPI ip = Global.getSector().getImportantPeople();
@@ -62,15 +58,17 @@ public class oldlegion_people {
                 log.info("OLDLEGION_RETROGEN: Solax Person already exists. No action taken");
             }
 
+
             PersonAPI oldlegion_natah_person = Global.getFactory().createPerson();
             oldlegion_natah_person.setId(OLDLEGION_NATAH);
+            oldlegion_natah_person.getName().setFirst("Joel Kepler");
             oldlegion_natah_person.setFaction("domainspecops");
             oldlegion_natah_person.setGender(Gender.MALE);
+            oldlegion_natah_person.setPortraitSprite(Global.getSettings().getSpriteName("characters", "kanta"));
             oldlegion_natah_person.setRankId("factionLeader");
             oldlegion_natah_person.setPostId("factionLeader");
             oldlegion_natah_person.setImportance(PersonImportance.HIGH);
-            oldlegion_natah_person.getName().setFirst("Joel Kepler");
-            oldlegion_natah_person.setPortraitSprite(Global.getSettings().getSpriteName("characters", "kanta"));
+            oldlegion_natah_person.getStats().setSkillLevel("industrial_planning", 3.0F);
             if (!ip.containsPerson(oldlegion_natah_person)) {
                 log.info("OLDLEGION_RETROGEN: Natah Person did not exist. He has been generated retroactively");
                 ip.addPerson(oldlegion_natah_person);
@@ -80,6 +78,13 @@ public class oldlegion_people {
                 ip.addPerson(oldlegion_natah_person);
             } else {
                 log.info("OLDLEGION_RETROGEN: Natah Person already exists. No action taken");
+            }
+            PersonAPI old_admin = market.getAdmin();
+            if (old_admin != null) {
+                market.getCommDirectory().removePerson(old_admin);
+            }
+            if (old_admin == null) {
+                market.setAdmin(oldlegion_natah_person);
             }
         }
 
