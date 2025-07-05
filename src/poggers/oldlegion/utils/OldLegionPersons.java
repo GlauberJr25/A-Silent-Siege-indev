@@ -14,9 +14,9 @@ public class OldLegionPersons {
     }
 
     public class Zeratul {
-        private String id = "uaf_capt_solvernia";
-        private final String firstname = "Solvernia";
-        private final String lastname = "Aurora";
+        private String id = "domain_capt_zeratul";
+        private final String firstname = "Zeratul";
+        private final String lastname = "Talandar";
         private final FullName.Gender gender;
         private final FactionAPI faction;
         private final String rankid;
@@ -27,19 +27,19 @@ public class OldLegionPersons {
         Zeratul() {
             this.gender = Gender.MALE;
             this.faction = Global.getSector().getFaction("domainspecops");
-            this.rankid = "admiral";
-            this.postid = "admiral";
-            this.sprite = "graphics/portraits/dweller.png";
+            this.rankid = "spaceCommander";
+            this.postid = "baseFleetCommander";
+            this.sprite = "graphics/portraits/characters/kanta.png";
             this.personalities = "steady";
             PersonAPI Zeratul = this.faction.createRandomPerson();
-            Zeratul.setId("oldlegion_capt_zeratul");
+            Zeratul.setId("domain_capt_zeratul");
             Zeratul.getName().setFirst("Zeratul");
             Zeratul.getName().setLast("Talandar");
             Zeratul.getName().setGender(this.gender);
-            Zeratul.setRankId("admiral");
-            Zeratul.setPostId("admiral");
-            Zeratul.setPortraitSprite("graphics/portraits/dweller.png");
-            Zeratul.setPersonality("cautious");
+            Zeratul.setRankId("spaceCommander");
+            Zeratul.setPostId("baseFleetCommander");
+            Zeratul.setPortraitSprite("graphics/portraits/characters/kanta.png");
+            Zeratul.setPersonality("steady");
             Zeratul.getStats().setSkipRefresh(true);
             Zeratul.getStats().setLevel(8);
             Zeratul.getStats().setSkillLevel("ballistic_mastery", 2.0F);

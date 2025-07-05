@@ -29,9 +29,31 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import org.lazywizard.lazylib.MathUtils;
-import poggers.oldlegion.world.talandar.OldLegionPersonalFleetZeratul;
 
 public class MySystemOne {
+    public JSONObject getFleetData(String id) {
+        JSONObject fleetData = null;
+
+        try {
+            JSONObject jsonData = Global.getSettings().loadJSON("data/config/domain_escort_fleet.json", "poggers_old_legion");
+            JSONArray allFleet = jsonData.getJSONArray("availableFleets");
+
+            for(int n = 0; n < allFleet.length(); ++n) {
+                JSONObject captData = allFleet.getJSONObject(n);
+                if (captData.getString("fleetId").equals(id)) {
+                    fleetData = captData;
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            logging.log.info(e);
+        }
+
+        return fleetData;
+    }
+
+
+
     public void generate(SectorAPI sector) {
         StarSystemAPI system = sector.createStarSystem("Nataruk");
         system.getLocation().set(+80000,-55000); //bottom rightish
@@ -147,6 +169,7 @@ public class MySystemOne {
         market.addSubmarket(Submarkets.SUBMARKET_BLACK);
         market.addSubmarket(Submarkets.SUBMARKET_OPEN);
 
+
         //Market needs to be added to the global economy after sub-markets and industries
         //if you dont do this, at best commodities will be 1$, at worst the game will crash
         EconomyAPI globalEconomy = Global.getSector().getEconomy();
@@ -165,9 +188,38 @@ public class MySystemOne {
         SectorEntityToken array = system.addCustomEntity("sensor_array", "Sensor Array", "sensor_array", "domainspecops");
         array.setCircularOrbit(relay, 25, 3961, 95);
 
-        SectorEntityToken gate = system.addCustomEntity("domain_ops_gate", "Domain Gate", "inactive_gate", "domainspecops");
-        gate.setCircularOrbit(relay, 10, 6736, 233);
+        SectorEntityToken domaingate = system.addCustomEntity("domain_ops_gate", "Domain Gate", "inactive_gate", "domainspecops");
+        domaingate.setCircularOrbit(relay, 10, 6736, 233);
 
+        JSONObject fleetData = this.getFleetData("domain_ra_fleet_remnant");
+
+        try {
+            ImportantPeopleAPI ip = Global.getSector().getImportantPeople();
+            PersonAPI capt = ip.getPerson(fleetData.getString("fleetCaptain"));
+            CampaignFleetAPI domainFleet = FleetFactoryV3.createEmptyFleet("domainspecops", fleetData.getString("fleetType"), (MarketAPI)null);
+            FleetMemberAPI flagShip = Global.getFactory().createFleetMember(FleetMemberType.SHIP, fleetData.getString("fleetFlagship"));
+            flagShip.setShipName(fleetData.getString("fleetFlagshipName"));
+            flagShip.setFlagship(true);
+            domainFleet.getFleetData().addFleetMember(flagShip);
+            flagShip.setCaptain(capt);
+            JSONArray fleetMembers = fleetData.getJSONArray("fleetComposition");
+
+            for(int n = 0; n < fleetMembers.length(); ++n) {
+                FleetMemberAPI memberShip = Global.getFactory().createFleetMember(FleetMemberType.SHIP, (String)fleetMembers.get(n));
+                domainFleet.getFleetData().addFleetMember(memberShip);
+            }
+
+            domainFleet.getFleetData().setSyncNeeded();
+            domainFleet.getFleetData().syncIfNeeded();
+            domainFleet.setCommander(capt);
+            domainFleet.setName(fleetData.getString("fleetName"));
+            domainFleet.setId(fleetData.getString("fleetId"));
+            system.addEntity(domainFleet);
+            MutableFleetStatsAPI domainFleetStats = domainFleet.getStats();
+            domainFleet.getAI().addAssignment(FleetAssignment.ORBIT_PASSIVE, domaingate, 9999.0F, (Script)null);
+        } catch (JSONException ex) {
+            logging.log.info(ex);
+        }
 
         //Global.getSector().addScript(new OldLegionPersonalFleetZeratul());
 
