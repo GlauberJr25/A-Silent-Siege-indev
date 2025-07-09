@@ -53,7 +53,7 @@ public class oldlegion_people {
                 market.addPerson(oldlegion_solaxwhitemore_person);
                 market.getCommDirectory().addPerson(oldlegion_solaxwhitemore_person, 0);
                 market.getCommDirectory().getEntryForPerson(oldlegion_solaxwhitemore_person).setHidden(false);
-                ip.addPerson(oldlegion_solaxwhitemore_person);
+
             } else {
                 log.info("OLDLEGION_RETROGEN: Solax Person already exists. No action taken");
             }
@@ -75,7 +75,6 @@ public class oldlegion_people {
                 market.addPerson(oldlegion_natah_person);
                 market.getCommDirectory().addPerson(oldlegion_natah_person, 0);
                 market.getCommDirectory().getEntryForPerson(oldlegion_natah_person).setHidden(false);
-                ip.addPerson(oldlegion_natah_person);
             } else {
                 log.info("OLDLEGION_RETROGEN: Natah Person already exists. No action taken");
             }

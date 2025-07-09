@@ -71,7 +71,7 @@ public class MySystemOne {
         PlanetAPI argonStar = system.initStar("Argonian", // unique id for this star
                 "star_red_giant", // id in planets.json
                 100f, // radius (in pixels at default zoom)
-                750); // corona radius, from star edge
+                650); // corona radius, from star edge
         system.setLightColor(new Color(239, 155, 128)); // light color in entire system, affects all entities
 
         system.removeEntity(argonStar);
