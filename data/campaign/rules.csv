@@ -22,3 +22,43 @@ oldlegionDomainGateUseOpt,DialogOptionSelected,$option == DOMAIN_GATE,DomainGate
 dfl_IntroductionOption,PopulateOptions,"$isPerson 
 $id == oldlegion_natah",,"[PH] this is rules.csv TEXT (Hi, this is what shows up when first opening the interaction with the NPC).","dfl_Introduction:""May I introduce Myself?""",
 dfl_Introduction,DialogOptionSelected,$option == dfl_Introduction,,"[PH] this is rules.csv TEXT, for Introduction (not option).",,
+,,,,,,
+# birthday testing quest,,,,,,
+BTQintro1,PopulateOptions,"$id == oldlegion_natah
+!$global.oldlegion_test_completed",,"[PH] (testing quest intro1) 
+""Oh."" You see the truth register on their face, ""Oh! Yes. Immediately. Please $playerSirOrMadam, if you would be so kind as to come with me right away, we'll get you to your meeting with Provost Baird.""",BTQ_introCont2:Start Quest,
+BTQintro2,DialogOptionSelected,$option == BTQ_introCont2,Highlight 'Project Ziggurat',"""There are many signs that an individual with the surname 'Astraia' is involved. Who we are almost certain is-""
+
+Gargoyle interrupts, ""-Kelise Astraia, former weapons engineer employed at the Culann Starforge in the Hybrasil system by Tri-Tach. And rather underpaid in light of how essential the suits seem to have thought she was to the project.""
+
+Baird sets her jaw, ""Thank you, Gargoyle,"" she says. ""Kindly elaborate for the captain here.""
+
+The hacker grins, ""Love to! So TT 'fired' Kelise over some incident, but if you look at her credit records... "" A couple taps and the display fills with tables and numbers, ""There are recurring payments, we're talking massive credits, something to do with 'Project Ziggurat', whatever that is. It sure makes up for her low salary at Culann, and... """,BTQ_introCont3:Continue,
+BTQintro3,DialogOptionSelected,$option == BTQ_introCont3,"$global.oldlegion_test_missionGiven = true
+BeginMission oldlegion_test","""Then you should proceed, captain,"" says the provost.
+
+You feel the doors open behind you, a guard waiting to escort you from the office.",BTQ_introCont4:Leave (this will end dialog and give mission),
+BTQintro4,DialogOptionSelected,$option == BTQ_introCont4,"EndConversation DO_NOT_FIRE
+ShowDefaultVisual
+FireAll PopulateOptions",,,
+,,,,,,
+# birthday testing quest ending,,,,,,
+BTQending1,PopulateOptions,"$id == oldlegion_solaxwhitemore
+!$global.oldlegion_test_completed",,"[test] ""yes?''",BTQ_endingCont2:Start The Ending,
+BTQending2,DialogOptionSelected,$option == BTQ_endingCont2,,"""Captain, I am pleased that you have returned with this valuable data,"" she pulls up a schematic of the Ziggurat-class prototype.
+
+The manta-ray design spins slowly between you and the provost; she seems to be rubbing two fingers together, contemplating the thing before her.
+
+""The starship itself is irrelevant because we got to it first, though I do hope that you consider where this information ends up- and the fate of the ship itself. Factions might get notions.""",BTQ_endingCont3:Continue,
+BTQending3,DialogOptionSelected,$option == BTQ_endingCont3,AdjustRepPerson oldlegion_solaxwhitemore COOPERATIVE 5,"Baird raises a hand to stop the words tumbling from Coureuse. ""That's enough. I understand, Scylla. Your team has a lot of work to do, and we shall ask Gargoyle to trace what information-exchange Tomas Kallichore made with Tri-Tachyon specific to applications within this Project Ziggurat.""
+
+Coureuse nods. ""I'll, we'll get back to it."" 
+
+She closes down the display of the Ziggurat device and looks to you, ""This is incredible, captain. Thank you for this, this opportunity.""
+
+She signs off.",BTQ_endingCont4:Continue,
+BTQending4,DialogOptionSelected,$option == BTQ_endingCont4,"AddStoryPoints 1
+$global.oldlegion_test_completed = true
+Call $global.oldlegion_test_ref updateStage","""There will be more for you to do here before long, captain,"" she says. ""Unbelievable things."" 
+
+Baird smiles, looking uncharacteristically satisfied, and closes the comm-link.",cutCommLinkNoText:Cut the comm link,

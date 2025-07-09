@@ -14,7 +14,7 @@ public class OldLegionPersons {
     }
 
     public class Zeratul {
-        private String id = "domain_capt_zeratul";
+        private final String id = "domain_capt_zeratul";
         private final String firstname = "Zeratul";
         private final String lastname = "Talandar";
         private final FullName.Gender gender;

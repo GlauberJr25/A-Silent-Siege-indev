@@ -8,7 +8,6 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.Script;
 import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.campaign.CampaignFleetAPI;
-import com.fs.starfarer.api.campaign.FactionAPI;
 import com.fs.starfarer.api.campaign.FleetAssignment;
 import com.fs.starfarer.api.campaign.econ.EconomyAPI;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
@@ -55,33 +54,33 @@ public class MySystemOne {
 
 
     public void generate(SectorAPI sector) {
-        StarSystemAPI system = sector.createStarSystem("Nataruk");
-        system.getLocation().set(+80000,-55000); //bottom rightish
+        StarSystemAPI DomainOutpost = sector.createStarSystem("Nataruk");
+        DomainOutpost.getLocation().set(+80000,-55000); //bottom rightish
 
-        system.addTag(Tags.THEME_HIDDEN);
-        system.addTag(Tags.THEME_SPECIAL);
-        system.addTag(Tags.STAR_HIDDEN_ON_MAP);
-        system.addTag(Tags.THEME_UNSAFE);
-        system.addTag(Tags.NOT_RANDOM_MISSION_TARGET);
-        system.addTag("star_hidden_on_map");
+        DomainOutpost.addTag(Tags.THEME_HIDDEN);
+        DomainOutpost.addTag(Tags.THEME_SPECIAL);
+        DomainOutpost.addTag(Tags.STAR_HIDDEN_ON_MAP);
+        DomainOutpost.addTag(Tags.THEME_UNSAFE);
+        DomainOutpost.addTag(Tags.NOT_RANDOM_MISSION_TARGET);
+        DomainOutpost.addTag("star_hidden_on_map");
 
-        system.setBackgroundTextureFilename("graphics/mymod/backgrounds/mybackground.jpg");
+        DomainOutpost.setBackgroundTextureFilename("graphics/mymod/backgrounds/mybackground.jpg");
 
-        // create the star and generate the hyperspace anchor for this system
-        PlanetAPI argonStar = system.initStar("Argonian", // unique id for this star
+        // create the star and generate the hyperspace anchor for this DomainOutpost
+        PlanetAPI argonStar = DomainOutpost.initStar("Argonian", // unique id for this star
                 "star_red_giant", // id in planets.json
                 100f, // radius (in pixels at default zoom)
                 650); // corona radius, from star edge
-        system.setLightColor(new Color(239, 155, 128)); // light color in entire system, affects all entities
+        DomainOutpost.setLightColor(new Color(239, 155, 128)); // light color in entire DomainOutpost, affects all entities
 
-        system.removeEntity(argonStar);
-        SectorEntityToken relay = system.addCustomEntity("mam_relay", "Comm Relay", "comm_relay", "domainspecops");
+        DomainOutpost.removeEntity(argonStar);
+        SectorEntityToken relay = DomainOutpost.addCustomEntity("mam_relay", "Comm Relay", "comm_relay", "domainspecops");
 
         //setup all distances here
         final float asteroids1Dist = 2750f;
         final float stable1Dist = 4200f;
         final float asteroidBelt1Dist = 5700f;
-        SectorEntityToken argonAF1 = system.addTerrain(Terrain.ASTEROID_FIELD,
+        SectorEntityToken argonAF1 = DomainOutpost.addTerrain(Terrain.ASTEROID_FIELD,
                 new AsteroidFieldTerrainPlugin.AsteroidFieldParams(
                         300f, // min radius
                         500f, // max radius
@@ -93,16 +92,16 @@ public class MySystemOne {
         argonAF1.setCircularOrbit(relay, 130, asteroids1Dist, 240);
 
         //add first stable loc
-        SectorEntityToken stableLoc1 = system.addCustomEntity("argon_stableloc_1", "Stable Location", "stable_location", Factions.NEUTRAL);
+        SectorEntityToken stableLoc1 = DomainOutpost.addCustomEntity("argon_stableloc_1", "Stable Location", "stable_location", Factions.NEUTRAL);
         stableLoc1.setCircularOrbit(relay, MathUtils.getRandomNumberInRange(0f, 360f), stable1Dist, 520);
 
         //asteroid belt1 ring
-        system.addAsteroidBelt(relay, 1000, asteroidBelt1Dist, 800, 250, 400, Terrain.ASTEROID_BELT, "Inner Band");
-        system.addRingBand(relay, "misc", "rings_asteroids0", 256f, 3, Color.gray, 256f, asteroidBelt1Dist - 200, 250f);
-        system.addRingBand(relay, "misc", "rings_asteroids0", 256f, 0, Color.gray, 256f, asteroidBelt1Dist, 350f);
-        system.addRingBand(relay, "misc", "rings_asteroids0", 256f, 2, Color.gray, 256f, asteroidBelt1Dist + 200, 400f);
+        DomainOutpost.addAsteroidBelt(relay, 1000, asteroidBelt1Dist, 800, 250, 400, Terrain.ASTEROID_BELT, "Inner Band");
+        DomainOutpost.addRingBand(relay, "misc", "rings_asteroids0", 256f, 3, Color.gray, 256f, asteroidBelt1Dist - 200, 250f);
+        DomainOutpost.addRingBand(relay, "misc", "rings_asteroids0", 256f, 0, Color.gray, 256f, asteroidBelt1Dist, 350f);
+        DomainOutpost.addRingBand(relay, "misc", "rings_asteroids0", 256f, 2, Color.gray, 256f, asteroidBelt1Dist + 200, 400f);
 
-        PlanetAPI planet = system.addPlanet("Hunhow", relay, "Hunhow's Fall", "barren", 0, 273, 7777, 157);
+        PlanetAPI planet = DomainOutpost.addPlanet("Hunhow", relay, "Hunhow's Fall", "barren", 0, 273, 7777, 157);
         planet.setFaction("domainspecops");
         //create and initialize market:
         //A size 1 market's population industry will only demand supplies and produce nothing
@@ -177,18 +176,18 @@ public class MySystemOne {
                         market, //the market to add obviously!
                         false //the ''WithJunkerAndChatter'' flag. it will add space debris in orbit and radio chatter sound effects.
                 );
-        //sectorEntityToken relay = system.addCustomEntity("mam_relay", "Comm Relay", "comm_relay", "domainspecops"
+        //sectorEntityToken relay = DomainOutpost.addCustomEntity("mam_relay", "Comm Relay", "comm_relay", "domainspecops"
         //relay.setCircularOrbit(star, 0, 1831, 23)
-        //SectorEntityToken relay = system.addCustomEntity("mam_relay", "Comm Relay", "comm_relay", "domainspecops");
+        //SectorEntityToken relay = DomainOutpost.addCustomEntity("mam_relay", "Comm Relay", "comm_relay", "domainspecops");
         //relay.setCircularOrbit(argonStar, 0, 2861, 62);
 
-        SectorEntityToken buoy = system.addCustomEntity("nav_buoy", "Nav Buoy", "nav_buoy", "domainspecops");
+        SectorEntityToken buoy = DomainOutpost.addCustomEntity("nav_buoy", "Nav Buoy", "nav_buoy", "domainspecops");
         buoy.setCircularOrbit(relay, 25, 8861, 275);
 
-        SectorEntityToken array = system.addCustomEntity("sensor_array", "Sensor Array", "sensor_array", "domainspecops");
+        SectorEntityToken array = DomainOutpost.addCustomEntity("sensor_array", "Sensor Array", "sensor_array", "domainspecops");
         array.setCircularOrbit(relay, 25, 3961, 95);
 
-        SectorEntityToken domaingate = system.addCustomEntity("domain_ops_gate", "Domain Gate", "inactive_gate", "domainspecops");
+        SectorEntityToken domaingate = DomainOutpost.addCustomEntity("domain_ops_gate", "Domain Gate", "inactive_gate", "domainspecops");
         domaingate.setCircularOrbit(relay, 10, 6736, 233);
 
         JSONObject fleetData = this.getFleetData("domain_ra_fleet_remnant");
@@ -214,9 +213,9 @@ public class MySystemOne {
             domainFleet.setCommander(capt);
             domainFleet.setName(fleetData.getString("fleetName"));
             domainFleet.setId(fleetData.getString("fleetId"));
-            system.addEntity(domainFleet);
+            DomainOutpost.addEntity(domainFleet);
             MutableFleetStatsAPI domainFleetStats = domainFleet.getStats();
-            domainFleet.getAI().addAssignment(FleetAssignment.ORBIT_PASSIVE, domaingate, 9999.0F, (Script)null);
+            domainFleet.getAI().addAssignment(FleetAssignment.ORBIT_PASSIVE, domaingate, 9999.0F,(Script)null);
         } catch (JSONException ex) {
             logging.log.info(ex);
         }
@@ -224,15 +223,15 @@ public class MySystemOne {
         //Global.getSector().addScript(new OldLegionPersonalFleetZeratul());
 
         //auto jump point generation
-        //system.autogenerateHyperspaceJumpPoints(true, false);
+        //DomainOutpost.autogenerateHyperspaceJumpPoints(true, false);
 
         //HyperspaceTerrainPlugin plugin = (HyperspaceTerrainPlugin) Misc.getHyperspaceTerrain().getPlugin();
         //NebulaEditor editor = new NebulaEditor(plugin);
         //float minRadius = plugin.getTileSize() * 2f;
 
-        //float radius = system.getMaxRadiusInHyperspace();
-        //editor.clearArc(system.getLocation().x, system.getLocation().y, 0, radius + minRadius, 0, 360f);
-        //editor.clearArc(system.getLocation().x, system.getLocation().y, 0, radius + minRadius, 0, 360f, 0.25f);
+        //float radius = DomainOutpost.getMaxRadiusInHyperspace();
+        //editor.clearArc(DomainOutpost.getLocation().x, DomainOutpost.getLocation().y, 0, radius + minRadius, 0, 360f);
+        //editor.clearArc(DomainOutpost.getLocation().x, DomainOutpost.getLocation().y, 0, radius + minRadius, 0, 360f, 0.25f);
 
 
     }
