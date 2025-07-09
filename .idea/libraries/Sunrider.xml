@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Sunrider">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../Sunrider-0.6.2a/jars/Sunrider.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

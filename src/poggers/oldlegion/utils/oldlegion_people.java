@@ -7,12 +7,15 @@ import com.fs.starfarer.api.characters.ImportantPeopleAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.characters.FullName.Gender;
 import com.fs.starfarer.api.impl.campaign.ids.Ranks;
+import data.scripts.campaign.ids.SotfIDs;
+import data.scripts.utils.SotfMisc;
 import org.apache.log4j.Logger;
 
 public class oldlegion_people {
 
     public static String OLDLEGION_NATAH = "oldlegion_natah";
     public static String OLDLEGION_SOLAX = "oldlegion_solaxwhitemore";
+    public static String ZERATUL = "oldlegion_zeratul";
     public static Logger log = Global.getLogger(oldlegion_people.class);
 
     public static PersonAPI getPerson(String id) {
@@ -50,30 +53,62 @@ public class oldlegion_people {
                 market.addPerson(oldlegion_solaxwhitemore_person);
                 market.getCommDirectory().addPerson(oldlegion_solaxwhitemore_person, 0);
                 market.getCommDirectory().getEntryForPerson(oldlegion_solaxwhitemore_person).setHidden(false);
-                ip.addPerson(oldlegion_solaxwhitemore_person);
+
             } else {
                 log.info("OLDLEGION_RETROGEN: Solax Person already exists. No action taken");
             }
 
+
             PersonAPI oldlegion_natah_person = Global.getFactory().createPerson();
             oldlegion_natah_person.setId(OLDLEGION_NATAH);
+            oldlegion_natah_person.getName().setFirst("Joel Kepler");
             oldlegion_natah_person.setFaction("domainspecops");
             oldlegion_natah_person.setGender(Gender.MALE);
+            oldlegion_natah_person.setPortraitSprite(Global.getSettings().getSpriteName("characters", "kanta"));
             oldlegion_natah_person.setRankId("factionLeader");
             oldlegion_natah_person.setPostId("factionLeader");
             oldlegion_natah_person.setImportance(PersonImportance.HIGH);
-            oldlegion_natah_person.getName().setFirst("Joel Kepler");
-            oldlegion_natah_person.setPortraitSprite(Global.getSettings().getSpriteName("characters", "kanta"));
+            oldlegion_natah_person.getStats().setSkillLevel("industrial_planning", 3.0F);
             if (!ip.containsPerson(oldlegion_natah_person)) {
                 log.info("OLDLEGION_RETROGEN: Natah Person did not exist. He has been generated retroactively");
                 ip.addPerson(oldlegion_natah_person);
                 market.addPerson(oldlegion_natah_person);
                 market.getCommDirectory().addPerson(oldlegion_natah_person, 0);
                 market.getCommDirectory().getEntryForPerson(oldlegion_natah_person).setHidden(false);
-                ip.addPerson(oldlegion_natah_person);
             } else {
                 log.info("OLDLEGION_RETROGEN: Natah Person already exists. No action taken");
             }
+            PersonAPI old_admin = market.getAdmin();
+            if (old_admin != null) {
+                market.getCommDirectory().removePerson(old_admin);
+            }
+            if (old_admin == null) {
+                market.setAdmin(oldlegion_natah_person);
+            }
+        }
+
+        if (getPerson(ZERATUL) == null) {
+            PersonAPI person = Global.getFactory().createPerson();
+            person.setId(ZERATUL);
+            person.setFaction("domainspecops");
+            person.setGender(Gender.MALE);
+            person.setPostId(Ranks.POST_FLEET_COMMANDER);
+            person.setPortraitSprite(Global.getSettings().getSpriteName("characters", "kanta"));
+            person.setPersonality("steady");
+            person.getStats().setLevel(12);
+            person.getStats().setSkillLevel("target_analysis", 2.0F);
+            person.getStats().setSkillLevel("polarized_armor", 2.0F);
+            person.getStats().setSkillLevel("damage_control", 2.0F);
+            person.getStats().setSkillLevel("gunnery_implants", 2.0F);
+            person.getStats().setSkillLevel("point_defense", 2.0F);
+            person.getStats().setSkillLevel("missile_specialization", 2.0F);
+            person.getStats().setSkillLevel("impact_mitigation", 2.0F);
+            person.getStats().setSkillLevel("field_modulation", 2.0F);
+            person.getStats().setSkillLevel("field_repairs", 1.0F);
+            person.getStats().setSkillLevel("electronic_warfare", 1.0F);
+            person.getStats().setSkillLevel("coordinated_maneuvers", 1.0F);
+            person.getStats().setSkillLevel("fighter_uplink", 1.0F);
+            ip.addPerson(person);
         }
 
     }

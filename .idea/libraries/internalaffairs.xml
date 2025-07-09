@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="internalaffairs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../Internal Affairs v1.1/jars/internalaffairs.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
