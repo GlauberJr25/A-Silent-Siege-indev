@@ -1,0 +1,63 @@
+    {
+    "availableCaptains":[
+        {
+            "captainId":"domain_capt_zeratul",
+            "captainNameFirst":"Zeratul",
+            "captainNameLast":"Talandar",
+            "captainGender":"male",
+            "captainFaction":"domainspecops",
+            "captainRankId":"spaceCommander",
+            "captainPostId":"fleetCommander",
+            "captainPhotoSprite":"graphics/portraits/characters/kanta.png",
+            "captainPersonalities":"steady",
+            "captainSkills":[
+                {
+                    "skillId":"impact_mitigation",
+                    "skillLevel":2
+                },
+                {
+                    "skillId":"helmsmanship",
+                    "skillLevel":2
+                },
+                {
+                    "skillId":"ballistic_mastery",
+                    "skillLevel":2
+                },
+                {
+                    "skillId":"polarized_armor",
+                    "skillLevel":2
+                },
+                {
+                    "skillId":"target_analysis",
+                    "skillLevel":2
+                },
+                {
+                    "skillId":"gunnery_implants",
+                    "skillLevel":2
+                },
+            ]
+        }
+    ],
+    "availableFleets":[
+        {
+            "fleetId":"domain_ra_fleet_remnant",
+            "fleetName":"Zeratul's Hunter Battle Group",
+            "fleetType":"patrolLarge",
+            "fleetDuration":980,
+            "fleetDescription":"The flagship fleet of the elite Captain Zeratul.",
+            "fleetCaptain":"domain_capt_zeratul",
+            "fleetFlagship":"domain_capital_test",
+            "fleetFlagshipName":"DSS Rogue",
+            "fleetGreeting":"State your business, starfarer.",
+            "fleetAssignment":"steady",
+            "fleetComposition":[
+                "domain_capital_test",
+                "onslaught_xiv_Elite",
+                "legion_xiv_Elite",
+                "prometheus_Super",
+                "atlas_Standard",
+                "apogee_balanced"
+            ]
+        }
+    ]
+}

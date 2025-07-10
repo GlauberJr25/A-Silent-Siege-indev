@@ -1,0 +1,328 @@
+{
+	# should be a copy of "combatSmall", minus variants that are annoying to fight in low numbers
+	# for example, no Hyperions or fast beam-based kiting loadouts, or ships with damper field
+	"combatSmallForSmallFleet":{	
+		#"monitor_Escort":10,
+		
+		#"mudskipper2_CS":5,
+		#"mudskipper2_Hellbore":5,
+		
+		# a bit annoying to fight with a really small or weak fleet - not as much so as a centurion, but close enough
+		#"vanguard_Attack":5,
+		#"vanguard_Strike":5,
+		#"vanguard_pirates_Attack":5,
+		#"vanguard_pirates_Strike":5,
+		
+		"fallback":{"combatSmall":1},
+	},
+	"combatSmall":{
+		#"defender_PD":10,
+		#"picket_Assault":10,
+		#"sentry_FS":10,
+		#"warden_Defense":10,
+		
+		"fallback":{"combatMedium":0.5},
+	},
+	"combatMedium":{
+		#"bastillon_Standard":10,
+		#"berserker_Assault":10,		
+		
+		"fallback":{"combatSmall":1},
+	},
+	"combatLarge":{
+		#"anubis_Standard":10,
+		"domain_capital_test":1,
+		
+		"fallback":{"combatMedium":1},
+	},
+	"combatCapital":{
+		#"conquest_DEM":0, # probability overridden in persean_league.faction
+		
+		"domain_capital_test":3,
+		
+		"fallback":{"combatLarge":1},
+	},
+	
+	"threatFabricator":{
+		"fabricator_unit_Type450":10,
+	},
+	"threatHive":{
+		"hive_unit_Type350":10,
+	},
+	"threatOverseer":{
+		"overseer_unit_Type250":10,
+	},
+	
+	
+	"dwellerTendril":{
+		"shrouded_tendril_Roiling":10,
+	},
+	"dwellerMaelstrom":{
+		"shrouded_maelstrom_Menacing":10,
+	},
+	"dwellerEye":{
+		"shrouded_eye_Darkened":10,
+	},
+	"dwellerMaw":{
+		"shrouded_maw_Ravenous":10,
+	},
+	
+	
+	# hybrid ships with good combat and cargo capacity
+	"combatFreighterSmall":{
+		"cerberus_Hardened":2.5,
+		"cerberus_Overdriven":2.5,
+		"cerberus_Shielded":2.5,
+		"cerberus_Standard":2.5,
+		"cerberus_d_pirates_Shielded":4,
+		"cerberus_d_pirates_Standard":6,
+		"cerberus_luddic_path_Attack":10,
+		
+		"fallback":{"freighterSmall":1},
+	},
+	"combatFreighterMedium":{
+		"mule_Standard":10,
+		"mule_d_pirates_Smuggler":5,
+		"mule_d_pirates_Standard":5,
+		"gemini_Standard":10,
+		"fallback":{"combatFreighterSmall":1},
+	},
+	"combatFreighterLarge":{
+		"venture_Balanced":4,
+		"venture_Outdated":4,
+		"venture_Exploration":3,
+		"fallback":{"combatFreighterMedium":1},
+	},
+	
+	"civilianRandom":{
+		"mercury_Standard":10,
+		"hermes_Standard":10,
+		"kite_original_Stock":1,
+		"mudskipper_Standard":10,
+		"nebula_Standard":4,
+		"starliner_Standard":2,
+		"dram_Light":10,
+		"phaeton_Standard":3,
+		"buffalo_hegemony_Standard":2,
+		"buffalo_luddic_church_Standard":1,
+		"buffalo_pirates_Standard":2,
+		"buffalo_tritachyon_Standard":1,
+		"tarsus_Standard":3,
+		"buffalo_Standard":5,
+		"gemini_Standard":1,
+		"colossus_Standard":1,
+		"ox_Standard":0.6,
+		"crig_Standard":3,
+	},
+
+	# carriers
+	"carrierSmall":{
+		"shepherd_Frontier":2,
+		
+		"condor_Strike":4,
+		"condor_Attack":3,
+		"condor_Support":3,
+		"drover_Strike":10,
+		"drover_Support":0, # probability overridden in persean_league.faction
+		#"gemini_Standard":5,
+		
+		"scintilla_Strike":5,
+		"scintilla_Support":5,
+		
+		"fallback":{"carrierMedium":0.5},
+		"fallback2":{"carrierLarge":0.25},
+	},
+	"carrierMedium":{
+		"heron_Strike":5,
+		"heron_Attack":5,
+		"heron_Attack1":0, # PL-only variant
+		"heron_Attack2":0, # PL-only variant
+		"mora_Assault":3,
+		"mora_Support":3,
+		"mora_Strike":4,
+		"fallback":{"carrierSmall":1},
+		"fallback2":{"carrierLarge":0.5},
+	},
+	"carrierLarge":{
+		"astral_Strike":4,
+		"astral_Attack":4,
+		"astral_Elite":2,
+		
+		"legion_Assault":2.5,
+		"legion_Escort":2.5,
+		"legion_FS":2.5,
+		"legion_Strike":2.5,
+		
+		"legion_xiv_Elite":10,
+		
+		"fallback":{"carrierMedium":1},
+		"fallback2":{"carrierSmall":1},
+	},
+
+	# phase ships
+	"phaseSmall":{
+		"afflictor_d_pirates_Strike":10,
+		"afflictor_Strike":10,
+		"shade_d_pirates_Assault":10,
+		"shade_Assault":10,
+		"gremlin_Strike":10,
+		"gremlin_luddic_path_Strike":10,
+		"gremlin_d_pirates_Strike":10,
+		"fallback":{"phaseMedium":0.5},
+		"fallback2":{"phaseLarge":0.25},
+	},
+	"phaseMedium":{
+		"harbinger_Strike":10,
+		"fallback":{"phaseSmall":1},
+		"fallback2":{"phaseLarge":0.5},
+	},
+	"phaseLarge":{
+		"doom_Strike":4,
+		"doom_Support":3,
+		"doom_Attack":3,
+		"grendel_Assault":7,
+		"grendel_Support":3,
+		"fallback":{"phaseMedium":1},
+		"fallback2":{"phaseSmall":1},
+	},
+	"phaseCapital":{
+		"ziggurat_Strike":10,
+	},
+
+	# freighters and such
+	"freighterSmall":{
+		"hermes_Standard":1,
+		
+		"buffalo_hegemony_Standard":10,
+		"buffalo_luddic_church_Standard":10,
+		"buffalo_pirates_Standard":10,
+		"buffalo_tritachyon_Standard":10,
+		"tarsus_Standard":10,
+		"buffalo_Standard":10,
+		#"gemini_Standard":5,
+		"revenant_Elite":3,
+		"fallback":{"freighterMedium":0.5},
+		"fallback2":{"freighterLarge":0.25},
+	},
+	"freighterMedium":{
+		"colossus_Standard":10,
+		"fallback":{"freighterSmall":1},
+		"fallback2":{"freighterLarge":0.5},
+	},
+	"freighterLarge":{
+		"atlas_Standard":10,
+		"fallback":{"freighterMedium":1},
+		"fallback2":{"freighterSmall":1},
+	},
+	
+	"tankerSmall":{
+		"dram_Light":10,
+		"fallback":{"tankerMedium":0.5},
+		"fallback2":{"tankerLarge":0.25},
+	},
+	"tankerMedium":{
+		"phaeton_Standard":10,
+		"revenant_Elite":3,
+		"fallback":{"tankerSmall":1},
+		"fallback2":{"tankerLarge":0.5},
+	},
+	"tankerLarge":{
+		"prometheus_Super":10,
+		"fallback":{"tankerMedium":1},
+		"fallback2":{"tankerSmall":1},
+	},
+	
+	"personnelSmall":{
+		"mercury_Standard":10,
+		"kite_Standard":10,
+		"mudskipper_Standard":1,
+		"fallback":{"personnelMedium":0.5},
+		"fallback2":{"personnelLarge":0.25},
+	},
+	"personnelMedium":{
+		"valkyrie_Elite":10,
+		"phantom_Elite":10,
+		"nebula_Standard":1,
+		"fallback":{"personnelSmall":1},
+		"fallback2":{"personnelLarge":0.5},
+	},
+	"personnelLarge":{
+		"fallback":{"personnelMedium":1},
+		"fallback2":{"personnelSmall":1},
+	},
+	
+	"linerSmall":{
+		"kite_original_Stock":1,
+		"mudskipper_Standard":10,
+		"fallback":{"linerMedium":0.5},
+		"fallback2":{"linerLarge":0.25},
+	},
+	"linerMedium":{
+		"nebula_Standard":10,
+		"fallback":{"linerSmall":1},
+		"fallback2":{"linerLarge":0.5},
+	},
+	"linerLarge":{
+		"starliner_Standard":10,
+		"fallback":{"linerMedium":1},
+		"fallback2":{"linerSmall":1},
+	},
+	
+	# utility ships
+	"tug":{
+		"ox_Standard":10,
+		"fallback":{"utility":1},
+	},
+	"crig":{
+		"crig_Standard":10,
+		"fallback":{"utility":1},
+	},
+	"utility":{
+		"crig_Standard":10,
+		"ox_Standard":2,
+	},
+	
+	"orbitalStationLowTech":{
+		"station1_Standard":10,
+	},
+	
+	"battlestationLowTech":{
+		"station2_Standard":10,
+	},
+	
+	
+
+
+	# Old/unused below this line
+	"fastAttack":{
+		"hound_d_Standard":10,
+		"wolf_d_Attack":10,	
+		"lasher_Standard":10,
+		"hound_Standard":10,
+		"tempest_Attack":10,
+		"hyperion_Attack":1,
+		"wolf_Assault":10,
+		"fallback":{"combatSmall":1},
+	},
+
+	"escortSmall":{
+		"wolf_CS":10,
+		"lasher_d_CS":10,
+		"wolf_d_Attack":10,
+		"lasher_CS":10,
+		"omen_PD":10,
+		"monitor_Escort":2,
+		"wolf_PD":10,
+		"fallback":{"combatSmall":1},
+	},
+	"escortMedium":{
+		"enforcer_d_Strike":10,
+		"hammerhead_d_CS":10,
+		"sunder_d_Assault":10,
+		"buffalo2_FS":10,
+		"enforcer_Assault":10,
+		"medusa_PD":10,
+		"fallback":{"combatMedium":1},
+	},
+	
+}
