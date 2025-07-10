@@ -20,7 +20,7 @@ import com.fs.starfarer.api.util.Misc;
 import org.lwjgl.util.vector.Vector2f;
 
 
-public class OldLegionPersonalFleetZeratul extends PersonalFleetScript {
+/*public class OldLegionPersonalFleetZeratul extends PersonalFleetScript {
     public OldLegionPersonalFleetZeratul() {
         super(oldlegion_people.ZERATUL);
         this.setMinRespawnDelayDays(5.0F);
@@ -109,4 +109,4 @@ public class OldLegionPersonalFleetZeratul extends PersonalFleetScript {
     public boolean shouldScriptBeRemoved() {
         return false;
     }
-}
+}*/

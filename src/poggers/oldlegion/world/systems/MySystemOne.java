@@ -11,6 +11,7 @@ import com.fs.starfarer.api.campaign.CampaignFleetAPI;
 import com.fs.starfarer.api.campaign.FleetAssignment;
 import com.fs.starfarer.api.campaign.econ.EconomyAPI;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
+import com.fs.starfarer.api.characters.FullName;
 import com.fs.starfarer.api.characters.ImportantPeopleAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
@@ -30,6 +31,9 @@ import org.json.JSONObject;
 import org.lazywizard.lazylib.MathUtils;
 
 public class MySystemOne {
+    public static String DOMAIN_CAPT_ZERATUL = "domain_capt_zeratul";
+    ImportantPeopleAPI ip = Global.getSector().getImportantPeople();
+
     public JSONObject getFleetData(String id) {
         JSONObject fleetData = null;
 
@@ -190,11 +194,22 @@ public class MySystemOne {
         SectorEntityToken domaingate = DomainOutpost.addCustomEntity("domain_ops_gate", "Domain Gate", "inactive_gate", "domainspecops");
         domaingate.setCircularOrbit(relay, 10, 6736, 233);
 
+        PersonAPI capt_zeratul_person = Global.getFactory().createPerson();
+        capt_zeratul_person.setId("domain_capt_zeratul");
+        capt_zeratul_person.setFaction("domainspecops");
+        capt_zeratul_person.setGender(FullName.Gender.MALE);
+        capt_zeratul_person.setRankId("spaceCommander");
+        capt_zeratul_person.setPostId("fleetCommander");
+        capt_zeratul_person.setImportance(PersonImportance.HIGH);
+        capt_zeratul_person.getName().setFirst("Zeratul");
+        capt_zeratul_person.setPortraitSprite(Global.getSettings().getSpriteName("characters", "kanta"));
+        ip.addPerson(capt_zeratul_person);
+
         JSONObject fleetData = this.getFleetData("domain_ra_fleet_remnant");
 
         try {
             ImportantPeopleAPI ip = Global.getSector().getImportantPeople();
-            PersonAPI capt = ip.getPerson(fleetData.getString("fleetCaptain"));
+            PersonAPI capt = ip.getPerson(DOMAIN_CAPT_ZERATUL);
             CampaignFleetAPI domainFleet = FleetFactoryV3.createEmptyFleet("domainspecops", fleetData.getString("fleetType"), (MarketAPI)null);
             FleetMemberAPI flagShip = Global.getFactory().createFleetMember(FleetMemberType.SHIP, fleetData.getString("fleetFlagship"));
             flagShip.setShipName(fleetData.getString("fleetFlagshipName"));
@@ -215,7 +230,7 @@ public class MySystemOne {
             domainFleet.setId(fleetData.getString("fleetId"));
             DomainOutpost.addEntity(domainFleet);
             MutableFleetStatsAPI domainFleetStats = domainFleet.getStats();
-            domainFleet.getAI().addAssignment(FleetAssignment.ORBIT_PASSIVE, domaingate, 9999.0F,(Script)null);
+            domainFleet.getAI().addAssignment(FleetAssignment. ORBIT_AGGRESSIVE, domaingate, 9999.0F,(Script)null);
         } catch (JSONException ex) {
             logging.log.info(ex);
         }

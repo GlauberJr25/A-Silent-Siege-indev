@@ -1,7 +1,6 @@
 package poggers.oldlegion.campaign.missions.domain_faction;
 
 import com.fs.starfarer.api.impl.campaign.missions.hub.HubMissionWithSearch;
-import poggers.oldlegion.world.systems.MySystemOne;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.NascentGravityWellAPI;
 import com.fs.starfarer.api.campaign.SectorEntityToken;

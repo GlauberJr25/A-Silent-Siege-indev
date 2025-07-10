@@ -7,15 +7,14 @@ import com.fs.starfarer.api.characters.ImportantPeopleAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.characters.FullName.Gender;
 import com.fs.starfarer.api.impl.campaign.ids.Ranks;
-import data.scripts.campaign.ids.SotfIDs;
-import data.scripts.utils.SotfMisc;
+
 import org.apache.log4j.Logger;
 
 public class oldlegion_people {
 
     public static String OLDLEGION_NATAH = "oldlegion_natah";
     public static String OLDLEGION_SOLAX = "oldlegion_solaxwhitemore";
-    public static String ZERATUL = "oldlegion_zeratul";
+    public static String DOMAIN_CAPTAIN_ZERATUL = "domain_captain_zeratul";
     public static Logger log = Global.getLogger(oldlegion_people.class);
 
     public static PersonAPI getPerson(String id) {
@@ -37,6 +36,28 @@ public class oldlegion_people {
                     market.getCommDirectory().removePerson(p);
                 }
             }
+
+            PersonAPI capt_zeratul_person = Global.getFactory().createPerson();
+            capt_zeratul_person.setId(DOMAIN_CAPTAIN_ZERATUL);
+            capt_zeratul_person.setFaction("domainspecops");
+            capt_zeratul_person.setGender(Gender.MALE);
+            capt_zeratul_person.setRankId("spaceCommander");
+            capt_zeratul_person.setPostId("fleetCommander");
+            capt_zeratul_person.setImportance(PersonImportance.HIGH);
+            capt_zeratul_person.getName().setFirst("Zeratul");
+            capt_zeratul_person.setPortraitSprite(Global.getSettings().getSpriteName("characters", "kanta"));
+            if (!ip.containsPerson(capt_zeratul_person)) {
+                log.info("OLDLEGION_RETROGEN: Zeratul Person did not exist. He has been generated retroactively");
+                ip.addPerson(capt_zeratul_person);
+                market.addPerson(capt_zeratul_person);
+                market.getCommDirectory().addPerson(capt_zeratul_person, 0);
+                market.getCommDirectory().getEntryForPerson(capt_zeratul_person).setHidden(false);
+
+            } else {
+                log.info("OLDLEGION_RETROGEN: Zeratul Person already exists. No action taken");
+            }
+            if (!ip.containsPerson(capt_zeratul_person)) {
+                log.info("OLDLEGION_RETROGEN: Zeratul Person does not exist. He has NOT been generated retroactively");}
 
             PersonAPI oldlegion_solaxwhitemore_person = Global.getFactory().createPerson();
             oldlegion_solaxwhitemore_person.setId(OLDLEGION_SOLAX);
@@ -87,7 +108,7 @@ public class oldlegion_people {
             }
         }
 
-        if (getPerson(ZERATUL) == null) {
+        /*if (getPerson(ZERATUL) == null) {
             PersonAPI person = Global.getFactory().createPerson();
             person.setId(ZERATUL);
             person.setFaction("domainspecops");
@@ -109,8 +130,7 @@ public class oldlegion_people {
             person.getStats().setSkillLevel("coordinated_maneuvers", 1.0F);
             person.getStats().setSkillLevel("fighter_uplink", 1.0F);
             ip.addPerson(person);
-        }
+        }*/
 
     }
-
 }
