@@ -1,28 +1,9 @@
 package poggers.oldlegion.world.talandar;
 
-import com.fs.starfarer.api.Global;
-import com.fs.starfarer.api.campaign.BattleAPI;
-import com.fs.starfarer.api.campaign.CampaignEventListener;
-import com.fs.starfarer.api.campaign.CampaignFleetAPI;
-import com.fs.starfarer.api.campaign.FactionDoctrineAPI;
-import com.fs.starfarer.api.campaign.SectorEntityToken;
-import com.fs.starfarer.api.campaign.CampaignEventListener.FleetDespawnReason;
-import com.fs.starfarer.api.campaign.econ.MarketAPI;
-import com.fs.starfarer.api.impl.campaign.fleets.PersonalFleetScript;
-import com.fs.starfarer.api.impl.campaign.missions.FleetCreatorMission;
-import com.fs.starfarer.api.impl.campaign.missions.hub.MissionFleetAutoDespawn;
-import com.fs.starfarer.api.impl.campaign.missions.hub.HubMissionWithTriggers.FleetQuality;
-import com.fs.starfarer.api.impl.campaign.missions.hub.HubMissionWithTriggers.FleetSize;
-import com.fs.starfarer.api.impl.campaign.missions.hub.HubMissionWithTriggers.OfficerNum;
-import com.fs.starfarer.api.impl.campaign.missions.hub.HubMissionWithTriggers.OfficerQuality;
-import poggers.oldlegion.utils.oldlegion_people;
-import com.fs.starfarer.api.util.Misc;
-import org.lwjgl.util.vector.Vector2f;
 
-
-public class OldLegionPersonalFleetZeratul extends PersonalFleetScript {
+/*public class OldLegionPersonalFleetZeratul extends PersonalFleetScript {
     public OldLegionPersonalFleetZeratul() {
-        super(oldlegion_people.ZERATUL);
+        super(OldLegionPeople.ZERATUL);
         this.setMinRespawnDelayDays(5.0F);
         this.setMaxRespawnDelayDays(10.0F);
     }
@@ -109,4 +90,4 @@ public class OldLegionPersonalFleetZeratul extends PersonalFleetScript {
     public boolean shouldScriptBeRemoved() {
         return false;
     }
-}
+}*/

@@ -50,6 +50,10 @@ public class OldLegionPersons {
             Zeratul.getStats().setSkillLevel("polarized_armor", 1.0F);
             ImportantPeopleAPI ip = Global.getSector().getImportantPeople();
             ip.addPerson(Zeratul);
+            PersonAPI test = ip.getPerson("domain_capt_zeratul");
+
+            if (test == null) throw new RuntimeException("zeratul == null");
+
         }
     }
 }
