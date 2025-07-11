@@ -7,7 +7,7 @@ import com.fs.starfarer.api.characters.ImportantPeopleAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.characters.FullName.Gender;
 
-/*public class OldLegionPersons {
+public class OldLegionPersons {
     public void create() {
         new Zeratul();
 
@@ -56,4 +56,4 @@ import com.fs.starfarer.api.characters.FullName.Gender;
 
         }
     }
-}*/
+}

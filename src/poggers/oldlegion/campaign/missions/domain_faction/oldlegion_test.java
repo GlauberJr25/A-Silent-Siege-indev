@@ -22,9 +22,6 @@ public class oldlegion_test extends HubMissionWithSearch {
    protected MarketAPI Hunhow_market;
 
    protected boolean create(MarketAPI createdAt, boolean barEvent) {
-      /*if (this.OLDLEGION_NATAH == null) {
-           return false;
-       }*/
 
        OLDLEGION_NATAH = getImportantPerson(OldLegionPeople.OLDLEGION_NATAH);
        if (OLDLEGION_NATAH == null) return false;

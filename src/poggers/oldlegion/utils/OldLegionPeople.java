@@ -55,9 +55,6 @@ public class OldLegionPeople {
             } else {
                 log.info("OLDLEGION_RETROGEN: Zeratul Person already exists. No action taken");
             }
-            if (!ip.containsPerson(capt_zeratul_person)) {
-                log.info("OLDLEGION_RETROGEN: Zeratul Person does not exist. He has NOT been generated retroactively");
-            }
 
             PersonAPI oldlegion_solaxwhitemore_person = Global.getFactory().createPerson();
             oldlegion_solaxwhitemore_person.setId(OLDLEGION_SOLAX);

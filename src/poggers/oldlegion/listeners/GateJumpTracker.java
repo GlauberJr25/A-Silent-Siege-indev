@@ -22,17 +22,31 @@ import poggers.oldlegion.utils.OldLegionStrings;
 
 public class GateJumpTracker implements GateTransitListener {
 
+    boolean isKoLEnabled = Global.getSettings().getModManager().isModEnabled("knights_of_ludd");
+
     String memoryKey = "$oldlegion_domainspace_gate_glitch";
+
+    String memoryKeyKoL = "$kol_nullspace_gate_glitch";
 
     @Override
     public void reportFleetTransitingGate(CampaignFleetAPI fleet, SectorEntityToken gateFrom, SectorEntityToken gateTo) {
         StarSystemAPI destSys = Global.getSector().getStarSystem(OldLegionStrings.DomainSpaceSysName);
         if (Global.getSector().getMemoryWithoutUpdate().getKeys().contains(memoryKey)) {
-            Console.showMessage("If-Statement ONE fired their return");
+            //Console.showMessage("If-Statement ONE fired their return");
             return; //Dont trigger multiple times.
         }
+        if (isKoLEnabled) {
+            if (!Global.getSector().getMemoryWithoutUpdate().getKeys().contains(memoryKeyKoL)) {
+                Console.showMessage("If-Statement TWO fired their return");
+                return; //Dont trigger before KoL triggers their Gate Interceptor.
+            }
+        }
+        /*if (!Global.getSector().getMemoryWithoutUpdate().getKeys().contains(memoryKeyKoL)) {
+            //Console.showMessage("If-Statement TWO fired their return");
+            return; //Don't trigger before KoL triggers their Gate Interceptor.
+        }*/
         if (!Global.getSector().getMemoryWithoutUpdate().getBoolean("$gaATG_missionCompleted")) {
-            Console.showMessage("If-Statement TWO fired their return");
+            //Console.showMessage("If-Statement THREE fired their return");
             return; //Prevent it from happening during the story-jump
             }
 
@@ -44,17 +58,17 @@ public class GateJumpTracker implements GateTransitListener {
         // TODO | IF wanted, put this back as it was, set like this so it's easier to debug which are true or false when the below condition is breakpointed.
         ///  ~Purple
         if (isNotPlayerFleet || sendingGateNull || tooLowCycle || sendingGateIsDomain) {
-            Console.showMessage("If-Statement THREE fired their return");
+            //Console.showMessage("If-Statement FOUR fired their return");
             return;
         }
 
-        Console.showMessage("Before the Math.Random() if-statement");
+        //Console.showMessage("Before the Math.Random() if-statement");
         // TODO | Change the condition to be more proper, and remove any unnecessary " Console.showMessage " pieces of code :P
         // TODO | I also added the { } below here behind the if-statement and all the way at the bottom.
         // TODO | The moment more than 1 line of code comes after an if, you NEED the { } afaik
         ///  ~Purple
         if (((int)Math.random()*101) <= 99) {                    //(/*true*/ Math.random() <= 0.95f) { //0.05f = 5% chance to trigger.
-            Console.showMessage("After the Math.Random() if-statement");
+            //Console.showMessage("After the Math.Random() if-statement");
             if (destSys == null) return;
             SectorEntityToken dest = destSys.getEntityById("domain_ops_gate");
             float dist = Misc.getDistanceLY(dest, gateTo);
@@ -62,19 +76,20 @@ public class GateJumpTracker implements GateTransitListener {
             // TODO | (1) Idea, change the beneath condition to a memKey value in " Global.getSector().getPlayerMemoryWithoutUpdate() "
             // TODO | (2) This value is to be raised every time the condition isn't met yet (so the value isn't exceeding the given amount yet)
             // TODO | (3) Best to increase the value each time is to have a Random Number Picker between valueA and valueB,
-            // TODO | NOTE, it currently ALWAYS fires whenever the gate you jump to is not within 12ly of the Nataruk system
+            // TODO | NOTE, it currently ALWAYS fires whenever the gate you jump to is not within 10ly of the Nataruk system
             ///  ~Purple
-            if (dist > 12f) {
+            if (dist > 10f) {
 
-                //Old Version
+                /*Old Version
 
-                //fleet.getContainingLocation().removeEntity(fleet);
-                //dest.getContainingLocation().addEntity(fleet);
-                //Global.getSector().setCurrentLocation(dest.getContainingLocation());
-                //fleet.setLocation(dest.getLocation().x,
-                //dest.getLocation().y);
-                //fleet.setNoEngaging(1.0f);
-                //fleet.clearAssignments();
+                fleet.getContainingLocation().removeEntity(fleet);
+                dest.getContainingLocation().addEntity(fleet);
+                Global.getSector().setCurrentLocation(dest.getContainingLocation());
+                fleet.setLocation(dest.getLocation().x,
+                dest.getLocation().y);
+                fleet.setNoEngaging(1.0f);
+                fleet.clearAssignments();
+                */
 
                 for (EveryFrameScript script : new ArrayList<>(Global.getSector().getScripts())) {
                     if (ReflectionUtils.INSTANCE.hasVariableOfName("untilCanWarpOut", script)) {
@@ -87,10 +102,12 @@ public class GateJumpTracker implements GateTransitListener {
                 Global.getSector().doHyperspaceTransition(fleet, gateFrom, new JumpPointAPI.JumpDestination(dest, ""), 5.0f);
 
                 //Disable VFX on the Gate Itself
-                //GateEntityPlugin plugin = (GateEntityPlugin) gateFrom.getCustomPlugin();
-                //FaderUtil fader = (FaderUtil) ReflectionUtils.get("beingUsedFader", plugin);
-                //plugin.showBeingUsed(0f, 0f);
-                //fader.forceOut();
+                /*
+                GateEntityPlugin plugin = (GateEntityPlugin) gateFrom.getCustomPlugin();
+                FaderUtil fader = (FaderUtil) ReflectionUtils.get("beingUsedFader", plugin);
+                plugin.showBeingUsed(0f, 0f);
+                fader.forceOut();
+                */
 
                 GateCMD.notifyScanned(dest);
                 dest.getMemoryWithoutUpdate().set(GateEntityPlugin.GATE_SCANNED, true);

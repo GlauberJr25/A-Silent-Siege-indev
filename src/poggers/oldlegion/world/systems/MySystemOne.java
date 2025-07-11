@@ -30,7 +30,7 @@ import org.lazywizard.lazylib.MathUtils;
 import poggers.oldlegion.utils.OldLegionPeople;
 
 public class MySystemOne {
-    public static String DOMAIN_CAPT_ZERATUL = "domain_capt_zeratul";
+    //public static String DOMAIN_CAPT_ZERATUL = "domain_capt_zeratul";
     ImportantPeopleAPI ip = Global.getSector().getImportantPeople();
 
     public static Logger log = Global.getLogger(MySystemOne.class);
@@ -213,7 +213,7 @@ public class MySystemOne {
 
         try {
             ImportantPeopleAPI ip = Global.getSector().getImportantPeople();
-            PersonAPI capt = ip.getPerson(DOMAIN_CAPT_ZERATUL);
+            PersonAPI capt = ip.getPerson(fleetData.getString("fleetCaptain"));
             CampaignFleetAPI domainFleet = FleetFactoryV3.createEmptyFleet("domainspecops", fleetData.getString("fleetType"), (MarketAPI)null);
             FleetMemberAPI flagShip = Global.getFactory().createFleetMember(FleetMemberType.SHIP, fleetData.getString("fleetFlagship"));
             flagShip.setShipName(fleetData.getString("fleetFlagshipName"));
