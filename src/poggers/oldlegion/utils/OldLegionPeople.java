@@ -7,15 +7,14 @@ import com.fs.starfarer.api.characters.ImportantPeopleAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.characters.FullName.Gender;
 import com.fs.starfarer.api.impl.campaign.ids.Ranks;
-
 import org.apache.log4j.Logger;
 
-public class oldlegion_people {
+public class OldLegionPeople {
 
     public static String OLDLEGION_NATAH = "oldlegion_natah";
     public static String OLDLEGION_SOLAX = "oldlegion_solaxwhitemore";
-    public static String DOMAIN_CAPTAIN_ZERATUL = "domain_captain_zeratul";
-    public static Logger log = Global.getLogger(oldlegion_people.class);
+    public static String DOMAIN_CAPTAIN_ZERATUL = "domain_capt_zeratul";
+    public static Logger log = Global.getLogger(OldLegionPeople.class);
 
     public static PersonAPI getPerson(String id) {
         return Global.getSector().getImportantPeople().getPerson(id);
@@ -57,7 +56,8 @@ public class oldlegion_people {
                 log.info("OLDLEGION_RETROGEN: Zeratul Person already exists. No action taken");
             }
             if (!ip.containsPerson(capt_zeratul_person)) {
-                log.info("OLDLEGION_RETROGEN: Zeratul Person does not exist. He has NOT been generated retroactively");}
+                log.info("OLDLEGION_RETROGEN: Zeratul Person does not exist. He has NOT been generated retroactively");
+            }
 
             PersonAPI oldlegion_solaxwhitemore_person = Global.getFactory().createPerson();
             oldlegion_solaxwhitemore_person.setId(OLDLEGION_SOLAX);

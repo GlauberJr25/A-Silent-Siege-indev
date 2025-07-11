@@ -11,7 +11,6 @@ import com.fs.starfarer.api.campaign.CampaignFleetAPI;
 import com.fs.starfarer.api.campaign.FleetAssignment;
 import com.fs.starfarer.api.campaign.econ.EconomyAPI;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
-import com.fs.starfarer.api.characters.FullName;
 import com.fs.starfarer.api.characters.ImportantPeopleAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
@@ -22,17 +21,19 @@ import com.fs.starfarer.api.impl.campaign.ids.*;
 import com.fs.starfarer.api.impl.campaign.ids.Factions;
 import com.fs.starfarer.api.impl.campaign.terrain.AsteroidFieldTerrainPlugin;
 
-import data.utility.logging.logging;
-
+import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import org.lazywizard.lazylib.MathUtils;
+import poggers.oldlegion.utils.OldLegionPeople;
 
 public class MySystemOne {
     public static String DOMAIN_CAPT_ZERATUL = "domain_capt_zeratul";
     ImportantPeopleAPI ip = Global.getSector().getImportantPeople();
+
+    public static Logger log = Global.getLogger(MySystemOne.class);
 
     public JSONObject getFleetData(String id) {
         JSONObject fleetData = null;
@@ -49,7 +50,7 @@ public class MySystemOne {
                 }
             }
         } catch (Exception e) {
-            logging.log.info(e);
+            log.info(e);
         }
 
         return fleetData;
@@ -194,16 +195,19 @@ public class MySystemOne {
         SectorEntityToken domaingate = DomainOutpost.addCustomEntity("domain_ops_gate", "Domain Gate", "inactive_gate", "domainspecops");
         domaingate.setCircularOrbit(relay, 10, 6736, 233);
 
-        PersonAPI capt_zeratul_person = Global.getFactory().createPerson();
-        capt_zeratul_person.setId("domain_capt_zeratul");
-        capt_zeratul_person.setFaction("domainspecops");
-        capt_zeratul_person.setGender(FullName.Gender.MALE);
-        capt_zeratul_person.setRankId("spaceCommander");
-        capt_zeratul_person.setPostId("fleetCommander");
-        capt_zeratul_person.setImportance(PersonImportance.HIGH);
-        capt_zeratul_person.getName().setFirst("Zeratul");
-        capt_zeratul_person.setPortraitSprite(Global.getSettings().getSpriteName("characters", "kanta"));
-        ip.addPerson(capt_zeratul_person);
+        // Old "fix" for ImportantPerson not finding the captain [DEPRECATED]
+//        PersonAPI capt_zeratul_person = Global.getFactory().createPerson();
+//        capt_zeratul_person.setId("domain_capt_zeratul");
+//        capt_zeratul_person.setFaction("domainspecops");
+//        capt_zeratul_person.setGender(FullName.Gender.MALE);
+//        capt_zeratul_person.setRankId("spaceCommander");
+//        capt_zeratul_person.setPostId("fleetCommander");
+//        capt_zeratul_person.setImportance(PersonImportance.HIGH);
+//        capt_zeratul_person.getName().setFirst("Zeratul");
+//        capt_zeratul_person.setPortraitSprite(Global.getSettings().getSpriteName("characters", "kanta"));
+//        ip.addPerson(capt_zeratul_person);
+
+        OldLegionPeople.oldlegion_createMiscCharacters();
 
         JSONObject fleetData = this.getFleetData("domain_ra_fleet_remnant");
 
@@ -232,7 +236,7 @@ public class MySystemOne {
             MutableFleetStatsAPI domainFleetStats = domainFleet.getStats();
             domainFleet.getAI().addAssignment(FleetAssignment. ORBIT_AGGRESSIVE, domaingate, 9999.0F,(Script)null);
         } catch (JSONException ex) {
-            logging.log.info(ex);
+            log.info(ex);
         }
 
         //Global.getSector().addScript(new OldLegionPersonalFleetZeratul());
