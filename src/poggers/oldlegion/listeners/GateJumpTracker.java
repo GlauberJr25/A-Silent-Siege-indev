@@ -11,13 +11,12 @@ import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.campaign.BaseScript;
 import com.fs.starfarer.campaign.fleet.CampaignFleet;
 import org.lazywizard.console.Console;
-//import org.selkie.kol.ReflectionUtils;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import com.fs.starfarer.api.campaign.listeners.GateTransitListener;
-import org.selkie.kol.ReflectionUtils;
+import poggers.oldlegion.ReflectionUtilities;
 import poggers.oldlegion.utils.OldLegionStrings;
 
 public class GateJumpTracker implements GateTransitListener {
@@ -27,6 +26,8 @@ public class GateJumpTracker implements GateTransitListener {
     String memoryKey = "$oldlegion_domainspace_gate_glitch";
 
     String memoryKeyKoL = "$kol_nullspace_gate_glitch";
+
+    int InterceptChance = 1;
 
     @Override
     public void reportFleetTransitingGate(CampaignFleetAPI fleet, SectorEntityToken gateFrom, SectorEntityToken gateTo) {
@@ -41,15 +42,10 @@ public class GateJumpTracker implements GateTransitListener {
                 return; //Dont trigger before KoL triggers their Gate Interceptor.
             }
         }
-        /*if (!Global.getSector().getMemoryWithoutUpdate().getKeys().contains(memoryKeyKoL)) {
-            //Console.showMessage("If-Statement TWO fired their return");
-            return; //Don't trigger before KoL triggers their Gate Interceptor.
-        }*/
         if (!Global.getSector().getMemoryWithoutUpdate().getBoolean("$gaATG_missionCompleted")) {
             //Console.showMessage("If-Statement THREE fired their return");
             return; //Prevent it from happening during the story-jump
             }
-
 
         boolean isNotPlayerFleet = !fleet.isPlayerFleet();
         boolean sendingGateNull = gateFrom == null;
@@ -61,13 +57,10 @@ public class GateJumpTracker implements GateTransitListener {
             //Console.showMessage("If-Statement FOUR fired their return");
             return;
         }
-
         //Console.showMessage("Before the Math.Random() if-statement");
         // TODO | Change the condition to be more proper, and remove any unnecessary " Console.showMessage " pieces of code :P
-        // TODO | I also added the { } below here behind the if-statement and all the way at the bottom.
-        // TODO | The moment more than 1 line of code comes after an if, you NEED the { } afaik
         ///  ~Purple
-        if (((int)Math.random()*101) <= 99) {                    //(/*true*/ Math.random() <= 0.95f) { //0.05f = 5% chance to trigger.
+        if (((int)Math.random()*101) <= InterceptChance) {                    //(/*true*/ Math.random() <= 0.95f) { //0.05f = 5% chance to trigger.
             //Console.showMessage("After the Math.Random() if-statement");
             if (destSys == null) return;
             SectorEntityToken dest = destSys.getEntityById("domain_ops_gate");
@@ -80,34 +73,15 @@ public class GateJumpTracker implements GateTransitListener {
             ///  ~Purple
             if (dist > 10f) {
 
-                /*Old Version
-
-                fleet.getContainingLocation().removeEntity(fleet);
-                dest.getContainingLocation().addEntity(fleet);
-                Global.getSector().setCurrentLocation(dest.getContainingLocation());
-                fleet.setLocation(dest.getLocation().x,
-                dest.getLocation().y);
-                fleet.setNoEngaging(1.0f);
-                fleet.clearAssignments();
-                */
-
                 for (EveryFrameScript script : new ArrayList<>(Global.getSector().getScripts())) {
-                    if (ReflectionUtils.INSTANCE.hasVariableOfName("untilCanWarpOut", script)) {
+                    if (ReflectionUtilities.INSTANCE.hasVariableOfName("untilCanWarpOut", script)) {
                         Global.getSector().removeScript(script);
                     }
                 }
-                ReflectionUtils.INSTANCE.invoke("setInJumpTransition", fleet, new Object[]{false}, false);
+                ReflectionUtilities.INSTANCE.invoke("setInJumpTransition", fleet, new Object[]{false}, false);
 
                 //Start own Transverse
                 Global.getSector().doHyperspaceTransition(fleet, gateFrom, new JumpPointAPI.JumpDestination(dest, ""), 5.0f);
-
-                //Disable VFX on the Gate Itself
-                /*
-                GateEntityPlugin plugin = (GateEntityPlugin) gateFrom.getCustomPlugin();
-                FaderUtil fader = (FaderUtil) ReflectionUtils.get("beingUsedFader", plugin);
-                plugin.showBeingUsed(0f, 0f);
-                fader.forceOut();
-                */
 
                 GateCMD.notifyScanned(dest);
                 dest.getMemoryWithoutUpdate().set(GateEntityPlugin.GATE_SCANNED, true);

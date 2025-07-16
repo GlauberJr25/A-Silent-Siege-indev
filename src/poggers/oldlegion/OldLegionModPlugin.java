@@ -11,7 +11,10 @@ public class OldLegionModPlugin extends BaseModPlugin {
         new OldLegionModGen().generate(Global.getSector());
     }
 
-
+    // TODO: GateJumpTracker add math to increase chance with every jump
+    // TODO: Actual Dialog and art for characters
+    // TODO: Actual quests and stuff for reputation
+    // TODO: change license
 
     public void onGameLoad(boolean newGame) {
         if (!Global.getSector().getListenerManager().hasListenerOfClass(GateJumpTracker.class))
