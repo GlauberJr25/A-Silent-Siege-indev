@@ -15,6 +15,6 @@
   "ordnancePoints": 370,
   "restoreToBaseHull": false,
   "skinHullId": "onslaught_di",
-  "spriteName": "mods/A Silent Siege (indev)/graphics/ships/onslaught_domint.png",
+  "spriteName": "graphics/ships/onslaught_domint.png",
   "tech": "XIV Battlegroup"
 }

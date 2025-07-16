@@ -13,9 +13,11 @@
 	"ruleCommandPackages":[
 		 "poggers.oldlegion.rulecmd",
 	],
-	
-    # This section is where we can define images that can be referenced ingame using Global.getSettings().getSpriteName("category", "name");
-	#"graphics":{
-	#	"category":{ "name":"graphics/ui/sector_age_young.png", }
-	#}
+	"graphics":{
+		"characters":{
+			"oldlegion_natah":"graphics/portraits/baird.png",
+			"oldlegion_solaxwhitemore":"graphics/portraits/baird.png",
+			"domain_capt_zeratul":"graphics/portraits/baird.png",
+		},
+	}
 }

@@ -10,7 +10,7 @@ import com.fs.starfarer.api.characters.FullName.Gender;
 public class OldLegionPersons {
     public void create() {
         new Zeratul();
-
+        //zeratul is currently unused
     }
 
     public class Zeratul {

@@ -44,13 +44,18 @@ public class OldLegionPeople {
             capt_zeratul_person.setPostId("fleetCommander");
             capt_zeratul_person.setImportance(PersonImportance.HIGH);
             capt_zeratul_person.getName().setFirst("Zeratul");
-            capt_zeratul_person.setPortraitSprite(Global.getSettings().getSpriteName("characters", "kanta"));
+            capt_zeratul_person.getName().setLast("Khalaidar");
+            capt_zeratul_person.getStats().setLevel(8);
+            capt_zeratul_person.getStats().setSkillLevel("ballistic_mastery", 2.0F);
+            capt_zeratul_person.getStats().setSkillLevel("gunnery_implants", 1.0F);
+            capt_zeratul_person.getStats().setSkillLevel("impact_mitigation", 1.0F);
+            capt_zeratul_person.getStats().setSkillLevel("target_analysis", 1.0F);
+            capt_zeratul_person.getStats().setSkillLevel("helmsmanship", 1.0F);
+            capt_zeratul_person.getStats().setSkillLevel("polarized_armor", 1.0F);
+            //capt_zeratul_person.setPortraitSprite(Global.getSettings().getSpriteName("characters", "baird"));
             if (!ip.containsPerson(capt_zeratul_person)) {
                 log.info("OLDLEGION_RETROGEN: Zeratul Person did not exist. He has been generated retroactively");
                 ip.addPerson(capt_zeratul_person);
-                market.addPerson(capt_zeratul_person);
-                market.getCommDirectory().addPerson(capt_zeratul_person, 0);
-                market.getCommDirectory().getEntryForPerson(capt_zeratul_person).setHidden(false);
 
             } else {
                 log.info("OLDLEGION_RETROGEN: Zeratul Person already exists. No action taken");
@@ -64,7 +69,7 @@ public class OldLegionPeople {
             oldlegion_solaxwhitemore_person.setPostId("supplyOfficer");
             oldlegion_solaxwhitemore_person.setImportance(PersonImportance.HIGH);
             oldlegion_solaxwhitemore_person.getName().setFirst("Solax Whitemore");
-            oldlegion_solaxwhitemore_person.setPortraitSprite(Global.getSettings().getSpriteName("characters", "kanta"));
+            //oldlegion_solaxwhitemore_person.setPortraitSprite(Global.getSettings().getSpriteName("characters", "kanta"));
             if (!ip.containsPerson(oldlegion_solaxwhitemore_person)) {
                 log.info("OLDLEGION_RETROGEN: Solax Person did not exist. He has been generated retroactively");
                 ip.addPerson(oldlegion_solaxwhitemore_person);
