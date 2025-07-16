@@ -1,0 +1,20 @@
+{
+  "baseHullId": "onslaught",
+  "baseValueMult": 1.75,
+  "builtInMods": [
+    "fourteenth"
+  ],
+  "descriptionId": "onslaught",
+  "descriptionPrefix": "Built to the specifications of DOMINT, this vessel is a prime example of the Domain's 'All seeing eye' doctrine, particularly exhibited by a series of radical structural modifications performed using pre-Collapse industrial technology.",
+  "fighterBays": 0,
+  "fleetPoints": 35,
+  "fpMod": 0,
+  "hullDesignation": "FRIGATE",
+  "hullName": "Onslaught (DI)",
+  "manufacturer": "",
+  "ordnancePoints": 370,
+  "restoreToBaseHull": false,
+  "skinHullId": "onslaught_di",
+  "spriteName": "mods/A Silent Siege (indev)/graphics/ships/onslaught_domint.png",
+  "tech": "XIV Battlegroup"
+}
