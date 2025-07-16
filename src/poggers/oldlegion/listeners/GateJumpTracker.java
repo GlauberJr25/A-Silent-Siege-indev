@@ -87,9 +87,3 @@ public class GateJumpTracker implements GateTransitListener {
 
     }
 }
-
-/*```int InterceptChanceInt;
-
-InterceptChanceInt = Global.getSector().getMemoryWithoutUpdate().getInt(memoryKeyInterceptChance);
-
-*/
