@@ -52,11 +52,10 @@ public class OldLegionPeople {
             capt_zeratul_person.getStats().setSkillLevel("target_analysis", 1.0F);
             capt_zeratul_person.getStats().setSkillLevel("helmsmanship", 1.0F);
             capt_zeratul_person.getStats().setSkillLevel("polarized_armor", 1.0F);
-            //capt_zeratul_person.setPortraitSprite(Global.getSettings().getSpriteName("characters", "baird"));
+            capt_zeratul_person.setPortraitSprite(Global.getSettings().getSpriteName("characters", "kanta"));
             if (!ip.containsPerson(capt_zeratul_person)) {
                 log.info("OLDLEGION_RETROGEN: Zeratul Person did not exist. He has been generated retroactively");
                 ip.addPerson(capt_zeratul_person);
-
             } else {
                 log.info("OLDLEGION_RETROGEN: Zeratul Person already exists. No action taken");
             }
@@ -80,7 +79,6 @@ public class OldLegionPeople {
             } else {
                 log.info("OLDLEGION_RETROGEN: Solax Person already exists. No action taken");
             }
-
 
             PersonAPI oldlegion_natah_person = Global.getFactory().createPerson();
             oldlegion_natah_person.setId(OLDLEGION_NATAH);
@@ -109,30 +107,5 @@ public class OldLegionPeople {
                 market.setAdmin(oldlegion_natah_person);
             }
         }
-
-        /*if (getPerson(ZERATUL) == null) {
-            PersonAPI person = Global.getFactory().createPerson();
-            person.setId(ZERATUL);
-            person.setFaction("domainspecops");
-            person.setGender(Gender.MALE);
-            person.setPostId(Ranks.POST_FLEET_COMMANDER);
-            person.setPortraitSprite(Global.getSettings().getSpriteName("characters", "kanta"));
-            person.setPersonality("steady");
-            person.getStats().setLevel(12);
-            person.getStats().setSkillLevel("target_analysis", 2.0F);
-            person.getStats().setSkillLevel("polarized_armor", 2.0F);
-            person.getStats().setSkillLevel("damage_control", 2.0F);
-            person.getStats().setSkillLevel("gunnery_implants", 2.0F);
-            person.getStats().setSkillLevel("point_defense", 2.0F);
-            person.getStats().setSkillLevel("missile_specialization", 2.0F);
-            person.getStats().setSkillLevel("impact_mitigation", 2.0F);
-            person.getStats().setSkillLevel("field_modulation", 2.0F);
-            person.getStats().setSkillLevel("field_repairs", 1.0F);
-            person.getStats().setSkillLevel("electronic_warfare", 1.0F);
-            person.getStats().setSkillLevel("coordinated_maneuvers", 1.0F);
-            person.getStats().setSkillLevel("fighter_uplink", 1.0F);
-            ip.addPerson(person);
-        }*/
-
     }
 }

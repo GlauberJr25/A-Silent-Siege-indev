@@ -30,7 +30,6 @@ import org.lazywizard.lazylib.MathUtils;
 import poggers.oldlegion.utils.OldLegionPeople;
 
 public class MySystemOne {
-    //public static String DOMAIN_CAPT_ZERATUL = "domain_capt_zeratul";
     ImportantPeopleAPI ip = Global.getSector().getImportantPeople();
 
     public static Logger log = Global.getLogger(MySystemOne.class);
@@ -55,23 +54,17 @@ public class MySystemOne {
 
         return fleetData;
     }
-
-
-
     public void generate(SectorAPI sector) {
         StarSystemAPI DomainOutpost = sector.createStarSystem("Nataruk");
         DomainOutpost.getLocation().set(+80000,-55000); //bottom rightish
 
         DomainOutpost.addTag(Tags.THEME_HIDDEN);
         DomainOutpost.addTag(Tags.THEME_SPECIAL);
-        DomainOutpost.addTag(Tags.STAR_HIDDEN_ON_MAP);
         DomainOutpost.addTag(Tags.THEME_UNSAFE);
         DomainOutpost.addTag(Tags.NOT_RANDOM_MISSION_TARGET);
-        DomainOutpost.addTag("star_hidden_on_map");
 
         DomainOutpost.setBackgroundTextureFilename("graphics/mymod/backgrounds/mybackground.jpg");
 
-        // create the star and generate the hyperspace anchor for this DomainOutpost
         PlanetAPI argonStar = DomainOutpost.initStar("Argonian", // unique id for this star
                 "star_red_giant", // id in planets.json
                 100f, // radius (in pixels at default zoom)
@@ -79,7 +72,7 @@ public class MySystemOne {
         DomainOutpost.setLightColor(new Color(239, 155, 128)); // light color in entire DomainOutpost, affects all entities
 
         DomainOutpost.removeEntity(argonStar);
-        SectorEntityToken relay = DomainOutpost.addCustomEntity("mam_relay", "Comm Relay", "comm_relay", "domainspecops");
+        SectorEntityToken relay = DomainOutpost.addCustomEntity("mam_relay", "Domain Comm Relay", "comm_relay", "domainspecops");
 
         //setup all distances here
         final float asteroids1Dist = 2750f;
@@ -108,8 +101,6 @@ public class MySystemOne {
 
         PlanetAPI planet = DomainOutpost.addPlanet("Hunhow", relay, "Hunhow's Fall", "barren", 0, 273, 7777, 157);
         planet.setFaction("domainspecops");
-        //create and initialize market:
-        //A size 1 market's population industry will only demand supplies and produce nothing
         MarketAPI market = Global.getFactory().createMarket(
                 "Hunhow_market",
                 planet.getName(), //market display name, usually the planet's name
@@ -128,7 +119,7 @@ public class MySystemOne {
         //here it is important to simply know that "generator" is the id of the tariff value
         //and that you set it using the modifyFlat() function with a decimal value.
         market.getTariff().modifyFlat("generator", 0.3f);
-        //planet surface/market conditions
+
         market.setPlanetConditionMarketOnly(false);
         market.addCondition(Conditions.THIN_ATMOSPHERE);
         market.addCondition(Conditions.ORE_ULTRARICH);
@@ -145,7 +136,7 @@ public class MySystemOne {
         //Planet colony industries
         //if no industries are added, the game wont crash...
         //weapons and such will be available for purchase from black and open markets.
-        //your colonies will have a -10 stability rating
+        //colonies will have a -10 stability rating
         //there will be no supply or demand for goods under ''commodities'' though there will be procurement missions
 
         //once population is added, there will be supply/demand for supplies
@@ -154,7 +145,7 @@ public class MySystemOne {
         //there will be severe accessibility penalty from lack of spaceport
         //finally, population adds an admnistrator npc to the comm directiory
         market.addIndustry(Industries.POPULATION);
-        //spaceport isnt required, but lack gives -100% accessibility to the colony
+        //spaceport isn't required, but lack gives -100% accessibility to the colony
         //spaceport enables repair option in the main menu
         //spaceport adds quartermaster and portmaster npcs in Comms
         market.addIndustry(Industries.MEGAPORT);
@@ -165,15 +156,11 @@ public class MySystemOne {
         market.addIndustry(Industries.HIGHCOMMAND);
         market.addIndustry(Industries.HEAVYBATTERIES);
         market.addIndustry(Industries.MINING);
-
         market.addIndustry("oldlegion_gate_infrastructure");
-
         //planet sub-markets
         market.addSubmarket(Submarkets.SUBMARKET_STORAGE);
         market.addSubmarket(Submarkets.SUBMARKET_BLACK);
         market.addSubmarket(Submarkets.SUBMARKET_OPEN);
-
-
         //Market needs to be added to the global economy after sub-markets and industries
         //if you dont do this, at best commodities will be 1$, at worst the game will crash
         EconomyAPI globalEconomy = Global.getSector().getEconomy();
@@ -181,10 +168,6 @@ public class MySystemOne {
                         market, //the market to add obviously!
                         false //the ''WithJunkerAndChatter'' flag. it will add space debris in orbit and radio chatter sound effects.
                 );
-        //sectorEntityToken relay = DomainOutpost.addCustomEntity("mam_relay", "Comm Relay", "comm_relay", "domainspecops"
-        //relay.setCircularOrbit(star, 0, 1831, 23)
-        //SectorEntityToken relay = DomainOutpost.addCustomEntity("mam_relay", "Comm Relay", "comm_relay", "domainspecops");
-        //relay.setCircularOrbit(argonStar, 0, 2861, 62);
 
         SectorEntityToken buoy = DomainOutpost.addCustomEntity("nav_buoy", "Nav Buoy", "nav_buoy", "domainspecops");
         buoy.setCircularOrbit(relay, 25, 8861, 275);
@@ -194,18 +177,6 @@ public class MySystemOne {
 
         SectorEntityToken domaingate = DomainOutpost.addCustomEntity("domain_ops_gate", "Domain Gate", "inactive_gate", "domainspecops");
         domaingate.setCircularOrbit(relay, 10, 6736, 233);
-
-        // Old "fix" for ImportantPerson not finding the captain [DEPRECATED]
-//        PersonAPI capt_zeratul_person = Global.getFactory().createPerson();
-//        capt_zeratul_person.setId("domain_capt_zeratul");
-//        capt_zeratul_person.setFaction("domainspecops");
-//        capt_zeratul_person.setGender(FullName.Gender.MALE);
-//        capt_zeratul_person.setRankId("spaceCommander");
-//        capt_zeratul_person.setPostId("fleetCommander");
-//        capt_zeratul_person.setImportance(PersonImportance.HIGH);
-//        capt_zeratul_person.getName().setFirst("Zeratul");
-//        capt_zeratul_person.setPortraitSprite(Global.getSettings().getSpriteName("characters", "kanta"));
-//        ip.addPerson(capt_zeratul_person);
 
         OldLegionPeople.oldlegion_createMiscCharacters();
 
@@ -238,12 +209,6 @@ public class MySystemOne {
         } catch (JSONException ex) {
             log.info(ex);
         }
-
-        //Global.getSector().addScript(new OldLegionPersonalFleetZeratul());
-
-        //auto jump point generation
-        //DomainOutpost.autogenerateHyperspaceJumpPoints(true, false);
-
         //HyperspaceTerrainPlugin plugin = (HyperspaceTerrainPlugin) Misc.getHyperspaceTerrain().getPlugin();
         //NebulaEditor editor = new NebulaEditor(plugin);
         //float minRadius = plugin.getTileSize() * 2f;
@@ -251,7 +216,5 @@ public class MySystemOne {
         //float radius = DomainOutpost.getMaxRadiusInHyperspace();
         //editor.clearArc(DomainOutpost.getLocation().x, DomainOutpost.getLocation().y, 0, radius + minRadius, 0, 360f);
         //editor.clearArc(DomainOutpost.getLocation().x, DomainOutpost.getLocation().y, 0, radius + minRadius, 0, 360f, 0.25f);
-
-
     }
 }

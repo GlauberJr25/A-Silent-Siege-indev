@@ -92,6 +92,7 @@
 
                  "legion_xiv",
                  "onslaught_xiv",
+                 "onslaught_di",
                  "domain_capital"
 		],
 	},
@@ -105,6 +106,7 @@
             "legion_xiv",
             "onslaught_xiv",
             "domain_capital",
+            "onslaught_di",
 
             # need to be prioritized otherwise the Legion eats any and all carrier points
             "condor",

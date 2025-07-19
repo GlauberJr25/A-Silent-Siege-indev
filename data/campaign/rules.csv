@@ -1,6 +1,4 @@
 id,trigger,conditions,script,text,options,notes
-# This file is not required by the game and can be deleted if you aren't using it, but doesn't hurt to keep either.,,,,,
-# Official rules.csv guide: https://fractalsoftworks.com/2023/11/13/you-merely-adopted-rules-csv-i-was-born-into-it/,,,,,,
 #RULESET_NAME ASS,,,,,,
 ,,,,,,
 #Domain Gate,,,,,,
@@ -17,7 +15,7 @@ oldlegionDomainGateUseOpt,DialogOptionSelected,$option == DOMAIN_GATE,DomainGate
 ,,,,,,
 #End Domain Gate,,,,,,
 ,,,,,,
-#Natah (faction leader) Dialog (DFL introduction option),,,,,,
+#Joel Kepler Dialog (DFL introduction option),,,,,,
 ,,,,,,
 dfl_IntroductionOption,PopulateOptions,"$isPerson 
 $id == oldlegion_natah",,"[PH] this is rules.csv TEXT (Hi, this is what shows up when first opening the interaction with the NPC).","dfl_Introduction:""May I introduce Myself?""",
@@ -62,3 +60,13 @@ $global.oldlegion_test_completed = true
 Call $global.oldlegion_test_ref updateStage","""There will be more for you to do here before long, captain,"" she says. ""Unbelievable things."" 
 
 Baird smiles, looking uncharacteristically satisfied, and closes the comm-link.",cutCommLinkNoText:Cut the comm link,
+,,,,,,
+#Fleet Captain Directing to Outpost,,,,,,
+,,,,,,
+FCOintro,BeginFleetEncounter,"$id == domain_capt_zeratul
+$fleetCaptainDomint_encounteredAlready == false","$fleetCaptainDomint_encounteredAlready = true
+FleetDesc
+HailPlayer
+","""hello john starsector""",,
+FCOintro1,OpenCommLink,"!$entity.ignorePlayerCommRequests
+$id == domain_capt_zeratul",$entity.ignorePlayerCommRequests = true,"""John starsector, I've been told to direct your towards the outpost at the near planet. go there''",cutCommLink:Cut comm link and prepare for travel.,
