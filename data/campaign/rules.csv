@@ -69,4 +69,7 @@ FleetDesc
 HailPlayer
 ","""hello john starsector""",,
 FCOintro1,OpenCommLink,"!$entity.ignorePlayerCommRequests
-$id == domain_capt_zeratul",$entity.ignorePlayerCommRequests = true,"""John starsector, I've been told to direct your towards the outpost at the near planet. go there''",cutCommLink:Cut comm link and prepare for travel.,
+$id == domain_capt_zeratul
+!$global.oldlegion_intro_completed","$entity.ignorePlayerCommRequests = true
+$global.oldlegion_intro_missionGiven = true
+BeginMission oldlegion_intro","""John starsector, I've been told to direct your towards the outpost at the near planet. go there''",cutCommLink:Cut comm link and prepare for travel.,

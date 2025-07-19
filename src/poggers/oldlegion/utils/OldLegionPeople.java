@@ -68,7 +68,7 @@ public class OldLegionPeople {
             oldlegion_solaxwhitemore_person.setPostId("supplyOfficer");
             oldlegion_solaxwhitemore_person.setImportance(PersonImportance.HIGH);
             oldlegion_solaxwhitemore_person.getName().setFirst("Solax Whitemore");
-            //oldlegion_solaxwhitemore_person.setPortraitSprite(Global.getSettings().getSpriteName("characters", "kanta"));
+            oldlegion_solaxwhitemore_person.setPortraitSprite(Global.getSettings().getSpriteName("characters", "kanta"));
             if (!ip.containsPerson(oldlegion_solaxwhitemore_person)) {
                 log.info("OLDLEGION_RETROGEN: Solax Person did not exist. He has been generated retroactively");
                 ip.addPerson(oldlegion_solaxwhitemore_person);
