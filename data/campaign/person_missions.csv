@@ -3,5 +3,7 @@ mission id,person id,tagsAll,tagsAny,tagsNotAny,tags,freq,min timeout,max timeou
 #gaPZ,,,,,,,,,,,,,,,graphics/icons/missions/project_ziggurat.png,com.fs.starfarer.api.impl.campaign.missions.academy.GAProjectZiggurat
 "# note: if person id, tagsAll, tagsAny, and tagsNotAny are all blank, the mission will not be offered by any contact without specific scripting to make it so (via BeginMission, etc). Otherwise, the mission may be offered by any contact that meets the conditions specified by these columns.",,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,
-oldlegion_test,,,,,"priority, non_repeatable",,,,,,,,,,graphics/icons/missions/project_ziggurat.png,poggers.oldlegion.campaign.missions.domain_faction.oldlegion_test
 oldlegion_intro,,,,,"priority, non_repeatable",,,,,,,,,,graphics/icons/missions/project_ziggurat.png,poggers.oldlegion.campaign.missions.domain_faction.OldLegionIntroQuest
+,,,,,,,,,,,,,,,,
+ssat,,,,,,10,30,60,INHOSPITABLE,,,,,,graphics/icons/missions/spysat.png,com.fs.starfarer.api.impl.campaign.missions.SpySatDeployment
+ddro,,,,,,10,30,60,INHOSPITABLE,,,,,,graphics/icons/missions/dead_drop.png,com.fs.starfarer.api.impl.campaign.missions.DeadDropMission

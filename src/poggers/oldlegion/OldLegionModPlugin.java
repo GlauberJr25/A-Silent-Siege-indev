@@ -4,6 +4,7 @@ import com.fs.starfarer.api.BaseModPlugin;
 import com.fs.starfarer.api.Global;
 import exerelin.campaign.SectorManager;
 import poggers.oldlegion.listeners.GateJumpTracker;
+import poggers.oldlegion.utils.OldLegionPeople;
 import poggers.oldlegion.world.OldLegionModGen;
 
 public class OldLegionModPlugin extends BaseModPlugin {
@@ -18,6 +19,7 @@ public class OldLegionModPlugin extends BaseModPlugin {
     public void onGameLoad(boolean newGame) {
         if (!Global.getSector().getListenerManager().hasListenerOfClass(GateJumpTracker.class))
             Global.getSector().getListenerManager().addListener(new GateJumpTracker(), true);
+        OldLegionPeople.oldlegion_createStoryCharacters();
     }
 
 

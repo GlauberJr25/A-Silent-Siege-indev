@@ -28,6 +28,7 @@ import org.json.JSONObject;
 
 import org.lazywizard.lazylib.MathUtils;
 import poggers.oldlegion.utils.OldLegionPeople;
+import poggers.oldlegion.utils.OldLegionPersons;
 
 public class MySystemOne {
     ImportantPeopleAPI ip = Global.getSector().getImportantPeople();
@@ -178,7 +179,7 @@ public class MySystemOne {
         SectorEntityToken domaingate = DomainOutpost.addCustomEntity("domain_ops_gate", "Domain Gate", "inactive_gate", "domainspecops");
         domaingate.setCircularOrbit(relay, 10, 6736, 233);
 
-        OldLegionPeople.oldlegion_createMiscCharacters();
+        OldLegionPersons.oldlegion_createCaptCharacters();
 
         JSONObject fleetData = this.getFleetData("domain_ra_fleet_remnant");
 

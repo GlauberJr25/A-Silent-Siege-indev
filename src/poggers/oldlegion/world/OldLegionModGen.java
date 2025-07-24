@@ -11,6 +11,7 @@ import com.fs.starfarer.api.campaign.FleetAssignment;
 import com.fs.starfarer.api.campaign.LocationAPI;
 import com.fs.starfarer.api.campaign.SectorEntityToken;
 
+import poggers.oldlegion.utils.OldLegionPeople;
 import poggers.oldlegion.world.systems.MySystemOne;
 
 public class OldLegionModGen {
