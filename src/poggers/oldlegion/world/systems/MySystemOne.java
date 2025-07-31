@@ -27,7 +27,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import org.lazywizard.lazylib.MathUtils;
-import poggers.oldlegion.utils.OldLegionPeople;
 import poggers.oldlegion.utils.OldLegionPersons;
 
 public class MySystemOne {
@@ -55,10 +54,12 @@ public class MySystemOne {
 
         return fleetData;
     }
+
     public void generate(SectorAPI sector) {
         StarSystemAPI DomainOutpost = sector.createStarSystem("Nataruk");
         DomainOutpost.getLocation().set(+80000,-55000); //bottom rightish
 
+        DomainOutpost.setOptionalUniqueId("oldlegion_domint_outpost");
         DomainOutpost.addTag(Tags.THEME_HIDDEN);
         DomainOutpost.addTag(Tags.THEME_SPECIAL);
         DomainOutpost.addTag(Tags.THEME_UNSAFE);
@@ -100,16 +101,16 @@ public class MySystemOne {
         DomainOutpost.addRingBand(relay, "misc", "rings_asteroids0", 256f, 0, Color.gray, 256f, asteroidBelt1Dist, 350f);
         DomainOutpost.addRingBand(relay, "misc", "rings_asteroids0", 256f, 2, Color.gray, 256f, asteroidBelt1Dist + 200, 400f);
 
-        PlanetAPI planet = DomainOutpost.addPlanet("Hunhow", relay, "Hunhow's Fall", "barren", 0, 273, 7777, 157);
-        planet.setFaction("domainspecops");
+        PlanetAPI Hunhow = DomainOutpost.addPlanet("Hunhow", relay, "Hunhow's Fall", "barren", 0, 273, 7777, 157);
+        Hunhow.setFaction("domainspecops");
         MarketAPI market = Global.getFactory().createMarket(
                 "Hunhow_market",
-                planet.getName(), //market display name, usually the planet's name
+                Hunhow.getName(), //market display name, usually the planet's name
                 6
         );
-        planet.setMarket(market);
+        Hunhow.setMarket(market);
         //market global property settings
-        market.setPrimaryEntity(planet);
+        market.setPrimaryEntity(Hunhow);
         market.setHidden(true);
         market.setInvalidMissionTarget(true);
         //setting survey level to fully surveyed to automatically reveal normally hidden resources on the planet overview and remove unexplored description.
@@ -164,12 +165,15 @@ public class MySystemOne {
         market.addSubmarket(Submarkets.SUBMARKET_OPEN);
         //Market needs to be added to the global economy after sub-markets and industries
         //if you dont do this, at best commodities will be 1$, at worst the game will crash
-        EconomyAPI globalEconomy = Global.getSector().getEconomy();
+        market.setEconGroup(market.getFactionId());
+        market.addTag("market_no_officer_spawn");
+        Global.getSector().getEconomy().addMarket(market, false);
+        /*EconomyAPI globalEconomy = Global.getSector().getEconomy();
                 globalEconomy.addMarket(
                         market, //the market to add obviously!
                         false //the ''WithJunkerAndChatter'' flag. it will add space debris in orbit and radio chatter sound effects.
                 );
-
+        */
         SectorEntityToken buoy = DomainOutpost.addCustomEntity("nav_buoy", "Nav Buoy", "nav_buoy", "domainspecops");
         buoy.setCircularOrbit(relay, 25, 8861, 275);
 
@@ -193,12 +197,10 @@ public class MySystemOne {
             domainFleet.getFleetData().addFleetMember(flagShip);
             flagShip.setCaptain(capt);
             JSONArray fleetMembers = fleetData.getJSONArray("fleetComposition");
-
             for(int n = 0; n < fleetMembers.length(); ++n) {
                 FleetMemberAPI memberShip = Global.getFactory().createFleetMember(FleetMemberType.SHIP, (String)fleetMembers.get(n));
                 domainFleet.getFleetData().addFleetMember(memberShip);
             }
-
             domainFleet.getFleetData().setSyncNeeded();
             domainFleet.getFleetData().syncIfNeeded();
             domainFleet.setCommander(capt);
@@ -206,7 +208,7 @@ public class MySystemOne {
             domainFleet.setId(fleetData.getString("fleetId"));
             DomainOutpost.addEntity(domainFleet);
             MutableFleetStatsAPI domainFleetStats = domainFleet.getStats();
-            domainFleet.getAI().addAssignment(FleetAssignment. ORBIT_AGGRESSIVE, domaingate, 9999.0F,(Script)null);
+            domainFleet.getAI().addAssignment(FleetAssignment.ORBIT_AGGRESSIVE, domaingate, 9999.0F, (Script) null);
         } catch (JSONException ex) {
             log.info(ex);
         }

@@ -2,6 +2,8 @@ package poggers.oldlegion;
 
 import com.fs.starfarer.api.BaseModPlugin;
 import com.fs.starfarer.api.Global;
+import com.fs.starfarer.api.campaign.SectorAPI;
+import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import exerelin.campaign.SectorManager;
 import poggers.oldlegion.listeners.GateJumpTracker;
 import poggers.oldlegion.utils.OldLegionPeople;
@@ -17,6 +19,11 @@ public class OldLegionModPlugin extends BaseModPlugin {
     // TODO: change license
 
     public void onGameLoad(boolean newGame) {
+        SectorAPI sector = Global.getSector();
+        MemoryAPI sector_mem = Global.getSector().getMemoryWithoutUpdate();
+
+        OldLegionModGen.trySpawnOutpost(sector);
+
         if (!Global.getSector().getListenerManager().hasListenerOfClass(GateJumpTracker.class))
             Global.getSector().getListenerManager().addListener(new GateJumpTracker(), true);
         OldLegionPeople.oldlegion_createStoryCharacters();

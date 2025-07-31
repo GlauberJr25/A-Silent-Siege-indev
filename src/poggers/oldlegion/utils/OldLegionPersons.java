@@ -35,7 +35,8 @@ public class OldLegionPersons {
         capt_zeratul_person.getStats().setSkillLevel("target_analysis", 1.0F);
         capt_zeratul_person.getStats().setSkillLevel("helmsmanship", 1.0F);
         capt_zeratul_person.getStats().setSkillLevel("polarized_armor", 1.0F);
-        capt_zeratul_person.setPortraitSprite(Global.getSettings().getSpriteName("characters", "kanta"));
+        capt_zeratul_person.setPortraitSprite("graphics/portraits/stellaris_robot.png");
+        capt_zeratul_person.wantsToContactPlayer();
         if (!ip.containsPerson(capt_zeratul_person)) {
             ip.addPerson(capt_zeratul_person);}
 

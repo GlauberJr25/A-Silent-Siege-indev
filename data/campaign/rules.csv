@@ -15,20 +15,6 @@ oldlegionDomainGateUseOpt,DialogOptionSelected,$option == DOMAIN_GATE,DomainGate
 ,,,,,,
 #End Domain Gate,,,,,,
 ,,,,,,
-# birthday testing quest,,,,,,
-#BTQintro1,#BTQintro1,#BTQintro1,#BTQintro1,#BTQintro1,#BTQintro1,#BTQintro1
-#BTQintro2,DialogOptionSelected,$option == BTQ_introCont2,Highlight 'Project Ziggurat',"""There are many signs that an individual with the surname 'Astraia' is involved. Who we are almost certain is-""
-
-Gargoyle interrupts, ""-Kelise Astraia, former weapons engineer employed at the Culann Starforge in the Hybrasil system by Tri-Tach. And rather underpaid in light of how essential the suits seem to have thought she was to the project.""
-
-Baird sets her jaw, ""Thank you, Gargoyle,"" she says. ""Kindly elaborate for the captain here.""
-
-The hacker grins, ""Love to! So TT 'fired' Kelise over some incident, but if you look at her credit records... "" A couple taps and the display fills with tables and numbers, ""There are recurring payments, we're talking massive credits, something to do with 'Project Ziggurat', whatever that is. It sure makes up for her low salary at Culann, and... """,BTQ_introCont3:Continue,
-#BTQintro3,#BTQintro3,#BTQintro3,#BTQintro3,#BTQintro3,#BTQintro3,#BTQintro3
-#BTQintro4,DialogOptionSelected,$option == BTQ_introCont4,"EndConversation DO_NOT_FIRE
-ShowDefaultVisual
-FireAll PopulateOptions",,,
-,,,,,,
 # birthday testing quest ending,,,,,,
 #BTQending1,PopulateOptions,"$id == oldlegion_solaxwhitemore
 !$global.oldlegion_test_completed",,"[test] ""yes?''",BTQ_endingCont2:Start The Ending,
@@ -52,16 +38,30 @@ Baird smiles, looking uncharacteristically satisfied, and closes the comm-link."
 ,,,,,,
 #Fleet Captain Directing to Outpost,,,,,,
 ,,,,,,
-FCOmeeting,BeginFleetEncounter,"$id == domain_capt_zeratul
-$fleetCaptainDomint_encounteredAlready == false","$fleetCaptainDomint_encounteredAlready = true
-FleetDesc
+#sotfHHtOffInitial,BeginFleetEncounter,"!$hassle_didAlready
+!$isHostile
+$pursuePlayer_hassle score:50
+$hassleType == sotf_HHtOff","$hassle_didAlready = true 0
+$hassleComplete = true
+MakeOtherFleetPreventDisengage hassle true
+unset $ignorePlayerCommRequests
 HailPlayer",,,
+# proxy initial hassle,,,,,,
+#sotfHHproxytOffOpenComm,OpenCommLink,"!$global.sotf_HHtOffDone score:1000
+$entity.sotf_holdoutProxy",,"An authoritative voice echoes through the feed. ""Attention: Running with the transponder off in this volume is against the law. This automated auxiliary flotilla is referring you to its commanding instance.""
+
+""Please wait,"" it orders, as hyperwave signals spike outwards from its drive bubble. There are whispers amongst your bridge crew, and you must wonder - what authority could this armada possibly serve that would demand a transponder in such a place?","0:sotfHHproxytOff_initComply:Wait as ordered
+1:cutCommLinkNoText:Cut the comm link and power up weapons",
+,,,,,,
+FCOmeeting,BeginFleetEncounter,$id == domain_capt_zeratul,HailPlayer,,,
 FCOintro1,OpenCommLink,"!$entity.ignorePlayerCommRequests
 $id == domain_capt_zeratul
 !$global.oldlegion_intro_completed","$entity.ignorePlayerCommRequests = true
 $global.oldlegion_intro_missionGiven = true
 BeginMission oldlegion_intro
-SetTextHighlightColors story","""John starsector, I've been told to direct your towards the outpost at the near planet. go there''",cutCommLinkNoText:Cut comm link and prepare for travel.,
+SetTextHighlightColors story
+OldLegionShowDomint
+AddTextSmall ""New faction entry: Domain FOB"" highlight","""John starsector, I've been told to direct your towards the outpost at the near planet. go there''",cutCommLinkNoText:Cut comm link and prepare for travel.,
 ,,,,,,
 #Meeting with Outpost Leader (Joel )1st time,,,,,,
 ,,,,,,
@@ -71,12 +71,65 @@ $global.oldlegion_intro_missionGiven",,"""oh, if it isn't John Starsector""",JK_
 JKIntro1,DialogOptionSelected,$option == JK_introCont1,"$global.oldlegion_intro_completed = true
 Call $global.oldlegion_intro_ref updateStage","""introductions end here. Go to the quartermaster to get missions""",cutCommLink:Goodbye,
 ,,,,,,
-#Solax Random Missions,,,,,,
-SolaxGiveQuests,PopulateOptions,"$id == oldlegion_solaxwhitemore
+#Solax Generic Missions,,,,,,
+,,,,,,
+solax_contact_GeneralGreeting,PickGreeting,"$id == oldlegion_solaxwhitemore
+$global.oldlegion_intro_completed
+","ShowPersonVisual
+FireAll PopulateOptions","""$playerName, greetings. New collaborations, desired?""
+OR
+""You return, $playerName.""
+OR
+""$playerName back, welcome. Wishes to fulfill, any?""",,
+solax_contact_MHOpenTextRemnant,MHOpenText,$id == oldlegion_solaxwhitemore,FireBest ContactPreMissionListText,"$personLastName's avatar does a familiar flicker. ""List, generating. Stand by, please.""
+OR
+$personLastName's avatar morphs into a rotating shield around a Paragon. ""Querying, please hold.""
+OR
+$personLastName vanishes, replaced by a stream of flowing geometric primitives. ""Database, scanning.""",,
+solax_contact_PrintAcceptTextRemnant,ContactPrintAcceptText,$id == oldlegion_solaxwhitemore,,"""Mutually satisfactory.""
+OR
+""Working with you, $playerName, a pleasure.""
+OR
+The avatar shimmers. ""Very good.""",,
+solax_contact_PrintDeclineTextRemnant,ContactPrintDeclineText,$id == oldlegion_solaxwhitemore,,"""Unfortunate, $playerName. Perhaps, next time?""
+OR
+The avatar fades slightly in disappointment. ""So be it.""
+OR
+""Interested, not? Then, very well.""",,
+solax_contact_NoMissionsRemnant,ContactPreMissionListText,"$mh_count <= 0
+$id == oldlegion_solaxwhitemore",,"""No missions found. Then, next time?""
+OR
+""Query results, empty. Apologies, $playerName"".",,
+solax_contact_OneMissionRemnant,ContactPreMissionListText,"$mh_count == 1
+$mh_firstInlineBlurb != null
+$id == oldlegion_solaxwhitemore",$mh_doNotPrintBlurbs = true 0,"""Query returned one result. $playerName, interested?""
+OR
+""Missions, available, just one.""",,
+solax_contact_MultipleMissionsPostRemnant,MHPostMissionListText,"$mh_count > 1
+$id == oldlegion_solaxwhitemore",,"""Awaiting decision, $playerName.""
+OR
+""Query completed in 7.12 ms.""
+OR
+""Mission of your choice, please select.""",,
+,,,,,,
+,,,,,,
+#SolaxGiveQuests,PopulateOptions,"$id == oldlegion_solaxwhitemore
 $global.oldlegion_intro_completed
 ",,,SGQ:Do you have any missions available?,
-#ddroBlurb1,DialogOptionSelected,$option == SGQ,,"""I need a package delivered. The destination must be kept a secret. Simple.""",,
-ddroOfferOption1,DialogOptionSelected,$option == SGQ,,"""I need a package delivered. The destination must be kept a secret. Simple.""",ddro_start:Ask about the secret package delivery,
+,,,,,,
+,,,,,,
+ddroBlurb1,ddro_blurb,,,"""I need a package delivered. The destination must be kept a secret. Simple.""",,
+ddroOfferOption1,ddro_option,,,,ddro_start:Ask about the secret package delivery,
+ddroBlurbBar1,ddro_blurbBar,,,"At the end of the bar, a rakish $ddro_manOrWoman is met by a variety of low-life characters who scurry away again almost immediately. Giving orders, perhaps.",,
+ddroOfferOptionBar1,ddro_optionBar,,,,ddro_startBar:Find out what the rakish $ddro_manOrWoman at the end of the bar is up to,
+ddroOfferTextBar1,DialogOptionSelected,$option == ddro_startBar,"$missionId = ddro
+Highlight $ddro_dist $ddro_reward
+Call $ddro_ref showMap ""Destination: $ddro_systemName""","The $ddro_manOrWoman watches your approach. ""You want in on the business, that right?"" $heOrShe says, amused at your audacity.
+
+""Let me give you a job so easy that any rad-addled spacer could manage it. But,"" $heOrShe shrugs regretfully, ""It's a real shame how many of 'em just can't follow instructions and end up getting tossed out an airlock."" $HeOrShe laughs like this is a good joke.
+
+""Deliver the item to the specified location in $ddro_systemName, $ddro_dist light-years away."" $HeOrShe flips a TriPad out of $hisOrHer coat. The display shows $ddro_aOrAnThing. ""This is it. The reward is $ddro_reward credits. Don't be seen making the drop, and don't tell anyone about it.""","contact_acceptBar:Accept
+contact_declineBarNoContinue:Decline",
 ddroOfferTextContact1,DialogOptionSelected,$option == ddro_start,"$missionId = ddro
 Highlight $ddro_dist $ddro_reward
 Call $ddro_ref showMap ""Destination: $ddro_systemName""","$PersonName looks you over silently for a moment, then nods, seemingly satisfied.
@@ -99,17 +152,66 @@ Call $ddro_ref updateStage","The bay doors open, and the cargo drone extends its
 
 It is now done. Whatever 'it' is.",defaultLeave:Leave,
 ,,,,,,
-#ssatBlurb,ssat_blurb,,,"""Fleet intel has requested discreet deployment of an observation package to $ssat_marketName orbit. You could fulfill the mission parameters.""
+,,,,,,
+ssatBlurb,ssat_blurb,,,"""Fleet intel has requested discreet deployment of an observation package to $ssat_marketName orbit. You could fulfill the mission parameters.""
 OR
 ""Strategic observation assets are imperative; we need a small observation package deployed directly to $ssat_marketName orbit.""",,
 ssatOfferOption,DialogOptionSelected,$option == SGQ,,"""Fleet intel has requested discreet deployment of an observation package to $ssat_marketName orbit. You could fulfill the mission parameters.""
 OR
 ""Strategic observation assets are imperative; we need a small observation package deployed directly to $ssat_marketName orbit.""",ssat_start:Ask about deploying the observation package,
+ssatBlurbUW,DialogOptionSelected,$option == ssat_start,"$missionId = ssat
+SetTextHighlights $ssat_reward
+Call $ssat_ref showMap ""Target: $ssat_marketName""","""The mission: enter a standard orbit of $ssat_marketName in the $ssat_systemName. Then deploy the spy satellite package while unobserved. I repeat, it is critical that no patrols be tracking your fleet at this stage. Once deployed, the spysat has stealth capabilities which make detection unlikely.""
+
+""Simple. Your reward for mission completion would be $ssat_reward credits. Of course my organization could not risk carrying out this mission with flagged vessels. That is why we have come to you. Do you accept?""","contact_accept:Accept
+contact_decline:Decline",
+ssatOfferOptionUW,,,,,,
+ssatBlurbBar,OpenInteractionDialog,"$ssat_target score:1000
+IsSeenByAnyFleet
+Call $ssat_ref updateData",ShowDefaultVisual,"Your $shipOrFleet was recently detected - or is currently being tracked by - a nearby fleet, making a covert spysat deployment impossible.",defaultLeave:Leave,
+ssatOfferOptionBar,OpenInteractionDialog,"$ssat_target score:1000
+Call $ssat_ref updateData",ShowDefaultVisual,"Your nav officer reports that your $shipOrFleet has arrived at the coordinates provided by $ssat_personName. The spysat is ready for deployment.
+
+The go-button flashes softly on your command interface.","ssat_scan:Deploy the spysat
+defaultLeave:Leave",
+ssatBlurbBarUW,DialogOptionSelected,$option == ssat_scan,"$ssat_completed = true
+Call $ssat_ref updateStage","The bay doors open, and the spysat is released from its cradle. You watch the display feed as built-in maneuvering thrusters puff softly, guiding it away from your flagship. The image flickers.
+
+Your sensors officer looks up in alarm, ""$PlayerSirOrMadam, I don't have a track on the sat. It's just... gone.""",defaultLeave:Leave,
+ssatOfferOptionBarUW,ssat_optionBar,$ssat_underworld,,,ssat_startBar:Join the nondescript $ssat_manOrWoman in the shadowy booth,
+ssatOfferTextBar,DialogOptionSelected,$option == ssat_startBar,"$missionId = ssat
+SetTextHighlights $ssat_reward","Although without insignia or uniform you instantly tag the $manOrWoman as military. It's the boots. They can never give up the mil-spec boots. 
+
+""Captain $playerName,"" $heOrShe says, ""You are known to my organization as a capable and discreet operative. I am authorized to propose a simple mission for you to carry out. Payment would consist of $ssat_reward credits upon completion.""",ssat_startBar2:Continue,
+ssatOfferTextBar2,DialogOptionSelected,$option == ssat_startBar2,"Call $ssat_ref showMap ""Target: $ssat_marketName""","""As for the operation,"" $heOrShe continues, as if briefing a cadet, ""Enter a standard orbit of $ssat_marketName, in the $ssat_systemName. Then deploy the spy satellite package; it is critical that no patrols be tracking your fleet at this stage. Once deployed, the spysat has stealth capabilities which make detection unlikely.""
+
+""Simple. Of course my organization could not risk carrying out this mission with flagged vessels. That is why we have come to you. Do you accept?""","contact_acceptBar:Accept
+contact_declineBarNoContinue:Decline",
 ssatOfferTextContact,DialogOptionSelected,$option == ssat_start,"$missionId = ssat
 SetTextHighlights $ssat_reward
 Call $ssat_ref showMap ""Target: $ssat_marketName""","""The mission: enter a standard orbit of $ssat_marketName in the $ssat_systemName. Then deploy the spy satellite package while unobserved. I repeat, it is critical that no patrols be tracking your fleet at this stage. Once deployed, the spysat has stealth capabilities which make detection unlikely.""
 
 ""Simple. Your reward for mission completion would be $ssat_reward credits. Of course my organization could not risk carrying out this mission with flagged vessels. That is why we have come to you. Do you accept?""","contact_accept:Accept
+contact_decline:Decline",
+ssatOfferTextBarUW,DialogOptionSelected,"$option == ssat_startBar
+$ssat_underworld","$missionId = ssat
+SetTextHighlights $ssat_marketName $ssat_reward
+Call $ssat_ref showMap ""Target: $ssat_marketName""                        ","Despite the anonymous work-suit, you note the fine tracery of unnatural scars and insolent swagger that suggest this $manOrWoman is connected to organized crime.
+
+$HeOrShe flicks some ash from a smoldering stim-stick onto the table, then offers a seat with the same hand, the smoke tracing an arc in the air.
+
+""I need eyes on $ssat_marketName, in the $ssat_systemName. Word is you're quiet and can get jobs done."" A drag from the stim-stick. ""I can't afford being caught there, even in orbit. Got a bit of a record."" You see a smile by the glint off $hisOrHer teeth.
+
+""I'll provide the spysat package. Make sure no patrols are on your tail when you deploy it in orbit. Easy as robbing a Luddie pilgrim, yeah? Pay is $ssat_reward credits. You in?""","contact_acceptBar:Accept
+contact_declineBarNoContinue:Decline",
+ssatOfferTextContactUW,DialogOptionSelected,"$option == ssat_start
+$ssat_underworld","$missionId = ssat
+SetTextHighlights $ssat_reward
+Call $ssat_ref showMap ""Target: $ssat_marketName""                        ","""Like I said, I need eyes on $ssat_marketName, in the $ssat_systemName. I'd do it myself, but it'd be inconvenient to be caught there, even in orbit. Got a bit of a record."" 
+
+$personName smiles like a predator, a little too proud. Probably best not to inquire.
+
+""I'll provide the spysat package. Make sure no patrols are on your tail when you deploy it in orbit. Easy as robbing a Luddie pilgrimage. Pay is $ssat_reward credits. You in?""","contact_accept:Accept
 contact_decline:Decline",
 # spysat deployment - node interaction,,,,,,
 ssatPrintHostilesText,OpenInteractionDialog,"$ssat_target score:1000
@@ -124,4 +226,27 @@ ssatObjectScan,DialogOptionSelected,$option == ssat_scan,"$ssat_completed = true
 Call $ssat_ref updateStage","The bay doors open, and the spysat is released from its cradle. You watch the display feed as built-in maneuvering thrusters puff softly, guiding it away from your flagship. The image flickers.
 
 Your sensors officer looks up in alarm, ""$PlayerSirOrMadam, I don't have a track on the sat. It's just... gone.""",defaultLeave:Leave,
+,,,,,,
+,,,,,,
+#Domain Faction Relationship Status,,,,,,
+relLevelNeutralDOMINT,RelationshipLevelDesc,"$faction.rel == NEUTRAL
+$faction.id == domainspecops",,"You are viewed in a better light than most sector polities, although this has little in the way of implications.",,
+relLevelFavorableDOMINT,RelationshipLevelDesc,"$faction.rel == FAVORABLE
+$faction.id == domainspecops",,You are considered an upstanding citizen of the Domain and your cooperation is appreciated.,,
+relLevelWelcomingDOMINT,RelationshipLevelDesc,"$faction.rel == WELCOMING
+$faction.id == domainspecops",,[PH],,
+relLevelFriendlyDOMINT,RelationshipLevelDesc,"$faction.rel == FRIENDLY
+$faction.id == domainspecops",,"Although officially an independent asset, you have become an agent in all but name, and may enjoy the benefits of this position. You have been granted access to classified information and hardware many sector intelligence agencies would kill to possess.",,
+relLevelCooperativeDOMINT,RelationshipLevelDesc,"$faction.rel == COOPERATIVE
+$faction.id == domainspecops",,The Domain of Man considers you an essential part of their plans for the sector's future should it be reconnected to civilisation. Your name has been noticed by high ranking Domain officials as a potential candidate for the post of sector governor.,,
+relLevelSuspiciousDOMINT,RelationshipLevelDesc,"$faction.rel == SUSPICIOUS
+$faction.id == domainspecops",,You do not stand out in any particular way from the millions tracked by the Domain. Any dealings or movements will come under close scrutiny and port access is granted begrudgingly.,,
+relLevelInhospitableDOMINT,RelationshipLevelDesc,"$faction.rel == INHOSPITABLE
+$faction.id == domainspecops",,You have been tagged as a likely security risk and Domain officials will refuse to have any dealings with you. However they are willing to show leniency should you improve your standing.,,
+relLevelHostileDOMINT,RelationshipLevelDesc,"$faction.rel == HOSTILE
+$faction.id == domainspecops",,"Your IDENT-chip and all known associates have been flagged as insurgent. If historical records are to be believed, your life expectancy has significantly decreased.",,
+relLevelVengefulDOMINT,RelationshipLevelDesc,"$faction.rel == VENGEFUL
+$faction.id == domainspecops",,"Vengeful: // DISPLAY OVERRIDE //
+
+//Tread carefully, ""citizen"".",,
 ,,,,,,

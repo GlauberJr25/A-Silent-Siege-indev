@@ -1,41 +1,39 @@
 package poggers.oldlegion.world;
 
 import com.fs.starfarer.api.Global;
-import com.fs.starfarer.api.campaign.SectorAPI;
+import com.fs.starfarer.api.Script;
+import com.fs.starfarer.api.campaign.*;
+import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.campaign.FactionAPI;
 import com.fs.starfarer.api.campaign.RepLevel;
-import com.fs.starfarer.api.impl.campaign.ids.Factions;
-import com.fs.starfarer.api.impl.campaign.shared.SharedData;
-import com.fs.starfarer.api.campaign.CampaignFleetAPI;
-import com.fs.starfarer.api.campaign.FleetAssignment;
-import com.fs.starfarer.api.campaign.LocationAPI;
-import com.fs.starfarer.api.campaign.SectorEntityToken;
+import com.fs.starfarer.api.campaign.SectorAPI;
+import com.fs.starfarer.api.campaign.StarSystemAPI;
 
-import poggers.oldlegion.utils.OldLegionPeople;
 import poggers.oldlegion.world.systems.MySystemOne;
 
 public class OldLegionModGen {
-    public void generate(SectorAPI sector) {
-        new MySystemOne().generate(sector);
+    public void generate(SectorAPI sector) { initFactionRelationships(sector); }
+
+    public static void trySpawnOutpost(SectorAPI sector) {
+        MemoryAPI sector_mem = sector.getMemoryWithoutUpdate();
+        StarSystemAPI outpost = sector.getStarSystem("oldlegion_domint_outpost");
+        if (outpost == null) {
+            (new MySystemOne()).generate(sector);
+        }
     }
-
-    //public static void initFactionRelationships(SectorAPI sector) {
-    //FactionAPI hegemony = sector.getFaction(Factions.HEGEMONY);
-    //FactionAPI tritachyon = sector.getFaction(Factions.TRITACHYON);
-    //FactionAPI pirates = sector.getFaction(Factions.PIRATES);
-    //FactionAPI kol = sector.getFaction(Factions.KOL);
-    //FactionAPI church = sector.getFaction(Factions.LUDDIC_CHURCH);
-    //FactionAPI path = sector.getFaction(Factions.LUDDIC_PATH);
-    //FactionAPI league = sector.getFaction(Factions.PERSEAN);
-    //FactionAPI myfaction= sector.getFaction("myfaction");
-
-    //myfaction.setRelationship(path.getId(), RepLevel.HOSTILE);
-    //myfaction.setRelationship(hegemony.getId(), RepLevel.SUSPICIOUS);
-    //myfaction.setRelationship(pirates.getId(), RepLevel.HOSTILE);
-    //myfaction.setRelationship(tritachyon.getId(), RepLevel.SUSPICIOUS);
-    //myfaction.setRelationship(church.getId(), RepLevel.SUSPICIOUS);
-    //myfaction.setRelationship(kol.getId(), RepLevel.SUSPICIOUS);
-    //myfaction.setRelationship(league.getId(), RepLevel.SUSPICIOUS);
-
-   // }
+    public static void initFactionRelationships(SectorAPI sector) {
+        FactionAPI domint = sector.getFaction("domainspecops");
+        domint.setRelationship("independent", RepLevel.SUSPICIOUS);
+        domint.setRelationship("player", RepLevel.SUSPICIOUS);
+        domint.setRelationship("hegemony", RepLevel.SUSPICIOUS);
+        domint.setRelationship("luddic_church", RepLevel.HOSTILE);
+        domint.setRelationship("tritachyon", RepLevel.INHOSPITABLE);
+        domint.setRelationship("pirates", RepLevel.HOSTILE);
+        domint.setRelationship("luddic_path", RepLevel.VENGEFUL);
+        domint.setRelationship("sindrian_diktat", RepLevel.VENGEFUL);
+        domint.setRelationship("derelict", RepLevel.COOPERATIVE);
+        domint.setRelationship("remnant", RepLevel.VENGEFUL);
+        domint.setRelationship("omega", RepLevel.NEUTRAL);
+        domint.setRelationship("tahlan_legioinfernalis", RepLevel.VENGEFUL);
+    }
 }

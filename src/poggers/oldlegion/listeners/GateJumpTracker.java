@@ -6,13 +6,9 @@ import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.campaign.listeners.GateTransitListener;
 import com.fs.starfarer.api.impl.campaign.GateEntityPlugin;
 import com.fs.starfarer.api.impl.campaign.rulecmd.missions.GateCMD;
-import com.fs.starfarer.api.util.FaderUtil;
 import com.fs.starfarer.api.util.Misc;
-import com.fs.starfarer.campaign.BaseScript;
-import com.fs.starfarer.campaign.fleet.CampaignFleet;
 import org.lazywizard.console.Console;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -46,7 +42,7 @@ public class GateJumpTracker implements GateTransitListener {
         }
         if (isKoLEnabled) {
             if (!Global.getSector().getMemoryWithoutUpdate().getKeys().contains(memoryKeyKoL)) {
-                Console.showMessage("If-Statement TWO fired their return");
+                //Console.showMessage("If-Statement TWO fired their return");
                 return; //Dont trigger before KoL triggers their Gate Interceptor.
             }
         }
