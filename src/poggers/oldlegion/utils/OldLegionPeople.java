@@ -14,10 +14,15 @@ public class OldLegionPeople {
     public static String OLDLEGION_NATAH = "oldlegion_natah";
     public static String OLDLEGION_SOLAX = "oldlegion_solaxwhitemore";
     public static String DOMAIN_CAPTAIN_ZERATUL = "domain_capt_zeratul";
+    public static String ARTANIS = "oldlegion_artanis";
     public static Logger log = Global.getLogger(OldLegionPeople.class);
 
     public static PersonAPI getPerson(String id) {
         return Global.getSector().getImportantPeople().getPerson(id);
+    }
+
+    public static void create() {
+        createCharacters();
     }
 
     public static void oldlegion_createStoryCharacters() {
@@ -85,5 +90,38 @@ public class OldLegionPeople {
                 log.info("OLDLEGION_RETROGEN: Solax Person already exists. No action taken");
             }
         }
+    }
+
+    public static void createCharacters() {
+        ImportantPeopleAPI ip = Global.getSector().getImportantPeople();
+        if (getPerson(ARTANIS) == null) {
+            PersonAPI person = genArtanis();
+            ip.addPerson(person);
+        }
+    }
+    public static PersonAPI genArtanis() {
+        PersonAPI person = Global.getFactory().createPerson();
+        person.setId(ARTANIS);
+        person.setFaction("domainspecops");
+        person.setGender(Gender.MALE);
+        person.setRankId(Ranks.SPACE_COMMANDER);
+        person.setPostId(Ranks.POST_FLEET_COMMANDER);
+        person.getStats().setLevel(8);
+        person.setPersonality("aggressive");
+        person.getName().setFirst("Artanis");
+        person.getName().setLast("Tassadar");
+        person.getStats().setSkillLevel("helmsmanship", 2.0F);
+        person.getStats().setSkillLevel("target_analysis", 2.0F);
+        person.getStats().setSkillLevel("impact_mitigation", 2.0F);
+        person.getStats().setSkillLevel("field_modulation", 2.0F);
+        person.getStats().setSkillLevel("gunnery_implants", 2.0F);
+        person.getStats().setSkillLevel("polarized_armor", 2.0F);
+        person.getStats().setSkillLevel("systems_expertise", 2.0F);
+        person.getStats().setSkillLevel("tactical_drills", 1.0F);
+        person.getStats().setSkillLevel("support_doctrine", 1.0F);
+        person.getStats().setSkillLevel("electronic_warfare", 1.0F);
+        person.getStats().setSkillLevel("coordinated_maneuvers", 1.0F);
+        person.setPortraitSprite("graphics/portraits/stellaris_robot.png");
+        return person;
     }
 }

@@ -39,37 +39,5 @@ public class OldLegionPersons {
         capt_zeratul_person.wantsToContactPlayer();
         if (!ip.containsPerson(capt_zeratul_person)) {
             ip.addPerson(capt_zeratul_person);}
-
-        /*Zeratul() {
-            this.gender = Gender.MALE;
-            this.faction = Global.getSector().getFaction("domainspecops");
-            this.rankid = "spaceCommander";
-            this.postid = "baseFleetCommander";
-            this.sprite = "graphics/portraits/characters/kanta.png";
-            this.personalities = "steady";
-            PersonAPI Zeratul = this.faction.createRandomPerson();
-            Zeratul.setId("domain_capt_zeratul");
-            Zeratul.getName().setFirst("Zeratul");
-            Zeratul.getName().setLast("Talandar");
-            Zeratul.getName().setGender(this.gender);
-            Zeratul.setRankId("spaceCommander");
-            Zeratul.setPostId("baseFleetCommander");
-            Zeratul.setPortraitSprite("graphics/portraits/characters/kanta.png");
-            Zeratul.setPersonality("steady");
-            Zeratul.getStats().setSkipRefresh(true);
-            Zeratul.getStats().setLevel(8);
-            Zeratul.getStats().setSkillLevel("ballistic_mastery", 2.0F);
-            Zeratul.getStats().setSkillLevel("gunnery_implants", 1.0F);
-            Zeratul.getStats().setSkillLevel("impact_mitigation", 1.0F);
-            Zeratul.getStats().setSkillLevel("target_analysis", 1.0F);
-            Zeratul.getStats().setSkillLevel("helmsmanship", 1.0F);
-            Zeratul.getStats().setSkillLevel("polarized_armor", 1.0F);
-            ImportantPeopleAPI ip = Global.getSector().getImportantPeople();
-            ip.addPerson(Zeratul);
-            PersonAPI test = ip.getPerson("domain_capt_zeratul");
-
-            if (test == null) throw new RuntimeException("zeratul == null");
-
-        }*/
     }
 }

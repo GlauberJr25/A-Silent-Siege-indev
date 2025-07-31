@@ -185,6 +185,8 @@ public class MySystemOne {
 
         OldLegionPersons.oldlegion_createCaptCharacters();
 
+        Global.getSector().addScript(new ArtanisPersonalFleet());
+
         JSONObject fleetData = this.getFleetData("domain_ra_fleet_remnant");
 
         try {

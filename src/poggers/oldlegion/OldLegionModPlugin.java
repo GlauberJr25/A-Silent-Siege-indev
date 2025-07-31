@@ -17,16 +17,19 @@ public class OldLegionModPlugin extends BaseModPlugin {
     // TODO: Actual Dialog and art for characters
     // TODO: Actual quests and stuff for reputation
     // TODO: change license
+    // TODO: stop faction relationships from changing with NEX
 
     public void onGameLoad(boolean newGame) {
         SectorAPI sector = Global.getSector();
         MemoryAPI sector_mem = Global.getSector().getMemoryWithoutUpdate();
 
-        OldLegionModGen.trySpawnOutpost(sector);
-
         if (!Global.getSector().getListenerManager().hasListenerOfClass(GateJumpTracker.class))
             Global.getSector().getListenerManager().addListener(new GateJumpTracker(), true);
+
         OldLegionPeople.oldlegion_createStoryCharacters();
+        OldLegionPeople.create();
+
+        OldLegionModGen.trySpawnOutpost(sector);
     }
 
 
