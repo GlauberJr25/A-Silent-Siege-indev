@@ -234,7 +234,7 @@ $faction.id == domainspecops",,"You are viewed in a better light than most secto
 relLevelFavorableDOMINT,RelationshipLevelDesc,"$faction.rel == FAVORABLE
 $faction.id == domainspecops",,You are considered an upstanding citizen of the Domain and your cooperation is appreciated.,,
 relLevelWelcomingDOMINT,RelationshipLevelDesc,"$faction.rel == WELCOMING
-$faction.id == domainspecops",,[PH],,
+$faction.id == domainspecops",,Your continued efforts in furthering the Domain's goals in the sector has been noted by officials. Restricted hardware and information have been made available to access.,,
 relLevelFriendlyDOMINT,RelationshipLevelDesc,"$faction.rel == FRIENDLY
 $faction.id == domainspecops",,"Although officially an independent asset, you have become an agent in all but name, and may enjoy the benefits of this position. You have been granted access to classified information and hardware many sector intelligence agencies would kill to possess.",,
 relLevelCooperativeDOMINT,RelationshipLevelDesc,"$faction.rel == COOPERATIVE

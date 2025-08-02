@@ -2,20 +2,18 @@ package poggers.oldlegion.world.systems;
 
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.*;
-import com.fs.starfarer.api.campaign.CampaignEventListener.FleetDespawnReason;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.impl.campaign.fleets.PersonalFleetScript;
 import com.fs.starfarer.api.impl.campaign.ids.FleetTypes;
 import com.fs.starfarer.api.impl.campaign.ids.MemFlags;
 import com.fs.starfarer.api.impl.campaign.missions.FleetCreatorMission;
-import com.fs.starfarer.api.impl.campaign.missions.hub.MissionFleetAutoDespawn;
 import com.fs.starfarer.api.impl.campaign.missions.hub.HubMissionWithTriggers.FleetQuality;
 import com.fs.starfarer.api.impl.campaign.missions.hub.HubMissionWithTriggers.FleetSize;
 import com.fs.starfarer.api.impl.campaign.missions.hub.HubMissionWithTriggers.OfficerNum;
 import com.fs.starfarer.api.impl.campaign.missions.hub.HubMissionWithTriggers.OfficerQuality;
+import com.fs.starfarer.api.impl.campaign.missions.hub.MissionFleetAutoDespawn;
 import com.fs.starfarer.api.util.Misc;
 
-import data.scripts.campaign.ids.SotfIDs;
 import poggers.oldlegion.utils.OldLegionIDs;
 import poggers.oldlegion.utils.OldLegionPeople;
 
@@ -25,16 +23,16 @@ public class ArtanisPersonalFleet extends PersonalFleetScript {
 
     public ArtanisPersonalFleet() {
         super(OldLegionPeople.ARTANIS);
-        setMinRespawnDelayDays(20.0F);
-        setMaxRespawnDelayDays(30.0F);
+        setMinRespawnDelayDays(20F);
+        setMaxRespawnDelayDays(30F);
     }
 
-    @Override
+
     protected MarketAPI getSourceMarket() {
         return Global.getSector().getEconomy().getMarket("Hunhow_market");
     }
 
-    @Override
+
     public CampaignFleetAPI spawnFleet() {
         MarketAPI base = getSourceMarket();
         SectorEntityToken outpost = base.getStarSystem().getEntityById("Hunhow");
@@ -93,7 +91,7 @@ public class ArtanisPersonalFleet extends PersonalFleetScript {
     }
 
 
-    @Override
+
     public void reportBattleOccurred(CampaignFleetAPI fleet, CampaignFleetAPI primaryWinner, BattleAPI battle) {
         if (fleet != null) {
             if (fleet.getFlagship() == null || fleet.getFlagship().getCaptain() != this.getPerson()) {
@@ -102,7 +100,7 @@ public class ArtanisPersonalFleet extends PersonalFleetScript {
         }
     }
 
-    @Override
+
     public void reportFleetDespawnedToListener(CampaignFleetAPI fleet, CampaignEventListener.FleetDespawnReason reason, Object param) {
         super.reportFleetDespawnedToListener(fleet, reason, param);
         if (reason == CampaignEventListener.FleetDespawnReason.DESTROYED_BY_BATTLE) {
@@ -116,14 +114,14 @@ public class ArtanisPersonalFleet extends PersonalFleetScript {
 
     }
 
-    @Override
+
     public boolean canSpawnFleetNow() {
             MarketAPI outpost = Global.getSector().getEconomy().getMarket("Hunhow_market");
             return outpost != null;
         }
     }
 
-    @Override
+
     public boolean shouldScriptBeRemoved() {return false;}
 }
 
