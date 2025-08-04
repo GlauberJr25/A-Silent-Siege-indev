@@ -90,8 +90,6 @@ public class ArtanisPersonalFleet extends PersonalFleetScript {
         return fleet;
     }
 
-
-
     public void reportBattleOccurred(CampaignFleetAPI fleet, CampaignFleetAPI primaryWinner, BattleAPI battle) {
         if (fleet != null) {
             if (fleet.getFlagship() == null || fleet.getFlagship().getCaptain() != this.getPerson()) {
@@ -99,7 +97,6 @@ public class ArtanisPersonalFleet extends PersonalFleetScript {
             }
         }
     }
-
 
     public void reportFleetDespawnedToListener(CampaignFleetAPI fleet, CampaignEventListener.FleetDespawnReason reason, Object param) {
         super.reportFleetDespawnedToListener(fleet, reason, param);
@@ -118,9 +115,7 @@ public class ArtanisPersonalFleet extends PersonalFleetScript {
     public boolean canSpawnFleetNow() {
             MarketAPI outpost = Global.getSector().getEconomy().getMarket("Hunhow_market");
             return outpost != null;
-        }
     }
-
 
     public boolean shouldScriptBeRemoved() {return false;}
 }

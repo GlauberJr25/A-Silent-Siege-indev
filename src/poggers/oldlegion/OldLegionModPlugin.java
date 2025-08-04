@@ -3,8 +3,10 @@ package poggers.oldlegion;
 import com.fs.starfarer.api.BaseModPlugin;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.SectorAPI;
+import com.fs.starfarer.api.campaign.listeners.ListenerManagerAPI;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import exerelin.campaign.SectorManager;
+import poggers.oldlegion.listeners.CoreUIListener;
 import poggers.oldlegion.listeners.GateJumpTracker;
 import poggers.oldlegion.utils.OldLegionPeople;
 import poggers.oldlegion.world.OldLegionModGen;
@@ -19,20 +21,29 @@ public class OldLegionModPlugin extends BaseModPlugin {
     // TODO: change license
     // TODO: stop faction relationships from changing with NEX
 
+
+    private void addListenersIfNeeded() {
+        ListenerManagerAPI l = Global.getSector().getListenerManager();
+
+        if (!l.hasListenerOfClass(GateJumpTracker.class))
+            l.addListener(new GateJumpTracker(), true);
+
+        if (!l.hasListenerOfClass(CoreUIListener.class))
+            l.addListener(new CoreUIListener(), true);
+
+    }
+
     public void onGameLoad(boolean newGame) {
         SectorAPI sector = Global.getSector();
         MemoryAPI sector_mem = Global.getSector().getMemoryWithoutUpdate();
 
-        if (!Global.getSector().getListenerManager().hasListenerOfClass(GateJumpTracker.class))
-            Global.getSector().getListenerManager().addListener(new GateJumpTracker(), true);
+        addListenersIfNeeded();
 
         OldLegionPeople.oldlegion_createStoryCharacters();
         OldLegionPeople.create();
 
         OldLegionModGen.trySpawnOutpost(sector);
     }
-
-
 
     @Override
     public void onNewGame() {
