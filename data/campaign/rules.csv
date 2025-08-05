@@ -38,16 +38,22 @@ Baird smiles, looking uncharacteristically satisfied, and closes the comm-link."
 ,,,,,,
 #Fleet Captain Directing to Outpost,,,,,,
 ,,,,,,
-#sotfHHtOffInitial,BeginFleetEncounter,"!$hassle_didAlready
+oldlegionHHOffInitial,BeginFleetEncounter,"!$hassle_didAlready
 !$isHostile
 $pursuePlayer_hassle score:50
-$hassleType == sotf_HHtOff","$hassle_didAlready = true 0
+$hassleType == oldlegion_HHtOff","$hassle_didAlready = true 0
 $hassleComplete = true
 MakeOtherFleetPreventDisengage hassle true
 unset $ignorePlayerCommRequests
 HailPlayer",,,
+,OpenCommLink,"$id == oldlegion_artanis
+!$global.oldlegion_intro_completed","$global.oldlegion_intro_missionGiven = true
+BeginMission oldlegion_intro
+SetTextHighlightColors story
+OldLegionShowDomint
+AddTextSmall ""New faction entry: Domain FOB"" highlight","""John starsector, I've been told to direct your towards the outpost at the near planet. go there''",cutCommLinkNoText:Cut comm link and prepare for travel.,
 # proxy initial hassle,,,,,,
-#sotfHHproxytOffOpenComm,OpenCommLink,"!$global.sotf_HHtOffDone score:1000
+#sotfHHproxytOffOpenComm,OpenCommLink,"!$global.oldlegion_HHtOffDone score:1000
 $entity.sotf_holdoutProxy",,"An authoritative voice echoes through the feed. ""Attention: Running with the transponder off in this volume is against the law. This automated auxiliary flotilla is referring you to its commanding instance.""
 
 ""Please wait,"" it orders, as hyperwave signals spike outwards from its drive bubble. There are whispers amongst your bridge crew, and you must wonder - what authority could this armada possibly serve that would demand a transponder in such a place?","0:sotfHHproxytOff_initComply:Wait as ordered
