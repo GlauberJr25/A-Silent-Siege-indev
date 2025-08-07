@@ -48,7 +48,7 @@ public class ArtanisPersonalFleet extends PersonalFleetScript {
         doctrine.setShipSize(5);
         doctrine.setCombatFreighterCombatUseFraction(0.65f);
 
-        m.triggerCreateFleet(FleetSize.HUGE, FleetQuality.VERY_HIGH, OldLegionIDs.DOMINT, FleetTypes.PATROL_LARGE, loc);
+        m.triggerCreateFleet(FleetSize.HUGE, FleetQuality.SMOD_2, OldLegionIDs.DOMINT, FleetTypes.PATROL_LARGE, loc);
         m.triggerFleetSetFlagship("domain_capital_test");
         m.triggerSetFleetOfficers(OfficerNum.DEFAULT, OfficerQuality.HIGHER);
         m.triggerSetFleetCommander(getPerson());
@@ -62,9 +62,10 @@ public class ArtanisPersonalFleet extends PersonalFleetScript {
         if (!Global.getSector().getMemoryWithoutUpdate().contains("$oldlegion_HHtOffDone")) {
             m.triggerSetFleetHasslePlayer("oldlegion_HHtOff");
         }
-        m.triggerFleetSetName("Artanis's Astral Castellans");
+        m.triggerFleetSetName("Artanis's Astral Astartes");
 
-        m.triggerOrderFleetPatrol(outpost.getStarSystem());
+        m.triggerOrderFleetPatrol(outpost.getStarSystem().getEntityById("domain_ops_gate"));
+        m.triggerFleetSetPatrolLeashRange(1);
 
         CampaignFleetAPI fleet = m.createFleet();
 
@@ -75,7 +76,7 @@ public class ArtanisPersonalFleet extends PersonalFleetScript {
         if (shipIndex == 14) {
             shipIndex = 15;
         }
-        String shipName = "ODS Bitter Poison";
+        String shipName = "DSS Bitter Venom";
         if (shipIndex > 1) {
             shipName += " " + Global.getSettings().getRoman(shipIndex);
         }

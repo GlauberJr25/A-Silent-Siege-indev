@@ -20,6 +20,8 @@ public class OldLegionModPlugin extends BaseModPlugin {
     // TODO: Actual quests and stuff for reputation
     // TODO: change license
     // TODO: stop faction relationships from changing with NEX
+    // TODO: block transverse jump on outpost system
+    // TODO: fix npc comm order issue
 
 
     private void addListenersIfNeeded() {
@@ -39,10 +41,10 @@ public class OldLegionModPlugin extends BaseModPlugin {
 
         addListenersIfNeeded();
 
+        OldLegionModGen.trySpawnOutpost(sector);
+
         OldLegionPeople.oldlegion_createStoryCharacters();
         OldLegionPeople.create();
-
-        OldLegionModGen.trySpawnOutpost(sector);
     }
 
     @Override

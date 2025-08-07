@@ -6,7 +6,7 @@ id,trigger,conditions,script,text,options,notes
 oldlegionDomainGateOpt,PopulateGateOptions,"$global.gatesActive
 $global.playerCanUseGates
 $gateScanned
-DomainGateCMD CanBeAdded",,,16:DOMAIN_GATE:Travel towards Domain Space,
+DomainGateCMD CanBeAdded",,,17:DOMAIN_GATE:Travel towards Domain Space,
 oldlegionDomainGateOptDescription,PopulateGateOptions,"$global.gatesActive
 $global.playerCanUseGates
 $gateScanned
@@ -46,8 +46,9 @@ $hassleComplete = true
 MakeOtherFleetPreventDisengage hassle true
 unset $ignorePlayerCommRequests
 HailPlayer",,,
-,OpenCommLink,"$id == oldlegion_artanis
-!$global.oldlegion_intro_completed","$global.oldlegion_intro_missionGiven = true
+artanis_joel_FirstEncounter,OpenCommLink,"$id == oldlegion_artanis
+!$global.oldlegion_intro_completed
+$global.oldlegion_intro_missionGiven == false","$global.oldlegion_intro_missionGiven = true
 BeginMission oldlegion_intro
 SetTextHighlightColors story
 OldLegionShowDomint
@@ -59,8 +60,8 @@ $entity.sotf_holdoutProxy",,"An authoritative voice echoes through the feed. ""A
 ""Please wait,"" it orders, as hyperwave signals spike outwards from its drive bubble. There are whispers amongst your bridge crew, and you must wonder - what authority could this armada possibly serve that would demand a transponder in such a place?","0:sotfHHproxytOff_initComply:Wait as ordered
 1:cutCommLinkNoText:Cut the comm link and power up weapons",
 ,,,,,,
-FCOmeeting,BeginFleetEncounter,$id == domain_capt_zeratul,HailPlayer,,,
-FCOintro1,OpenCommLink,"!$entity.ignorePlayerCommRequests
+#FCOmeeting,BeginFleetEncounter,$id == domain_capt_zeratul,HailPlayer,,,
+#FCOintro1,OpenCommLink,"!$entity.ignorePlayerCommRequests
 $id == domain_capt_zeratul
 !$global.oldlegion_intro_completed","$entity.ignorePlayerCommRequests = true
 $global.oldlegion_intro_missionGiven = true

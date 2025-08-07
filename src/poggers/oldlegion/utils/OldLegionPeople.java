@@ -53,7 +53,7 @@ public class OldLegionPeople {
             oldlegion_natah_person.getStats().setSkillLevel("industrial_planning", 3.0F);
             oldlegion_natah_person.addTag("domain");
             if (!ip.containsPerson(oldlegion_natah_person)) {
-                log.info("OLDLEGION_RETROGEN: Natah Person did not exist. He has been generated retroactively");
+                //log.info("OLDLEGION_RETROGEN: Natah Person did not exist. He has been generated retroactively");
                 ip.addPerson(oldlegion_natah_person);
                 market.addPerson(oldlegion_natah_person);
                 market.getCommDirectory().addPerson(oldlegion_natah_person, 0);
@@ -80,7 +80,7 @@ public class OldLegionPeople {
             oldlegion_solaxwhitemore_person.setPortraitSprite("graphics/portraits/stellaris_robot.png");
             oldlegion_solaxwhitemore_person.addTag("domain");
             if (!ip.containsPerson(oldlegion_solaxwhitemore_person)) {
-                log.info("OLDLEGION_RETROGEN: Solax Person did not exist. He has been generated retroactively");
+                //log.info("OLDLEGION_RETROGEN: Solax Person did not exist. He has been generated retroactively");
                 ip.addPerson(oldlegion_solaxwhitemore_person);
                 market.addPerson(oldlegion_solaxwhitemore_person);
                 market.getCommDirectory().addPerson(oldlegion_solaxwhitemore_person, 0);
@@ -108,8 +108,8 @@ public class OldLegionPeople {
         person.setPostId(Ranks.POST_FLEET_COMMANDER);
         person.getStats().setLevel(8);
         person.setPersonality("aggressive");
-        person.getName().setFirst("Artanis");
-        person.getName().setLast("Tassadar");
+        person.getName().setFirst("Joel");
+        person.getName().setLast("Kepler");
         person.getStats().setSkillLevel("helmsmanship", 2.0F);
         person.getStats().setSkillLevel("target_analysis", 2.0F);
         person.getStats().setSkillLevel("impact_mitigation", 2.0F);
