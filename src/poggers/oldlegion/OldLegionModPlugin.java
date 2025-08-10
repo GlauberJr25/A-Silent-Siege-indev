@@ -28,6 +28,7 @@ public class OldLegionModPlugin extends BaseModPlugin {
     // TODO: stop faction relationships from changing with NEX
     // TODO: block transverse jump on outpost system
     // TODO: fix npc comm order issue
+    // TODO: trade shroud/threat/omega items for rep
 
 
     private void addListenersIfNeeded() {

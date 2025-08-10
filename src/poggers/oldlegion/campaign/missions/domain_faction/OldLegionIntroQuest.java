@@ -22,6 +22,9 @@ public class OldLegionIntroQuest extends HubMissionWithSearch {
     protected MarketAPI Hunhow_market;
 
     protected boolean create(MarketAPI createdAt, boolean barEvent) {
+        if (!setGlobalReference("$oldlegion_intro_ref", "$oldlegion_intro_inProgress")) {
+            return false;
+        }
         OLDLEGION_NATAH = getImportantPerson(OldLegionPeople.OLDLEGION_NATAH);
         if (OLDLEGION_NATAH == null) return false;
 
@@ -39,10 +42,10 @@ public class OldLegionIntroQuest extends HubMissionWithSearch {
 
         setStoryMission();
 
-        setStageOnGlobalFlag(OldLegionIntroQuest.Stage.COMPLETED, "$oldlegion_intro_completed");
-
         makeImportant(OLDLEGION_NATAH, null, OldLegionIntroQuest.Stage.TALK_TO_JOEL_ON_BASE);
         setStageOnMemoryFlag(OldLegionIntroQuest.Stage.COMPLETED, OLDLEGION_NATAH.getMarket(), "$oldlegion_intro_completed");
+
+        setStageOnGlobalFlag(OldLegionIntroQuest.Stage.COMPLETED, "$oldlegion_intro_completed");
 
         beginStageTrigger(OldLegionIntroQuest.Stage.COMPLETED);
         triggerSetGlobalMemoryValue("$oldlegion_intro_completed", true);
@@ -54,7 +57,9 @@ public class OldLegionIntroQuest extends HubMissionWithSearch {
 
         return true;
     }
-
+    protected void updateInteractionDataImpl() {
+        set("$oldlegion_intro_stage", getCurrentStage());
+    }
     @Override
     public void addDescriptionForNonEndStage(TooltipMakerAPI info, float width, float height) {
         float opad = 10f;

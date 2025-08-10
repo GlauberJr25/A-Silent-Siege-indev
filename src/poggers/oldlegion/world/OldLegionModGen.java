@@ -16,7 +16,7 @@ public class OldLegionModGen {
 
     public static void trySpawnOutpost(SectorAPI sector) {
         MemoryAPI sector_mem = sector.getMemoryWithoutUpdate();
-        StarSystemAPI outpost = sector.getStarSystem("oldlegion_domint_outpost");
+        StarSystemAPI outpost = sector.getStarSystem("Nataruk");
         if (outpost == null) {
             (new MySystemOne()).generate(sector);
         }

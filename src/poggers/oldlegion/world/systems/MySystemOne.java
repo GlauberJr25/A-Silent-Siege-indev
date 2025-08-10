@@ -56,7 +56,7 @@ public class MySystemOne {
     }*/
     public void generate(SectorAPI sector) {
         StarSystemAPI domainOutpost = sector.createStarSystem("Nataruk");
-        domainOutpost.getLocation().set(0,-65000); //bottom rightish - was +80000,-55000
+        domainOutpost.getLocation().set(0,-65000); //bottom centerish - was +80000,-55000
 
 //        domainOutpost.setOptionalUniqueId("oldlegion_domint_outpost");
         domainOutpost.addTag(Tags.THEME_HIDDEN);
