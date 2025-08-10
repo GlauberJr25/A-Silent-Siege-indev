@@ -40,7 +40,7 @@
 		#"conquest_DEM":0, # probability overridden in persean_league.faction
 		
 		"domain_capital_test":3,
-        "onslaught_di_Elite":2,
+        "onslaught_di_Elite":3,
 		
 		"fallback":{"combatLarge":1},
 	},

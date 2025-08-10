@@ -1,7 +1,7 @@
 {
   "variantId": "domain_capital_test",
   "hullId": "domain_capital",
-  "displayName": "Variant Test",
+  "displayName": "Test Outfit",
   "goalVariant": true,
   "fluxCapacitors": 50,
   "fluxVents": 50,

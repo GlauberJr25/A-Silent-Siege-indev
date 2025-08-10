@@ -11,12 +11,12 @@
   "fighterBays": 0,
   "fleetPoints": 35,
   "fpMod": 0,
-  "hullDesignation": "FRIGATE",
+  "hullDesignation": "Battleship",
   "hullName": "Onslaught (DI)",
-  "manufacturer": "",
+  "manufacturer": "???",
   "ordnancePoints": 370,
   "restoreToBaseHull": false,
   "skinHullId": "onslaught_di",
   "spriteName": "graphics/ships/onslaught_domint.png",
-  "tech": "XIV Battlegroup"
+  "tech": "??? Battlegroup"
 }

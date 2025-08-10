@@ -51,7 +51,6 @@ public class ArtanisPersonalFleet extends PersonalFleetScript {
         m.triggerCreateFleet(FleetSize.MAXIMUM, FleetQuality.SMOD_2, OldLegionIDs.DOMINT, FleetTypes.PATROL_LARGE, loc);
         m.triggerFleetSetFlagship("domain_capital_test");
         m.triggerAddShips("onslaught_di_Elite");
-        m.triggerAddShips("onslaught_di_Elite");
         m.triggerSetFleetOfficers(OfficerNum.DEFAULT, OfficerQuality.HIGHER);
         m.triggerSetFleetCommander(getPerson());
         m.triggerSetFleetFaction("domainspecops");
