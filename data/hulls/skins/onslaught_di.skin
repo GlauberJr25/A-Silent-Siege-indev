@@ -2,7 +2,9 @@
   "baseHullId": "onslaught",
   "baseValueMult": 1.75,
   "builtInMods": [
-    "fourteenth"
+    "fourteenth",
+    "DomainEngineeringMod",
+    "DomainRetrofitMod"
   ],
   "descriptionId": "onslaught",
   "descriptionPrefix": "Built to the specifications of DOMINT, this vessel is a prime example of the Domain's 'All seeing eye' doctrine, particularly exhibited by a series of radical structural modifications performed using pre-Collapse industrial technology.",

@@ -88,11 +88,13 @@ solax_ddroBlurb,solax_ddroRem_blurb,,,"""Dead drop for selfkind, deliver surrept
 solax_ddroOfferOption,solax_ddroRem_option,,,,ddro_start:Ask about the secret package delivery,
 solax_ddroOfferTextContact,DialogOptionSelected,"$option == ddro_start
 $id == oldlegion_solaxwhitemore score:10","$missionId = ddro
-Highlight $ddro_dist $ddro_reward
-Call $ddro_ref showMap ""Destination: $ddro_systemName""","$PersonName's avatar seems to shudder, as if in the depths of thought. Of course, it only lasts for a handful of milliseconds.
+Highlight $ddro_dist $ddro_reward","$PersonName's avatar seems to shudder, as if in the depths of thought. Of course, it only lasts for a handful of milliseconds.
 
 ""This item to specified location $ddro_systemName, $ddro_dist light-years away deliver. Do not be spotted. Do not inform others. Reward is $ddro_reward credits."" The avatar fades into $ddro_aOrAnThing. ""Acceptable?""","contact_accept:Accept
 contact_decline:Decline",
+,,,,,,
+#in case needed later,,,"Call $ddro_ref showMap ""Destination: $ddro_systemName""
+Call $ssat_ref showMap ""Target: $ssat_marketName""",,,
 ,,,,,,
 solax_ssatBlurb,solax_ssat_blurb,,,"""Observation package in $ssat_marketName orbit, stealth insertion, selfkind requires.""
 OR
@@ -100,8 +102,7 @@ OR
 solax_ssatOfferOption,solax_ddroRem_option,,,,ssat_start:Ask about the secret package delivery,
 solax_ssatOfferTextContact,DialogOptionSelected,"$option == ssat_start
 $id == oldlegion_solaxwhitemore score:10","$missionId = ssat
-SetTextHighlights $ssat_reward
-Call $ssat_ref showMap ""Target: $ssat_marketName""","""Enter standard orbit, $ssat_marketName in the $ssat_systemName. Then spy satellite package deploy while unobserved. Stealth imperative, patrols tracking you must be none. Reward is $ssat_reward credits.""","contact_accept:Accept
+SetTextHighlights $ssat_reward","""Enter standard orbit, $ssat_marketName in the $ssat_systemName. Then spy satellite package deploy while unobserved. Stealth imperative, patrols tracking you must be none. Reward is $ssat_reward credits.""","contact_accept:Accept
 contact_decline:Decline",
 ,,,,,,
 #Domain Faction Relationship Status,,,,,,
