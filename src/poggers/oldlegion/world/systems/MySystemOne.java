@@ -33,8 +33,8 @@ public class MySystemOne {
     ImportantPeopleAPI ip = Global.getSector().getImportantPeople();
 
     public static Logger log = Global.getLogger(MySystemOne.class);
-
-    public JSONObject getFleetData(String id) {
+    // old fleet generator (deprecated)
+    /*public JSONObject getFleetData(String id) {
         JSONObject fleetData = null;
 
         try {
@@ -53,8 +53,7 @@ public class MySystemOne {
         }
 
         return fleetData;
-    }
-
+    }*/
     public void generate(SectorAPI sector) {
         StarSystemAPI DomainOutpost = sector.createStarSystem("Nataruk");
         DomainOutpost.getLocation().set(+80000,-55000); //bottom rightish
@@ -183,13 +182,14 @@ public class MySystemOne {
         SectorEntityToken domaingate = DomainOutpost.addCustomEntity("domain_ops_gate", "Domain Gate", "inactive_gate", "domainspecops");
         domaingate.setCircularOrbit(relay, 10, 6736, 233);
 
-        OldLegionPersons.oldlegion_createCaptCharacters();
-
         Global.getSector().addScript(new ArtanisPersonalFleet());
 
-        JSONObject fleetData = this.getFleetData("domain_ra_fleet_remnant");
+        // old fleet generator (deprecated)
 
-        try {
+        //OldLegionPersons.oldlegion_createCaptCharacters();
+        //JSONObject fleetData = this.getFleetData("domain_ra_fleet_remnant");
+
+        /*try {
             ImportantPeopleAPI ip = Global.getSector().getImportantPeople();
             PersonAPI capt = ip.getPerson(fleetData.getString("fleetCaptain"));
             CampaignFleetAPI domainFleet = FleetFactoryV3.createEmptyFleet("domainspecops", fleetData.getString("fleetType"), (MarketAPI)null);
@@ -213,7 +213,8 @@ public class MySystemOne {
             domainFleet.getAI().addAssignment(FleetAssignment.ORBIT_AGGRESSIVE, domaingate, 9999.0F, (Script) null);
         } catch (JSONException ex) {
             log.info(ex);
-        }
+        }*/
+
         //HyperspaceTerrainPlugin plugin = (HyperspaceTerrainPlugin) Misc.getHyperspaceTerrain().getPlugin();
         //NebulaEditor editor = new NebulaEditor(plugin);
         //float minRadius = plugin.getTileSize() * 2f;
