@@ -91,7 +91,7 @@
                  "grendel", # 0 phase doctrine, but added to combatLarge elsewhere in this file
 
                  "legion_xiv",
-                 "onslaught_xiv",
+                 #"onslaught_xiv",
                  "onslaught_di",
                  "domain_capital"
 		],
@@ -104,7 +104,7 @@
         # despite the Legion being a carrier and the carrier portion of the doctrine being low
 		"hulls":[
             "legion_xiv",
-            "onslaught_xiv",
+            #"onslaught_xiv",
             "domain_capital",
             "onslaught_di",
 
@@ -257,8 +257,8 @@
 		"phaseShips":0,
 		
 		"officerQuality":5,
-		"shipQuality":1,
-		"numShips":1,
+		"shipQuality":4,
+		"numShips":2,
 		
 		"shipSize":3,
 		
