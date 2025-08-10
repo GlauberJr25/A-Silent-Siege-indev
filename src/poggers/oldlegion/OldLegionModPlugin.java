@@ -16,7 +16,9 @@ public class OldLegionModPlugin extends BaseModPlugin {
         new OldLegionModGen().generate(Global.getSector());
     }
 
-    // TODO: Actual Dialog and art for characters
+    // call order: onNewGame -> onNewGameAfterProcGen -> onNewGameAfterEconomyLoad -> onEnabled -> onNewGameAfterTimePass -> onGameLoad
+
+    // TODO: Actual Dialog and art for characters (LOTS OF DIALOG TO FIX)
     // TODO: Actual quests and stuff for reputation
     // TODO: change license
     // TODO: stop faction relationships from changing with NEX
@@ -58,5 +60,11 @@ public class OldLegionModPlugin extends BaseModPlugin {
             new OldLegionModGen().generate(Global.getSector());
         // You can add more methods from ModPlugin here. Press Control-O in IntelliJ to see options.
         }
+    }
+
+    @Override
+    public void onApplicationLoad() throws Exception
+    {
+        OldLegionPeople.setupDomainContactMissions();
     }
 }

@@ -7,7 +7,12 @@ import com.fs.starfarer.api.characters.ImportantPeopleAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.characters.FullName.Gender;
 import com.fs.starfarer.api.impl.campaign.ids.Ranks;
+import com.fs.starfarer.api.impl.campaign.missions.hub.BaseMissionHub;
 import org.apache.log4j.Logger;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class OldLegionPeople {
 
@@ -16,6 +21,10 @@ public class OldLegionPeople {
     public static String DOMAIN_CAPTAIN_ZERATUL = "domain_capt_zeratul";
     public static String ARTANIS = "oldlegion_artanis";
     public static Logger log = Global.getLogger(OldLegionPeople.class);
+
+    public static final List<String> TAG_AS_DOMAIN_MISSION = new ArrayList<>(Arrays.asList(
+            "ddro", "ssat"
+    ));
 
     public static PersonAPI getPerson(String id) {
         return Global.getSector().getImportantPeople().getPerson(id);
@@ -79,6 +88,8 @@ public class OldLegionPeople {
             oldlegion_solaxwhitemore_person.getName().setFirst("Solax Whitemore");
             oldlegion_solaxwhitemore_person.setPortraitSprite("graphics/portraits/stellaris_robot.png");
             oldlegion_solaxwhitemore_person.addTag("domain");
+            BaseMissionHub.set(oldlegion_solaxwhitemore_person, new BaseMissionHub(oldlegion_solaxwhitemore_person));
+            oldlegion_solaxwhitemore_person.getMemoryWithoutUpdate().set(BaseMissionHub.NUM_BONUS_MISSIONS, 1);
             if (!ip.containsPerson(oldlegion_solaxwhitemore_person)) {
                 //log.info("OLDLEGION_RETROGEN: Solax Person did not exist. He has been generated retroactively");
                 ip.addPerson(oldlegion_solaxwhitemore_person);
@@ -99,6 +110,7 @@ public class OldLegionPeople {
             ip.addPerson(person);
         }
     }
+
     public static PersonAPI genArtanis() {
         PersonAPI person = Global.getFactory().createPerson();
         person.setId(ARTANIS);
@@ -124,4 +136,11 @@ public class OldLegionPeople {
         person.setPortraitSprite("graphics/portraits/stellaris_robot.png");
         return person;
     }
+
+    public static void setupDomainContactMissions() {
+        for (String id : TAG_AS_DOMAIN_MISSION) {
+            Global.getSettings().getMissionSpec(id).getTagsAny().add("domain");
+        }
+    }
+
 }

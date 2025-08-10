@@ -5,5 +5,5 @@ mission id,person id,tagsAll,tagsAny,tagsNotAny,tags,freq,min timeout,max timeou
 ,,,,,,,,,,,,,,,,
 oldlegion_intro,,,,,"priority, non_repeatable",,,,,,,,,,graphics/icons/missions/project_ziggurat.png,poggers.oldlegion.campaign.missions.domain_faction.OldLegionIntroQuest
 ,,,,,,,,,,,,,,,,
-ssat,,,domain,,,10,30,60,INHOSPITABLE,,,,,,graphics/icons/missions/spysat.png,com.fs.starfarer.api.impl.campaign.missions.SpySatDeployment
-ddro,,,domain,,,10,30,60,INHOSPITABLE,,,,,,graphics/icons/missions/dead_drop.png,com.fs.starfarer.api.impl.campaign.missions.DeadDropMission
+ssat,,,domain,,,10,30,60,,,,,,,graphics/icons/missions/spysat.png,com.fs.starfarer.api.impl.campaign.missions.SpySatDeployment
+ddro,,,domain,,,10,30,60,,,,,,,graphics/icons/missions/dead_drop.png,com.fs.starfarer.api.impl.campaign.missions.DeadDropMission
