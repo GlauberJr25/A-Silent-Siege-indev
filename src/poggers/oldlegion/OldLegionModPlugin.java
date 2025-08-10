@@ -11,12 +11,16 @@ import poggers.oldlegion.listeners.GateJumpTracker;
 import poggers.oldlegion.utils.OldLegionPeople;
 import poggers.oldlegion.world.OldLegionModGen;
 
+import static com.fs.starfarer.api.Global.getSettings;
+
 public class OldLegionModPlugin extends BaseModPlugin {
+
     private static void initMyMod() {
         new OldLegionModGen().generate(Global.getSector());
     }
 
     // call order: onNewGame -> onNewGameAfterProcGen -> onNewGameAfterEconomyLoad -> onEnabled -> onNewGameAfterTimePass -> onGameLoad
+
 
     // TODO: Actual Dialog and art for characters (LOTS OF DIALOG TO FIX)
     // TODO: Actual quests and stuff for reputation

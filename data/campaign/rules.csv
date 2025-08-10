@@ -1,22 +1,20 @@
 id,trigger,conditions,script,text,options,notes
-#RULESET_NAME ASS,,,,,,
+"#RULESET_NAME ASS",,,,,,
 ,,,,,,
-#Domain Gate,,,,,,
-,,,,,,
+# Domain Gate,,,,,,
 oldlegionDomainGateOpt,PopulateGateOptions,"$global.gatesActive
 $global.playerCanUseGates
 $gateScanned
-DomainGateCMD CanBeAdded",,,17:DOMAIN_GATE:Travel towards Domain Space,
+DomainGateCMD CanBeAdded",,,"17:DOMAIN_GATE:Travel towards Domain Space",
 oldlegionDomainGateOptDescription,PopulateGateOptions,"$global.gatesActive
 $global.playerCanUseGates
 $gateScanned
-DomainGateCMD CanBeAdded",DomainGateCMD Highlight,,,
-oldlegionDomainGateUseOpt,DialogOptionSelected,$option == DOMAIN_GATE,DomainGateCMD Traverse,,,
+DomainGateCMD CanBeAdded","DomainGateCMD Highlight",,,
+oldlegionDomainGateUseOpt,DialogOptionSelected,"$option == DOMAIN_GATE","DomainGateCMD Traverse",,,
 ,,,,,,
-#End Domain Gate,,,,,,
+# End Domain Gate,,,,,,
 ,,,,,,
-#Fleet Captain Directing to Outpost,,,,,,
-,,,,,,
+# Fleet Captain Directing to Outpost,,,,,,
 oldlegionHHOffInitial,BeginFleetEncounter,"!$hassle_didAlready
 !$isHostile
 $pursuePlayer_hassle score:50
@@ -31,19 +29,20 @@ $global.oldlegion_intro_missionGiven == false","$global.oldlegion_intro_missionG
 BeginMission oldlegion_intro
 SetTextHighlightColors story
 OldLegionShowDomint
-AddTextSmall ""New faction entry: Domain FOB"" highlight","""John starsector, I've been told to direct your towards the outpost at the near planet. go there''",cutCommLinkNoText:Cut comm link and prepare for travel.,
+AddTextSmall ""New faction entry: Domain FOB"" highlight","""John starsector, I've been told to direct your towards the outpost at the near planet. go there''","cutCommLinkNoText:Cut comm link and prepare for travel.",
+"#END Fleet Captain Directing to Outpost",,,,,,
+"#END End Domain Gate",,,,,,
+"#END Domain Gate",,,,,,
 ,,,,,,
-#Meeting with Outpost Leader (Joel )1st time,,,,,,
-,,,,,,
+# Meeting with Outpost Leader (Joel )1st time,,,,,,
 JKIntro,PopulateOptions,"$id == oldlegion_natah
 !$global.oldlegion_intro_completed
-$global.oldlegion_intro_missionGiven",,"""oh, if it isn't John Starsector""",JK_introCont1:Hello,
-JKIntro1,DialogOptionSelected,$option == JK_introCont1,"AddStoryPoints 1
+$global.oldlegion_intro_missionGiven",,"""oh, if it isn't John Starsector""","JK_introCont1:Hello",
+JKIntro1,DialogOptionSelected,"$option == JK_introCont1","AddStoryPoints 1
 $global.oldlegion_intro_completed = true
-Call $global.oldlegion_intro_ref updateStage","""introductions end here. Go to the quartermaster to get missions""",cutCommLink:Goodbye,
+Call $global.oldlegion_intro_ref updateStage","""introductions end here. Go to the quartermaster to get missions""","cutCommLink:Goodbye",
 ,,,,,,
-#Solax Generic Missions,,,,,,
-,,,,,,
+# Solax Generic Missions,,,,,,
 solax_contact_GeneralGreeting,PickGreeting,"$id == oldlegion_solaxwhitemore score:10
 $global.oldlegion_intro_completed
 ","ShowPersonVisual
@@ -53,17 +52,17 @@ OR
 OR
 ""$playerName back, welcome. Wishes to fulfill, any?""",,
 solax_contact_MHOpenTextRemnant,MHOpenText,"$id == oldlegion_solaxwhitemore score:10
-$global.oldlegion_intro_completed == true",FireBest ContactPreMissionListText,"$personFirstName's avatar does a familiar flicker. ""List, generating. Stand by, please.""
+$global.oldlegion_intro_completed == true","FireBest ContactPreMissionListText","$personFirstName's avatar does a familiar flicker. ""List, generating. Stand by, please.""
 OR
 $personFirstName's avatar morphs into a rotating shield around a Paragon. ""Querying, please hold.""
 OR
 $personFirstName vanishes, replaced by a stream of flowing geometric primitives. ""Database, scanning.""",,
-solax_contact_PrintAcceptTextRemnant,ContactPrintAcceptText,$id == oldlegion_solaxwhitemore score:10,,"""Mutually satisfactory.""
+solax_contact_PrintAcceptTextRemnant,ContactPrintAcceptText,"$id == oldlegion_solaxwhitemore score:10",,"""Mutually satisfactory.""
 OR
 ""Working with you, $playerName, a pleasure.""
 OR
 The avatar shimmers. ""Very good.""",,
-solax_contact_PrintDeclineTextRemnant,ContactPrintDeclineText,$id == oldlegion_solaxwhitemore score:10,,"""Unfortunate, $playerName. Perhaps, next time?""
+solax_contact_PrintDeclineTextRemnant,ContactPrintDeclineText,"$id == oldlegion_solaxwhitemore score:10",,"""Unfortunate, $playerName. Perhaps, next time?""
 OR
 The avatar fades slightly in disappointment. ""So be it.""
 OR
@@ -74,7 +73,7 @@ OR
 ""Query results, empty. Apologies, $playerName"".",,
 solax_contact_OneMissionRemnant,ContactPreMissionListText,"$mh_count == 1
 $mh_firstInlineBlurb != null
-$id == oldlegion_solaxwhitemore",$mh_doNotPrintBlurbs = true 0,"""Query returned one result. $playerName, interested?""
+$id == oldlegion_solaxwhitemore","$mh_doNotPrintBlurbs = true 0","""Query returned one result. $playerName, interested?""
 OR
 ""Missions, available, just one.""",,
 solax_contact_MultipleMissionsPostRemnant,MHPostMissionListText,"$mh_count > 1
@@ -85,7 +84,7 @@ OR
 ""Mission of your choice, please select.""",,
 ,,,,,,
 solax_ddroBlurb,solax_ddroRem_blurb,,,"""Dead drop for selfkind, deliver surreptitiously.""",,
-solax_ddroOfferOption,solax_ddroRem_option,,,,ddro_start:Ask about the secret package delivery,
+solax_ddroOfferOption,solax_ddroRem_option,,,,"ddro_start:Ask about the secret package delivery",
 solax_ddroOfferTextContact,DialogOptionSelected,"$option == ddro_start
 $id == oldlegion_solaxwhitemore score:10","$missionId = ddro
 Highlight $ddro_dist $ddro_reward","$PersonName's avatar seems to shudder, as if in the depths of thought. Of course, it only lasts for a handful of milliseconds.
@@ -99,31 +98,41 @@ Call $ssat_ref showMap ""Target: $ssat_marketName""",,,
 solax_ssatBlurb,solax_ssat_blurb,,,"""Observation package in $ssat_marketName orbit, stealth insertion, selfkind requires.""
 OR
 ""Strategic observation of $ssat_marketName, package insertion into orbit: direct, quiet.""",,
-solax_ssatOfferOption,solax_ddroRem_option,,,,ssat_start:Ask about the secret package delivery,
+solax_ssatOfferOption,solax_ddroRem_option,,,,"ssat_start:Ask about the secret package delivery",
 solax_ssatOfferTextContact,DialogOptionSelected,"$option == ssat_start
 $id == oldlegion_solaxwhitemore score:10","$missionId = ssat
 SetTextHighlights $ssat_reward","""Enter standard orbit, $ssat_marketName in the $ssat_systemName. Then spy satellite package deploy while unobserved. Stealth imperative, patrols tracking you must be none. Reward is $ssat_reward credits.""","contact_accept:Accept
 contact_decline:Decline",
 ,,,,,,
-#Domain Faction Relationship Status,,,,,,
+# Domain Faction Relationship Status,,,,,,
 relLevelNeutralDOMINT,RelationshipLevelDesc,"$faction.rel == NEUTRAL
 $faction.id == domainspecops",,"You are viewed in a better light than most sector polities, although this has little in the way of implications.",,
 relLevelFavorableDOMINT,RelationshipLevelDesc,"$faction.rel == FAVORABLE
-$faction.id == domainspecops",,You are considered an upstanding citizen of the Domain and your cooperation is appreciated.,,
+$faction.id == domainspecops",,"You are considered an upstanding citizen of the Domain and your cooperation is appreciated.",,
 relLevelWelcomingDOMINT,RelationshipLevelDesc,"$faction.rel == WELCOMING
-$faction.id == domainspecops",,Your continued efforts in furthering the Domain's goals in the sector has been noted by officials. Restricted hardware and information have been made available to access.,,
+$faction.id == domainspecops",,"Your continued efforts in furthering the Domain's goals in the sector has been noted by officials. Restricted hardware and information have been made available to access.",,
 relLevelFriendlyDOMINT,RelationshipLevelDesc,"$faction.rel == FRIENDLY
 $faction.id == domainspecops",,"Although officially an independent asset, you have become an agent in all but name, and may enjoy the benefits of this position. You have been granted access to classified information and hardware many sector intelligence agencies would kill to possess.",,
 relLevelCooperativeDOMINT,RelationshipLevelDesc,"$faction.rel == COOPERATIVE
-$faction.id == domainspecops",,The Domain of Man considers you an essential part of their plans for the sector's future should it be reconnected to civilisation. Your name has been noticed by high ranking Domain officials as a potential candidate for the post of sector governor.,,
+$faction.id == domainspecops",,"The Domain of Man considers you an essential part of their plans for the sector's future should it be reconnected to civilisation. Your name has been noticed by high ranking Domain officials as a potential candidate for the post of sector governor.",,
 relLevelSuspiciousDOMINT,RelationshipLevelDesc,"$faction.rel == SUSPICIOUS
-$faction.id == domainspecops",,You do not stand out in any particular way from the millions tracked by the Domain. Any dealings or movements will come under close scrutiny and port access is granted begrudgingly.,,
+$faction.id == domainspecops",,"You do not stand out in any particular way from the millions tracked by the Domain. Any dealings or movements will come under close scrutiny and port access is granted begrudgingly.",,
 relLevelInhospitableDOMINT,RelationshipLevelDesc,"$faction.rel == INHOSPITABLE
-$faction.id == domainspecops",,You have been tagged as a likely security risk and Domain officials will refuse to have any dealings with you. However they are willing to show leniency should you improve your standing.,,
+$faction.id == domainspecops",,"You have been tagged as a likely security risk and Domain officials will refuse to have any dealings with you. However they are willing to show leniency should you improve your standing.",,
 relLevelHostileDOMINT,RelationshipLevelDesc,"$faction.rel == HOSTILE
 $faction.id == domainspecops",,"Your IDENT-chip and all known associates have been flagged as insurgent. If historical records are to be believed, your life expectancy has significantly decreased.",,
 relLevelVengefulDOMINT,RelationshipLevelDesc,"$faction.rel == VENGEFUL
 $faction.id == domainspecops",,"Vengeful: // DISPLAY OVERRIDE //
 
 //Tread carefully, ""citizen"".",,
+"#END Domain Faction Relationship Status",,,,,,
+"#END Solax Generic Missions",,,,,,
+"#END Meeting with Outpost Leader (Joel )1st time",,,,,,
 ,,,,,,
+# Visit Outpost,,,,,,
+BarPopulate,DialogOptionSelected,"$faction.id == domainspecops
+$market.id == Hunhow_market
+$option == marketVisitBar",,"You search all around the outpost for a bar, but every area you expect there to be a bar, you see automation. Guess there aren't any bars around anymore.","outpostBarLeave:Move along",
+BarLeave,DialogOptionSelected,"$option == outpostBarLeave","BarCMD leaveBar",,,
+"#END Visit Outpost",,,,,,
+

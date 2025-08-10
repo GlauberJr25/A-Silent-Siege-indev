@@ -173,6 +173,20 @@ public class ReflectionUtils {
         }
     }
 
+    public static boolean hasVariableOfName(String name, Object instance) {
+        Object[] instancesOfFields = instance.getClass().getDeclaredFields();
+        for (Object field : instancesOfFields) {
+            try {
+                if (getFieldNameHandle.invoke(field).equals(name)) {
+                    return true;
+                }
+            } catch (Throwable e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
     public static boolean hasMethodOfName(String name, Object instance) {
         try {
             for (Object method : instance.getClass().getMethods()) {

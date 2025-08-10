@@ -14,14 +14,15 @@ import java.util.Random;
 
 import poggers.oldlegion.ReflectionUtilities;
 import poggers.oldlegion.utils.OldLegionStrings;
+import poggers.oldlegion.utils.ReflectionUtils;
 
 public class GateJumpTracker implements GateTransitListener {
 
+    // KoL Compat
     boolean isKoLEnabled = Global.getSettings().getModManager().isModEnabled("knights_of_ludd");
+    String memoryKeyKoL = "$kol_nullspace_gate_glitch";
 
     String memoryKey = "$oldlegion_domainspace_gate_glitch";
-
-    String memoryKeyKoL = "$kol_nullspace_gate_glitch";
 
     String memoryKeyInterceptChance = "$chanceToIntercept";
 
@@ -34,20 +35,26 @@ public class GateJumpTracker implements GateTransitListener {
     @Override
     public void reportFleetTransitingGate(CampaignFleetAPI fleet, SectorEntityToken gateFrom, SectorEntityToken gateTo) {
         StarSystemAPI destSys = Global.getSector().getStarSystem(OldLegionStrings.DomainSpaceSysName);
+
         Global.getSector().getMemoryWithoutUpdate().set(memoryKeyInterceptChance, 1);
         InterceptChanceInt = Global.getSector().getMemoryWithoutUpdate().getInt(memoryKeyInterceptChance);
+
+        //Dont trigger multiple times.
         if (Global.getSector().getMemoryWithoutUpdate().getKeys().contains(memoryKey)) {
             //Console.showMessage("If-Statement ONE fired their return");
-            return; //Dont trigger multiple times.
+            return;
         }
+        // KoL compat
         if (isKoLEnabled) {
+            //Dont trigger before KoL triggers their Gate Interceptor.
             if (!Global.getSector().getMemoryWithoutUpdate().getKeys().contains(memoryKeyKoL)) {
                 //Console.showMessage("If-Statement TWO fired their return");
-                return; //Dont trigger before KoL triggers their Gate Interceptor.
+                return;
             }
         }
+        //Prevent it from happening during the story-jump
         if (!Global.getSector().getMemoryWithoutUpdate().getBoolean("$gaATG_missionCompleted")) {
-            return; //Prevent it from happening during the story-jump
+            return;
             }
 
         boolean isNotPlayerFleet = !fleet.isPlayerFleet();
@@ -57,17 +64,22 @@ public class GateJumpTracker implements GateTransitListener {
         if (isNotPlayerFleet || sendingGateNull || tooLowCycle || sendingGateIsDomain) {
             return;
         }
-        if (random.nextInt(101) <= InterceptChanceInt) {
+        if (random.nextInt(101) <= InterceptChanceInt) { // random.nextInt(101) <= InterceptChanceInt
             if (destSys == null) return;
             SectorEntityToken dest = destSys.getEntityById("domain_ops_gate");
             float dist = Misc.getDistanceLY(dest, gateTo);
 
             for (EveryFrameScript script : new ArrayList<>(Global.getSector().getScripts())) {
-                if (ReflectionUtilities.INSTANCE.hasVariableOfName("untilCanWarpOut", script)) {
+                if (ReflectionUtils.hasVariableOfName("untilCanWarpOut", script)) {
                     Global.getSector().removeScript(script);
                 }
             }
-            ReflectionUtilities.INSTANCE.invoke("setInJumpTransition", fleet, new Object[]{false}, false);
+            try {
+                // Uses KoL reflection, couldn't find a non-kotlin version
+                ReflectionUtilities.INSTANCE.invoke("setInJumpTransition", fleet, new Object[]{false}, false);
+            } catch (Throwable e) {
+                throw new RuntimeException(e);
+            }
             //Start own Transverse
             Global.getSector().doHyperspaceTransition(fleet, gateFrom, new JumpPointAPI.JumpDestination(dest, ""), 5.0f);
 

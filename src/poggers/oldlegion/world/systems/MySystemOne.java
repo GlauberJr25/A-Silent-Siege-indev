@@ -55,31 +55,31 @@ public class MySystemOne {
         return fleetData;
     }*/
     public void generate(SectorAPI sector) {
-        StarSystemAPI DomainOutpost = sector.createStarSystem("Nataruk");
-        DomainOutpost.getLocation().set(+80000,-55000); //bottom rightish
+        StarSystemAPI domainOutpost = sector.createStarSystem("Nataruk");
+        domainOutpost.getLocation().set(0,-65000); //bottom rightish - was +80000,-55000
 
-        DomainOutpost.setOptionalUniqueId("oldlegion_domint_outpost");
-        DomainOutpost.addTag(Tags.THEME_HIDDEN);
-        DomainOutpost.addTag(Tags.THEME_SPECIAL);
-        DomainOutpost.addTag(Tags.THEME_UNSAFE);
-        DomainOutpost.addTag(Tags.NOT_RANDOM_MISSION_TARGET);
+//        domainOutpost.setOptionalUniqueId("oldlegion_domint_outpost");
+        domainOutpost.addTag(Tags.THEME_HIDDEN);
+        domainOutpost.addTag(Tags.THEME_SPECIAL);
+        domainOutpost.addTag(Tags.THEME_UNSAFE);
+        domainOutpost.addTag(Tags.NOT_RANDOM_MISSION_TARGET);
 
-        DomainOutpost.setBackgroundTextureFilename("graphics/mymod/backgrounds/mybackground.jpg");
+        domainOutpost.setBackgroundTextureFilename("graphics/mymod/backgrounds/mybackground.jpg");
 
-        PlanetAPI argonStar = DomainOutpost.initStar("Argonian", // unique id for this star
+        PlanetAPI argonStar = domainOutpost.initStar("Argonian", // unique id for this star
                 "star_red_giant", // id in planets.json
                 100f, // radius (in pixels at default zoom)
                 650); // corona radius, from star edge
-        DomainOutpost.setLightColor(new Color(239, 155, 128)); // light color in entire DomainOutpost, affects all entities
+        domainOutpost.setLightColor(new Color(239, 155, 128)); // light color in entire DomainOutpost, affects all entities
 
-        DomainOutpost.removeEntity(argonStar);
-        SectorEntityToken relay = DomainOutpost.addCustomEntity("mam_relay", "Domain Comm Relay", "comm_relay", "domainspecops");
+        domainOutpost.removeEntity(argonStar);
+        SectorEntityToken relay = domainOutpost.addCustomEntity("mam_relay", "Domain Comm Relay", "comm_relay", "domainspecops");
 
         //setup all distances here
         final float asteroids1Dist = 2750f;
         final float stable1Dist = 4200f;
         final float asteroidBelt1Dist = 5700f;
-        SectorEntityToken argonAF1 = DomainOutpost.addTerrain(Terrain.ASTEROID_FIELD,
+        SectorEntityToken argonAF1 = domainOutpost.addTerrain(Terrain.ASTEROID_FIELD,
                 new AsteroidFieldTerrainPlugin.AsteroidFieldParams(
                         300f, // min radius
                         500f, // max radius
@@ -91,16 +91,16 @@ public class MySystemOne {
         argonAF1.setCircularOrbit(relay, 130, asteroids1Dist, 240);
 
         //add first stable loc
-        SectorEntityToken stableLoc1 = DomainOutpost.addCustomEntity("argon_stableloc_1", "Stable Location", "stable_location", Factions.NEUTRAL);
+        SectorEntityToken stableLoc1 = domainOutpost.addCustomEntity("argon_stableloc_1", "Stable Location", "stable_location", Factions.NEUTRAL);
         stableLoc1.setCircularOrbit(relay, MathUtils.getRandomNumberInRange(0f, 360f), stable1Dist, 520);
 
         //asteroid belt1 ring
-        DomainOutpost.addAsteroidBelt(relay, 1000, asteroidBelt1Dist, 800, 250, 400, Terrain.ASTEROID_BELT, "Inner Band");
-        DomainOutpost.addRingBand(relay, "misc", "rings_asteroids0", 256f, 3, Color.gray, 256f, asteroidBelt1Dist - 200, 250f);
-        DomainOutpost.addRingBand(relay, "misc", "rings_asteroids0", 256f, 0, Color.gray, 256f, asteroidBelt1Dist, 350f);
-        DomainOutpost.addRingBand(relay, "misc", "rings_asteroids0", 256f, 2, Color.gray, 256f, asteroidBelt1Dist + 200, 400f);
+        domainOutpost.addAsteroidBelt(relay, 1000, asteroidBelt1Dist, 800, 250, 400, Terrain.ASTEROID_BELT, "Inner Band");
+        domainOutpost.addRingBand(relay, "misc", "rings_asteroids0", 256f, 3, Color.gray, 256f, asteroidBelt1Dist - 200, 250f);
+        domainOutpost.addRingBand(relay, "misc", "rings_asteroids0", 256f, 0, Color.gray, 256f, asteroidBelt1Dist, 350f);
+        domainOutpost.addRingBand(relay, "misc", "rings_asteroids0", 256f, 2, Color.gray, 256f, asteroidBelt1Dist + 200, 400f);
 
-        PlanetAPI Hunhow = DomainOutpost.addPlanet("Hunhow", relay, "Hunhow's Fall", "barren", 0, 273, 7777, 157);
+        PlanetAPI Hunhow = domainOutpost.addPlanet("Hunhow", relay, "Hunhow's Fall", "barren", 0, 273, 7777, 157);
         Hunhow.setFaction("domainspecops");
         MarketAPI market = Global.getFactory().createMarket(
                 "Hunhow_market",
@@ -173,13 +173,13 @@ public class MySystemOne {
                         false //the ''WithJunkerAndChatter'' flag. it will add space debris in orbit and radio chatter sound effects.
                 );
         */
-        SectorEntityToken buoy = DomainOutpost.addCustomEntity("nav_buoy", "Nav Buoy", "nav_buoy", "domainspecops");
+        SectorEntityToken buoy = domainOutpost.addCustomEntity("nav_buoy", "Nav Buoy", "nav_buoy", "domainspecops");
         buoy.setCircularOrbit(relay, 25, 8861, 275);
 
-        SectorEntityToken array = DomainOutpost.addCustomEntity("sensor_array", "Sensor Array", "sensor_array", "domainspecops");
+        SectorEntityToken array = domainOutpost.addCustomEntity("sensor_array", "Sensor Array", "sensor_array", "domainspecops");
         array.setCircularOrbit(relay, 25, 3961, 95);
 
-        SectorEntityToken domaingate = DomainOutpost.addCustomEntity("domain_ops_gate", "Domain Gate", "inactive_gate", "domainspecops");
+        SectorEntityToken domaingate = domainOutpost.addCustomEntity("domain_ops_gate", "Domain Gate", "inactive_gate", "domainspecops");
         domaingate.setCircularOrbit(relay, 10, 6736, 233);
 
         Global.getSector().addScript(new ArtanisPersonalFleet());
