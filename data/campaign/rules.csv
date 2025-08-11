@@ -154,14 +154,14 @@ ajfsOption2HyperTap:""Do you happen to have a Hypershunt tap to spare?
 ajfsOption2Nevermind:""Nevermind, I don't need anything right now""",
 ajfsPart3Forge,DialogOptionSelected,$option == ajfsOption2Forge,"AddRemoveAnyItem SPECIAL pristine_nanoforge 1
 $gavePlayerSpecialItems = true 30
-AdjustRep domainspecops -10","""Sure, here you go, a Pristine Nanoforge""","cutCommLink:Thank you, I'll be going now",
+AdjustRep domainspecops -5","""Sure, here you go, a Pristine Nanoforge""","cutCommLink:Thank you, I'll be going now",
 ajfsPart3SyncCore,DialogOptionSelected,$option == ajfsOption2SyncCore,"AddRemoveAnyItem SPECIAL synchrotron 1
 $gavePlayerSpecialItems = true 30
-AdjustRep domainspecops -10","""Sure, here you go, a Cryoarithmetic Engine""","cutCommLink:Thank you, I'll be going now",
+AdjustRep domainspecops -5","""Sure, here you go, a Cryoarithmetic Engine""","cutCommLink:Thank you, I'll be going now",
 ajfsPart3CryoEngine,DialogOptionSelected,$option == ajfsOption2CryoEngine,"AddRemoveAnyItem SPECIAL cryoarithmetic_engine 1
 $gavePlayerSpecialItems = true 30
 AdjustRep domainspecops -5","""Sure, here you go, a Synchronotron Core ""","cutCommLink:Thank you, I'll be going now",
 ajfsPart3HypershuntTap,DialogOptionSelected,$option == ajfsOption2HyperTap,"AddRemoveAnyItem SPECIAL coronal_portal 1
 $gavePlayerSpecialItems = true 30
-AdjustRep domainspecops -15","""Sure, here you go, a Hypershunt Tap""","cutCommLink:Thank you, I'll be going now",
+AdjustRep domainspecops -5","""Sure, here you go, a Hypershunt Tap""","cutCommLink:Thank you, I'll be going now",
 ajfsPart3Nevermind,DialogOptionSelected,$option == ajfsOption2Nevermind,FireAll PopulateOptions,"""Sure, suit yourself.""",cutCommLink:Goodbye,

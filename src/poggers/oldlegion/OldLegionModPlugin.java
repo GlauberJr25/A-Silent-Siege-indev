@@ -23,11 +23,10 @@ public class OldLegionModPlugin extends BaseModPlugin {
 
 
     // TODO: Actual Dialog and art for characters (LOTS OF DIALOG TO FIX)
-    // TODO: Actual quests and stuff for reputation
-    // TODO: change license
+    // TODO: change license (maybe not?)
     // TODO: stop faction relationships from changing with NEX
-    // TODO: block transverse jump on outpost system
-    // TODO: fix npc comm order issue
+    // TODO: block transverse jump on outpost system (number 2 priority)
+    // TODO: fix npc comm order issue (number 1 priority)
     // TODO: trade shroud/threat/omega items for rep
 
 

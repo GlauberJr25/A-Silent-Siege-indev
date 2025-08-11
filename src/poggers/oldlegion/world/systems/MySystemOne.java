@@ -19,7 +19,9 @@ import com.fs.starfarer.api.fleet.MutableFleetStatsAPI;
 import com.fs.starfarer.api.impl.campaign.fleets.FleetFactoryV3;
 import com.fs.starfarer.api.impl.campaign.ids.*;
 import com.fs.starfarer.api.impl.campaign.ids.Factions;
+import com.fs.starfarer.api.impl.campaign.rulecmd.salvage.special.ShipRecoverySpecial;
 import com.fs.starfarer.api.impl.campaign.terrain.AsteroidFieldTerrainPlugin;
+import com.fs.starfarer.api.campaign.SectorEntityToken;
 
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
@@ -27,7 +29,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import org.lazywizard.lazylib.MathUtils;
-import poggers.oldlegion.utils.OldLegionPersons;
+import poggers.oldlegion.scripts.OldLegionMisc;
+
+import static poggers.oldlegion.scripts.OldLegionMisc.addDerelict;
+
 
 public class MySystemOne {
     ImportantPeopleAPI ip = Global.getSector().getImportantPeople();
@@ -77,7 +82,7 @@ public class MySystemOne {
 
         //setup all distances here
         final float asteroids1Dist = 2750f;
-        final float stable1Dist = 4200f;
+        final float stable1Dist = 3700f;
         final float asteroidBelt1Dist = 5700f;
         SectorEntityToken argonAF1 = domainOutpost.addTerrain(Terrain.ASTEROID_FIELD,
                 new AsteroidFieldTerrainPlugin.AsteroidFieldParams(
@@ -95,12 +100,12 @@ public class MySystemOne {
         stableLoc1.setCircularOrbit(relay, MathUtils.getRandomNumberInRange(0f, 360f), stable1Dist, 520);
 
         //asteroid belt1 ring
-        domainOutpost.addAsteroidBelt(relay, 1000, asteroidBelt1Dist, 800, 250, 400, Terrain.ASTEROID_BELT, "Inner Band");
-        domainOutpost.addRingBand(relay, "misc", "rings_asteroids0", 256f, 3, Color.gray, 256f, asteroidBelt1Dist - 200, 250f);
-        domainOutpost.addRingBand(relay, "misc", "rings_asteroids0", 256f, 0, Color.gray, 256f, asteroidBelt1Dist, 350f);
-        domainOutpost.addRingBand(relay, "misc", "rings_asteroids0", 256f, 2, Color.gray, 256f, asteroidBelt1Dist + 200, 400f);
+        //domainOutpost.addAsteroidBelt(relay, 1000, asteroidBelt1Dist, 800, 250, 400, Terrain.ASTEROID_BELT, "Inner Band");
+        //domainOutpost.addRingBand(relay, "misc", "rings_asteroids0", 256f, 3, Color.gray, 256f, asteroidBelt1Dist - 200, 250f);
+        //domainOutpost.addRingBand(relay, "misc", "rings_asteroids0", 256f, 0, Color.gray, 256f, asteroidBelt1Dist, 350f);
+        //domainOutpost.addRingBand(relay, "misc", "rings_asteroids0", 256f, 2, Color.gray, 256f, asteroidBelt1Dist + 200, 400f);
 
-        PlanetAPI Hunhow = domainOutpost.addPlanet("Hunhow", relay, "Hunhow's Fall", "barren", 0, 273, 7777, 157);
+        PlanetAPI Hunhow = domainOutpost.addPlanet("Hunhow", relay, "Hunhow's Fall", "barren", 0, 273, 4977, 157);
         Hunhow.setFaction("domainspecops");
         MarketAPI market = Global.getFactory().createMarket(
                 "Hunhow_market",
@@ -174,13 +179,66 @@ public class MySystemOne {
                 );
         */
         SectorEntityToken buoy = domainOutpost.addCustomEntity("nav_buoy", "Nav Buoy", "nav_buoy", "domainspecops");
-        buoy.setCircularOrbit(relay, 25, 8861, 275);
+        buoy.setCircularOrbit(relay, 25, 6561, 315);
 
         SectorEntityToken array = domainOutpost.addCustomEntity("sensor_array", "Sensor Array", "sensor_array", "domainspecops");
-        array.setCircularOrbit(relay, 25, 3961, 95);
+        array.setCircularOrbit(relay, 25, 2361, 93);
 
         SectorEntityToken domaingate = domainOutpost.addCustomEntity("domain_ops_gate", "Domain Gate", "inactive_gate", "domainspecops");
-        domaingate.setCircularOrbit(relay, 10, 6736, 233);
+        domaingate.setCircularOrbit(relay, 10, 5736, 273);
+
+        SectorEntityToken beacon = domainOutpost.addCustomEntity("warning_beacon","Warning Beacon", "warning_beacon","domainspecops");
+        beacon.setCircularOrbit(relay,2,7934,1256);
+        beacon.setCustomDescriptionId("graveyard_beacon");
+
+        SectorEntityToken Arcon_A = OldLegionMisc.addDerelict(
+                domainOutpost, //Star system
+                domainOutpost.getEntityById("warning_beacon"), //Orbital focus
+                "onslaught_xiv_Elite", //Variant Id
+                ShipRecoverySpecial.ShipCondition.BATTERED, //Ship condition
+                100f, //Orbital radius
+                true //Recoverable?
+        );
+        SectorEntityToken Arcon_B = OldLegionMisc.addDerelict(
+                domainOutpost, //Star system
+                domainOutpost.getEntityById("warning_beacon"), //Orbital focus
+                "onslaught_xiv_Elite", //Variant Id
+                ShipRecoverySpecial.ShipCondition.WRECKED, //Ship condition
+                145f, //Orbital radius
+                true //Recoverable?
+        );
+        SectorEntityToken Arcon_C = OldLegionMisc.addDerelict(
+                domainOutpost, //Star system
+                domainOutpost.getEntityById("warning_beacon"), //Orbital focus
+                "onslaught_xiv_Elite", //Variant Id
+                ShipRecoverySpecial.ShipCondition.AVERAGE, //Ship condition
+                177f, //Orbital radius
+                true //Recoverable?
+        );
+        SectorEntityToken Arcon_D = OldLegionMisc.addDerelict(
+                domainOutpost, //Star system
+                domainOutpost.getEntityById("warning_beacon"), //Orbital focus
+                "onslaught_xiv_Elite", //Variant Id
+                ShipRecoverySpecial.ShipCondition.BATTERED, //Ship condition
+                208f, //Orbital radius
+                true //Recoverable?
+        );
+        SectorEntityToken Arcon_E = OldLegionMisc.addDerelict(
+                domainOutpost, //Star system
+                domainOutpost.getEntityById("warning_beacon"), //Orbital focus
+                "legion_xiv_Elite", //Variant Id
+                ShipRecoverySpecial.ShipCondition.AVERAGE, //Ship condition
+                253f, //Orbital radius
+                true //Recoverable?
+        );
+        SectorEntityToken Arcon_F = OldLegionMisc.addDerelict(
+                domainOutpost, //Star system
+                domainOutpost.getEntityById("warning_beacon"), //Orbital focus
+                "legion_xiv_Elite", //Variant Id
+                ShipRecoverySpecial.ShipCondition.WRECKED, //Ship condition
+                121f, //Orbital radius
+                true //Recoverable?
+        );
 
         Global.getSector().addScript(new ArtanisPersonalFleet());
 
