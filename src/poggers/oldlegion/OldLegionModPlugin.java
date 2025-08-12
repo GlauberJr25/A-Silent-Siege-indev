@@ -28,7 +28,7 @@ public class OldLegionModPlugin extends BaseModPlugin {
     // TODO: block transverse jump on outpost system (number 2 priority)
     // TODO: fix npc comm order issue (number 1 priority)
     // TODO: trade shroud/threat/omega items for rep
-
+    // TODO: lock info on codex about domain stuff
 
     private void addListenersIfNeeded() {
         ListenerManagerAPI l = Global.getSector().getListenerManager();
