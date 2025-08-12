@@ -6,116 +6,92 @@ import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.campaign.listeners.GateTransitListener;
 import com.fs.starfarer.api.impl.campaign.GateEntityPlugin;
 import com.fs.starfarer.api.impl.campaign.rulecmd.missions.GateCMD;
-import com.fs.starfarer.api.util.FaderUtil;
 import com.fs.starfarer.api.util.Misc;
-import com.fs.starfarer.campaign.BaseScript;
-import com.fs.starfarer.campaign.fleet.CampaignFleet;
 import org.lazywizard.console.Console;
-//import org.selkie.kol.ReflectionUtils;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Random;
 
-import com.fs.starfarer.api.campaign.listeners.GateTransitListener;
-import org.selkie.kol.ReflectionUtils;
+import poggers.oldlegion.ReflectionUtilities;
 import poggers.oldlegion.utils.OldLegionStrings;
+import poggers.oldlegion.utils.ReflectionUtils;
 
 public class GateJumpTracker implements GateTransitListener {
 
+    // KoL Compat
     boolean isKoLEnabled = Global.getSettings().getModManager().isModEnabled("knights_of_ludd");
+    String memoryKeyKoL = "$kol_nullspace_gate_glitch";
 
     String memoryKey = "$oldlegion_domainspace_gate_glitch";
 
-    String memoryKeyKoL = "$kol_nullspace_gate_glitch";
+    String memoryKeyInterceptChance = "$chanceToIntercept";
+
+    int InterceptChanceInt;
+
+    int UpdatedInterceptChanceInt;
+
+    Random random = new Random();
 
     @Override
     public void reportFleetTransitingGate(CampaignFleetAPI fleet, SectorEntityToken gateFrom, SectorEntityToken gateTo) {
         StarSystemAPI destSys = Global.getSector().getStarSystem(OldLegionStrings.DomainSpaceSysName);
+
+        Global.getSector().getMemoryWithoutUpdate().set(memoryKeyInterceptChance, 1);
+        InterceptChanceInt = Global.getSector().getMemoryWithoutUpdate().getInt(memoryKeyInterceptChance);
+
+        //Dont trigger multiple times.
         if (Global.getSector().getMemoryWithoutUpdate().getKeys().contains(memoryKey)) {
             //Console.showMessage("If-Statement ONE fired their return");
-            return; //Dont trigger multiple times.
+            return;
         }
+        // KoL compat
         if (isKoLEnabled) {
+            //Dont trigger before KoL triggers their Gate Interceptor.
             if (!Global.getSector().getMemoryWithoutUpdate().getKeys().contains(memoryKeyKoL)) {
-                Console.showMessage("If-Statement TWO fired their return");
-                return; //Dont trigger before KoL triggers their Gate Interceptor.
+                //Console.showMessage("If-Statement TWO fired their return");
+                return;
             }
         }
-        /*if (!Global.getSector().getMemoryWithoutUpdate().getKeys().contains(memoryKeyKoL)) {
-            //Console.showMessage("If-Statement TWO fired their return");
-            return; //Don't trigger before KoL triggers their Gate Interceptor.
-        }*/
+        //Prevent it from happening during the story-jump
         if (!Global.getSector().getMemoryWithoutUpdate().getBoolean("$gaATG_missionCompleted")) {
-            //Console.showMessage("If-Statement THREE fired their return");
-            return; //Prevent it from happening during the story-jump
+            return;
             }
-
 
         boolean isNotPlayerFleet = !fleet.isPlayerFleet();
         boolean sendingGateNull = gateFrom == null;
         boolean tooLowCycle = Global.getSector().getClock().getCycle() < 206;
         boolean sendingGateIsDomain = gateFrom.getContainingLocation() == destSys;
-        // TODO | IF wanted, put this back as it was, set like this so it's easier to debug which are true or false when the below condition is breakpointed.
-        ///  ~Purple
         if (isNotPlayerFleet || sendingGateNull || tooLowCycle || sendingGateIsDomain) {
-            //Console.showMessage("If-Statement FOUR fired their return");
             return;
         }
-
-        //Console.showMessage("Before the Math.Random() if-statement");
-        // TODO | Change the condition to be more proper, and remove any unnecessary " Console.showMessage " pieces of code :P
-        // TODO | I also added the { } below here behind the if-statement and all the way at the bottom.
-        // TODO | The moment more than 1 line of code comes after an if, you NEED the { } afaik
-        ///  ~Purple
-        if (((int)Math.random()*101) <= 99) {                    //(/*true*/ Math.random() <= 0.95f) { //0.05f = 5% chance to trigger.
-            //Console.showMessage("After the Math.Random() if-statement");
+        if (random.nextInt(101) <= InterceptChanceInt) { // random.nextInt(101) <= InterceptChanceInt
             if (destSys == null) return;
             SectorEntityToken dest = destSys.getEntityById("domain_ops_gate");
             float dist = Misc.getDistanceLY(dest, gateTo);
 
-            // TODO | (1) Idea, change the beneath condition to a memKey value in " Global.getSector().getPlayerMemoryWithoutUpdate() "
-            // TODO | (2) This value is to be raised every time the condition isn't met yet (so the value isn't exceeding the given amount yet)
-            // TODO | (3) Best to increase the value each time is to have a Random Number Picker between valueA and valueB,
-            // TODO | NOTE, it currently ALWAYS fires whenever the gate you jump to is not within 10ly of the Nataruk system
-            ///  ~Purple
-            if (dist > 10f) {
-
-                /*Old Version
-
-                fleet.getContainingLocation().removeEntity(fleet);
-                dest.getContainingLocation().addEntity(fleet);
-                Global.getSector().setCurrentLocation(dest.getContainingLocation());
-                fleet.setLocation(dest.getLocation().x,
-                dest.getLocation().y);
-                fleet.setNoEngaging(1.0f);
-                fleet.clearAssignments();
-                */
-
-                for (EveryFrameScript script : new ArrayList<>(Global.getSector().getScripts())) {
-                    if (ReflectionUtils.INSTANCE.hasVariableOfName("untilCanWarpOut", script)) {
-                        Global.getSector().removeScript(script);
-                    }
+            for (EveryFrameScript script : new ArrayList<>(Global.getSector().getScripts())) {
+                if (ReflectionUtils.hasVariableOfName("untilCanWarpOut", script)) {
+                    Global.getSector().removeScript(script);
                 }
-                ReflectionUtils.INSTANCE.invoke("setInJumpTransition", fleet, new Object[]{false}, false);
-
-                //Start own Transverse
-                Global.getSector().doHyperspaceTransition(fleet, gateFrom, new JumpPointAPI.JumpDestination(dest, ""), 5.0f);
-
-                //Disable VFX on the Gate Itself
-                /*
-                GateEntityPlugin plugin = (GateEntityPlugin) gateFrom.getCustomPlugin();
-                FaderUtil fader = (FaderUtil) ReflectionUtils.get("beingUsedFader", plugin);
-                plugin.showBeingUsed(0f, 0f);
-                fader.forceOut();
-                */
-
-                GateCMD.notifyScanned(dest);
-                dest.getMemoryWithoutUpdate().set(GateEntityPlugin.GATE_SCANNED, true);
-
-                Global.getSector().getMemoryWithoutUpdate().set(memoryKey, true);
             }
+            try {
+                // Uses KoL reflection, couldn't find a non-kotlin version
+                ReflectionUtilities.INSTANCE.invoke("setInJumpTransition", fleet, new Object[]{false}, false);
+            } catch (Throwable e) {
+                throw new RuntimeException(e);
+            }
+            //Start own Transverse
+            Global.getSector().doHyperspaceTransition(fleet, gateFrom, new JumpPointAPI.JumpDestination(dest, ""), 5.0f);
+
+            GateCMD.notifyScanned(dest);
+            dest.getMemoryWithoutUpdate().set(GateEntityPlugin.GATE_SCANNED, true);
+
+            Global.getSector().getMemoryWithoutUpdate().set(memoryKey, true);
+
+        } else {
+            UpdatedInterceptChanceInt = random.nextInt(6) + InterceptChanceInt;
+            Global.getSector().getMemoryWithoutUpdate().set(memoryKeyInterceptChance, UpdatedInterceptChanceInt);
         }
 
     }
 }
-

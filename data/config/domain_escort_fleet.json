@@ -48,15 +48,20 @@
             "fleetCaptain":"domain_capt_zeratul",
             "fleetFlagship":"domain_capital_test",
             "fleetFlagshipName":"DSS Rogue",
-            "fleetGreeting":"State your business, starfarer.",
+	    "fleetGreeting":"State your business, starfarer.",
             "fleetAssignment":"steady",
             "fleetComposition":[
-                "domain_capital_test",
-                "onslaught_xiv_Elite",
+		"onslaught_di_Standard",
+		"onslaught_di_Standard",
+		"onslaught_di_Standard",
                 "legion_xiv_Elite",
-                "prometheus_Super",
+                "legion_xiv_Elite",
                 "atlas_Standard",
-                "apogee_balanced"
+                "atlas_Standard",
+                "prometheus_Super",
+                "prometheus_Super",
+                "apogee_balanced",
+                "apogee_balanced",
             ]
         }
     ]

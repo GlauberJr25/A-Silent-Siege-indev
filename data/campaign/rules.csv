@@ -1,64 +1,167 @@
 id,trigger,conditions,script,text,options,notes
-# This file is not required by the game and can be deleted if you aren't using it, but doesn't hurt to keep either.,,,,,
-# Official rules.csv guide: https://fractalsoftworks.com/2023/11/13/you-merely-adopted-rules-csv-i-was-born-into-it/,,,,,,
 #RULESET_NAME ASS,,,,,,
 ,,,,,,
-#Domain Gate,,,,,,
-,,,,,,
+# Domain Gate,,,,,,
 oldlegionDomainGateOpt,PopulateGateOptions,"$global.gatesActive
 $global.playerCanUseGates
 $gateScanned
-DomainGateCMD CanBeAdded",,,16:DOMAIN_GATE:Travel towards Domain Space,
+DomainGateCMD CanBeAdded",,,17:DOMAIN_GATE:Travel towards Domain Space,
 oldlegionDomainGateOptDescription,PopulateGateOptions,"$global.gatesActive
 $global.playerCanUseGates
 $gateScanned
 DomainGateCMD CanBeAdded",DomainGateCMD Highlight,,,
 oldlegionDomainGateUseOpt,DialogOptionSelected,$option == DOMAIN_GATE,DomainGateCMD Traverse,,,
 ,,,,,,
-#End Domain Gate,,,,,,
+#END Domain Gate,,,,,,
 ,,,,,,
-#Natah (faction leader) Dialog (DFL introduction option),,,,,,
+# Fleet Captain Directing to Outpost,,,,,,
+oldlegionHHOffInitial,BeginFleetEncounter,"!$hassle_didAlready
+!$isHostile
+$pursuePlayer_hassle score:50
+$hassleType == oldlegion_HHtOff","$hassle_didAlready = true 0
+$hassleComplete = true
+MakeOtherFleetPreventDisengage hassle true
+unset $ignorePlayerCommRequests
+HailPlayer",,,
+artanis_joel_FirstEncounter,OpenCommLink,"$id == oldlegion_artanis
+!$global.oldlegion_intro_completed
+$global.oldlegion_intro_missionGiven == false","$global.oldlegion_intro_missionGiven = true
+BeginMission oldlegion_intro
+SetTextHighlightColors story
+OldLegionShowDomint
+AddTextSmall ""New faction entry: Domain FOB"" highlight","""John starsector, I've been told to direct your towards the outpost at the near planet. go there''",cutCommLinkNoText:Cut comm link and prepare for travel.,
+#END Fleet Captain Directing to Outpost,,,,,,
 ,,,,,,
-dfl_IntroductionOption,PopulateOptions,"$isPerson 
-$id == oldlegion_natah",,"[PH] this is rules.csv TEXT (Hi, this is what shows up when first opening the interaction with the NPC).","dfl_Introduction:""May I introduce Myself?""",
-dfl_Introduction,DialogOptionSelected,$option == dfl_Introduction,,"[PH] this is rules.csv TEXT, for Introduction (not option).",,
+# Meeting with Outpost Leader (Joel )1st time,,,,,,
+JKIntro,PopulateOptions,"$id == oldlegion_natah
+!$global.oldlegion_intro_completed
+$global.oldlegion_intro_missionGiven",,"""oh, if it isn't John Starsector""",JK_introCont1:Hello,
+JKIntro1,DialogOptionSelected,$option == JK_introCont1,"AddStoryPoints 1
+$global.oldlegion_intro_completed = true
+Call $global.oldlegion_intro_ref updateStage","""introductions end here. Go to the quartermaster to get missions""",cutCommLink:Goodbye,
+#END Meeting with Outpost Leader (Joel )1st time,,,,,,
 ,,,,,,
-# birthday testing quest,,,,,,
-BTQintro1,PopulateOptions,"$id == oldlegion_natah
-!$global.oldlegion_test_completed",,"[PH] (testing quest intro1) 
-""Oh."" You see the truth register on their face, ""Oh! Yes. Immediately. Please $playerSirOrMadam, if you would be so kind as to come with me right away, we'll get you to your meeting with Provost Baird.""",BTQ_introCont2:Start Quest,
-BTQintro2,DialogOptionSelected,$option == BTQ_introCont2,Highlight 'Project Ziggurat',"""There are many signs that an individual with the surname 'Astraia' is involved. Who we are almost certain is-""
-
-Gargoyle interrupts, ""-Kelise Astraia, former weapons engineer employed at the Culann Starforge in the Hybrasil system by Tri-Tach. And rather underpaid in light of how essential the suits seem to have thought she was to the project.""
-
-Baird sets her jaw, ""Thank you, Gargoyle,"" she says. ""Kindly elaborate for the captain here.""
-
-The hacker grins, ""Love to! So TT 'fired' Kelise over some incident, but if you look at her credit records... "" A couple taps and the display fills with tables and numbers, ""There are recurring payments, we're talking massive credits, something to do with 'Project Ziggurat', whatever that is. It sure makes up for her low salary at Culann, and... """,BTQ_introCont3:Continue,
-BTQintro3,DialogOptionSelected,$option == BTQ_introCont3,"$global.oldlegion_test_missionGiven = true
-BeginMission oldlegion_test","""Then you should proceed, captain,"" says the provost.
-
-You feel the doors open behind you, a guard waiting to escort you from the office.",BTQ_introCont4:Leave (this will end dialog and give mission),
-BTQintro4,DialogOptionSelected,$option == BTQ_introCont4,"EndConversation DO_NOT_FIRE
-ShowDefaultVisual
-FireAll PopulateOptions",,,
+# Solax Generic Missions,,,,,,
+solax_contact_GeneralGreeting,PickGreeting,"$id == oldlegion_solaxwhitemore score:10
+$global.oldlegion_intro_completed
+","ShowPersonVisual
+FireAll PopulateOptions","""$playerName, greetings. New collaborations, desired?""
+OR
+""You return, $playerName.""
+OR
+""$playerName back, welcome. Wishes to fulfill, any?""",,
+solax_contact_MHOpenTextRemnant,MHOpenText,"$id == oldlegion_solaxwhitemore score:10
+$global.oldlegion_intro_completed == true",FireBest ContactPreMissionListText,"$personFirstName's avatar does a familiar flicker. ""List, generating. Stand by, please.""
+OR
+$personFirstName's avatar morphs into a rotating shield around a Paragon. ""Querying, please hold.""
+OR
+$personFirstName vanishes, replaced by a stream of flowing geometric primitives. ""Database, scanning.""",,
+solax_contact_PrintAcceptTextRemnant,ContactPrintAcceptText,$id == oldlegion_solaxwhitemore score:10,,"""Mutually satisfactory.""
+OR
+""Working with you, $playerName, a pleasure.""
+OR
+The avatar shimmers. ""Very good.""",,
+solax_contact_PrintDeclineTextRemnant,ContactPrintDeclineText,$id == oldlegion_solaxwhitemore score:10,,"""Unfortunate, $playerName. Perhaps, next time?""
+OR
+The avatar fades slightly in disappointment. ""So be it.""
+OR
+""Interested, not? Then, very well.""",,
+solax_contact_NoMissionsRemnant,ContactPreMissionListText,"$mh_count <= 0
+$id == oldlegion_solaxwhitemore",,"""No missions found. Then, next time?""
+OR
+""Query results, empty. Apologies, $playerName"".",,
+solax_contact_OneMissionRemnant,ContactPreMissionListText,"$mh_count == 1
+$mh_firstInlineBlurb != null
+$id == oldlegion_solaxwhitemore",$mh_doNotPrintBlurbs = true 0,"""Query returned one result. $playerName, interested?""
+OR
+""Missions, available, just one.""",,
+solax_contact_MultipleMissionsPostRemnant,MHPostMissionListText,"$mh_count > 1
+$id == oldlegion_solaxwhitemore",,"""Awaiting decision, $playerName.""
+OR
+""Query completed in 7.12 ms.""
+OR
+""Mission of your choice, please select.""",,
 ,,,,,,
-# birthday testing quest ending,,,,,,
-BTQending1,PopulateOptions,"$id == oldlegion_solaxwhitemore
-!$global.oldlegion_test_completed",,"[test] ""yes?''",BTQ_endingCont2:Start The Ending,
-BTQending2,DialogOptionSelected,$option == BTQ_endingCont2,,"""Captain, I am pleased that you have returned with this valuable data,"" she pulls up a schematic of the Ziggurat-class prototype.
+solax_ddroBlurb,solax_ddroRem_blurb,,,"""Dead drop for selfkind, deliver surreptitiously.""",,
+solax_ddroOfferOption,solax_ddroRem_option,,,,ddro_start:Ask about the secret package delivery,
+solax_ddroOfferTextContact,DialogOptionSelected,"$option == ddro_start
+$id == oldlegion_solaxwhitemore score:10","$missionId = ddro
+Highlight $ddro_dist $ddro_reward","$PersonName's avatar seems to shudder, as if in the depths of thought. Of course, it only lasts for a handful of milliseconds.
 
-The manta-ray design spins slowly between you and the provost; she seems to be rubbing two fingers together, contemplating the thing before her.
+""This item to specified location $ddro_systemName, $ddro_dist light-years away deliver. Do not be spotted. Do not inform others. Reward is $ddro_reward credits."" The avatar fades into $ddro_aOrAnThing. ""Acceptable?""","contact_accept:Accept
+contact_decline:Decline",
+,,,,,,
+#in case needed later,,,"Call $ddro_ref showMap ""Destination: $ddro_systemName""
+Call $ssat_ref showMap ""Target: $ssat_marketName""",,,
+,,,,,,
+solax_ssatBlurb,solax_ssat_blurb,,,"""Observation package in $ssat_marketName orbit, stealth insertion, selfkind requires.""
+OR
+""Strategic observation of $ssat_marketName, package insertion into orbit: direct, quiet.""",,
+solax_ssatOfferOption,solax_ddroRem_option,,,,ssat_start:Ask about the secret package delivery,
+solax_ssatOfferTextContact,DialogOptionSelected,"$option == ssat_start
+$id == oldlegion_solaxwhitemore score:10","$missionId = ssat
+SetTextHighlights $ssat_reward","""Enter standard orbit, $ssat_marketName in the $ssat_systemName. Then spy satellite package deploy while unobserved. Stealth imperative, patrols tracking you must be none. Reward is $ssat_reward credits.""","contact_accept:Accept
+contact_decline:Decline",
+,,,,,,
+#END Solax Generic Missions,,,,,,
+,,,,,,
+# Domain Faction Relationship Status,,,,,,
+relLevelNeutralDOMINT,RelationshipLevelDesc,"$faction.rel == NEUTRAL
+$faction.id == domainspecops",,"You are viewed in a better light than most sector polities, although this has little in the way of implications.",,
+relLevelFavorableDOMINT,RelationshipLevelDesc,"$faction.rel == FAVORABLE
+$faction.id == domainspecops",,You are considered an upstanding citizen of the Domain and your cooperation is appreciated.,,
+relLevelWelcomingDOMINT,RelationshipLevelDesc,"$faction.rel == WELCOMING
+$faction.id == domainspecops",,Your continued efforts in furthering the Domain's goals in the sector has been noted by officials. Restricted hardware and information have been made available to access.,,
+relLevelFriendlyDOMINT,RelationshipLevelDesc,"$faction.rel == FRIENDLY
+$faction.id == domainspecops",,"Although officially an independent asset, you have become an agent in all but name, and may enjoy the benefits of this position. You have been granted access to classified information and hardware many sector intelligence agencies would kill to possess.",,
+relLevelCooperativeDOMINT,RelationshipLevelDesc,"$faction.rel == COOPERATIVE
+$faction.id == domainspecops",,The Domain of Man considers you an essential part of their plans for the sector's future should it be reconnected to civilisation. Your name has been noticed by high ranking Domain officials as a potential candidate for the post of sector governor.,,
+relLevelSuspiciousDOMINT,RelationshipLevelDesc,"$faction.rel == SUSPICIOUS
+$faction.id == domainspecops",,You do not stand out in any particular way from the millions tracked by the Domain. Any dealings or movements will come under close scrutiny and port access is granted begrudgingly.,,
+relLevelInhospitableDOMINT,RelationshipLevelDesc,"$faction.rel == INHOSPITABLE
+$faction.id == domainspecops",,You have been tagged as a likely security risk and Domain officials will refuse to have any dealings with you. However they are willing to show leniency should you improve your standing.,,
+relLevelHostileDOMINT,RelationshipLevelDesc,"$faction.rel == HOSTILE
+$faction.id == domainspecops",,"Your IDENT-chip and all known associates have been flagged as insurgent. If historical records are to be believed, your life expectancy has significantly decreased.",,
+relLevelVengefulDOMINT,RelationshipLevelDesc,"$faction.rel == VENGEFUL
+$faction.id == domainspecops",,"Vengeful: // DISPLAY OVERRIDE //
 
-""The starship itself is irrelevant because we got to it first, though I do hope that you consider where this information ends up- and the fate of the ship itself. Factions might get notions.""",BTQ_endingCont3:Continue,
-BTQending3,DialogOptionSelected,$option == BTQ_endingCont3,AdjustRepPerson oldlegion_solaxwhitemore COOPERATIVE 5,"Baird raises a hand to stop the words tumbling from Coureuse. ""That's enough. I understand, Scylla. Your team has a lot of work to do, and we shall ask Gargoyle to trace what information-exchange Tomas Kallichore made with Tri-Tachyon specific to applications within this Project Ziggurat.""
-
-Coureuse nods. ""I'll, we'll get back to it."" 
-
-She closes down the display of the Ziggurat device and looks to you, ""This is incredible, captain. Thank you for this, this opportunity.""
-
-She signs off.",BTQ_endingCont4:Continue,
-BTQending4,DialogOptionSelected,$option == BTQ_endingCont4,"AddStoryPoints 1
-$global.oldlegion_test_completed = true
-Call $global.oldlegion_test_ref updateStage","""There will be more for you to do here before long, captain,"" she says. ""Unbelievable things."" 
-
-Baird smiles, looking uncharacteristically satisfied, and closes the comm-link.",cutCommLinkNoText:Cut the comm link,
+//Tread carefully, ""citizen"".",,
+#END Domain Faction Relationship Status,,,,,,
+,,,,,,
+# Visit Outpost,,,,,,
+BarPopulate,DialogOptionSelected,"$faction.id == domainspecops
+$market.id == Hunhow_market
+$option == marketVisitBar",,"You search all around the outpost for a bar, but every area you expect there to be a bar, you see automation. Guess there aren't any bars around anymore.",outpostBarLeave:Move along,
+BarLeave,DialogOptionSelected,$option == outpostBarLeave,BarCMD leaveBar,,,
+#END Visit Outpost,,,,,,
+,,,,,,
+#Ask Joel For Stuff,,,,,,
+ajfsOption,PopulateOptions,"$id == oldlegion_natah
+$global.oldlegion_intro_completed
+RepLTE $personFaction.id COOPERATIVE",,,"ajfsOption1: ""Do you any special resources laying around?""",
+ajfsDenied,PopulateOptions,"$gavePlayerSpecialItems
+!$saidGavePlayerSpecialItemsAlready","$saidGavePlayerSpecialItemsAlready = true 0
+SetTooltip ajfsOption1 ""$personName remembers giving you supplies recently. You'll have to wait 1 month for $himOrHer to forget.""
+SetTooltipHighlights ajfsOption1 ''1 month''
+SetEnabled ajfsOption1 false","""If you're here to ask for any extra supplies, I'm afraid I'll have to refuse you. Our budget is immense, but not unlimited""",,
+#ajfsDenied2,PopulateOptions,$saidGavePlayerSpecialItemsAlready == true,"SetTooltip ajfsOption1 ""$personName remembers giving you supplies recently. You'll have to wait 1 month for $himOrHer to forget.""
+SetTooltipHighlights ajfsOption1 ''1 month''
+SetEnabled ajfsOption1 false",,,
+ajfsPart2,DialogOptionSelected,$option == ajfsOption1,,"""Sure, you have been a valuable asset, we can spare something special for you""","ajfsOption2Forge:""Do you happen to have a nanoforge to spare?""
+ajfsOption2SyncCore:""Do you happen to have a synchronotron Core to spare?
+ajfsOption2CryoEngine:''Do you happen to have a cryoarithmetic engine to spare?
+ajfsOption2HyperTap:""Do you happen to have a Hypershunt tap to spare?
+ajfsOption2Nevermind:""Nevermind, I don't need anything right now""",
+ajfsPart3Forge,DialogOptionSelected,$option == ajfsOption2Forge,"AddRemoveAnyItem SPECIAL pristine_nanoforge 1
+$gavePlayerSpecialItems = true 30
+AdjustRep domainspecops -5","""Sure, here you go, a Pristine Nanoforge""","cutCommLink:Thank you, I'll be going now",
+ajfsPart3SyncCore,DialogOptionSelected,$option == ajfsOption2SyncCore,"AddRemoveAnyItem SPECIAL synchrotron 1
+$gavePlayerSpecialItems = true 30
+AdjustRep domainspecops -5","""Sure, here you go, a Cryoarithmetic Engine""","cutCommLink:Thank you, I'll be going now",
+ajfsPart3CryoEngine,DialogOptionSelected,$option == ajfsOption2CryoEngine,"AddRemoveAnyItem SPECIAL cryoarithmetic_engine 1
+$gavePlayerSpecialItems = true 30
+AdjustRep domainspecops -5","""Sure, here you go, a Synchronotron Core ""","cutCommLink:Thank you, I'll be going now",
+ajfsPart3HypershuntTap,DialogOptionSelected,$option == ajfsOption2HyperTap,"AddRemoveAnyItem SPECIAL coronal_portal 1
+$gavePlayerSpecialItems = true 30
+AdjustRep domainspecops -5","""Sure, here you go, a Hypershunt Tap""","cutCommLink:Thank you, I'll be going now",
+ajfsPart3Nevermind,DialogOptionSelected,$option == ajfsOption2Nevermind,FireAll PopulateOptions,"""Sure, suit yourself.""",cutCommLink:Goodbye,
