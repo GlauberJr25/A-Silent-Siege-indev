@@ -8,6 +8,7 @@ import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import exerelin.campaign.SectorManager;
 import poggers.oldlegion.listeners.CoreUIListener;
 import poggers.oldlegion.listeners.GateJumpTracker;
+import poggers.oldlegion.listeners.SystemListener;
 import poggers.oldlegion.utils.OldLegionPeople;
 import poggers.oldlegion.world.OldLegionModGen;
 
@@ -31,12 +32,20 @@ public class OldLegionModPlugin extends BaseModPlugin {
 
     private void addListenersIfNeeded() {
         ListenerManagerAPI l = Global.getSector().getListenerManager();
-
+        // Add any listener to this
         if (!l.hasListenerOfClass(GateJumpTracker.class))
             l.addListener(new GateJumpTracker(), true);
 
         if (!l.hasListenerOfClass(CoreUIListener.class))
             l.addListener(new CoreUIListener(), true);
+    }
+
+    private static void addTransientScriptsIfNeeded(SectorAPI sector) {
+
+        // Add any transient scripts to this
+        if (!sector.hasTransientScript(SystemListener.class)) {
+            sector.addTransientScript(new SystemListener());
+        }
 
     }
 
@@ -45,6 +54,7 @@ public class OldLegionModPlugin extends BaseModPlugin {
         MemoryAPI sector_mem = Global.getSector().getMemoryWithoutUpdate();
 
         addListenersIfNeeded();
+        addTransientScriptsIfNeeded(sector);
 
         OldLegionModGen.trySpawnOutpost(sector);
 
