@@ -109,7 +109,7 @@ public class MySystemOne {
         market.addIndustry("oldlegion_gate_infrastructure");
         //planet sub-markets
         market.addSubmarket(Submarkets.SUBMARKET_STORAGE);
-        market.addSubmarket(Submarkets.SUBMARKET_BLACK);
+        //market.addSubmarket(Submarkets.SUBMARKET_BLACK);
         market.addSubmarket(Submarkets.SUBMARKET_OPEN);
         //Market needs to be added to the global economy after sub-markets and industries
         //if you dont do this, at best commodities will be 1$, at worst the game will crash
@@ -153,8 +153,8 @@ public class MySystemOne {
         params.baseSalvageXP = 250; // base XP for scavenging in field
 
         SectorEntityToken debrisNextToGate = Misc.addDebrisField(domainOutpost, params, StarSystemGenerator.random);
-        debrisNextToGate.setSensorProfile(null);
-        debrisNextToGate.setDiscoverable(null);
+        debrisNextToGate.setSensorProfile(1000f);
+        debrisNextToGate.setDiscoverable(true);
         debrisNextToGate.setCircularOrbit(beacon, 0f, 0f, 130f);
         debrisNextToGate.setId("domain_debrisNextToBeacon");
 

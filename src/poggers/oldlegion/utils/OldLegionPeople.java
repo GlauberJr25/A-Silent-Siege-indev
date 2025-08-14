@@ -65,9 +65,6 @@ public class OldLegionPeople {
             if (!ip.containsPerson(oldlegion_natah_person)) {
                 //log.info("OLDLEGION_RETROGEN: Natah Person did not exist. He has been generated retroactively");
                 ip.addPerson(oldlegion_natah_person);
-                market.addPerson(oldlegion_natah_person);
-                market.getCommDirectory().addPerson(oldlegion_natah_person, 0);
-                market.getCommDirectory().getEntryForPerson(oldlegion_natah_person).setHidden(false);
             } else {
                 log.info("OLDLEGION_RETROGEN: Natah Person already exists. No action taken");
             }
@@ -95,13 +92,15 @@ public class OldLegionPeople {
             if (!ip.containsPerson(oldlegion_solaxwhitemore_person)) {
                 //log.info("OLDLEGION_RETROGEN: Solax Person did not exist. He has been generated retroactively");
                 ip.addPerson(oldlegion_solaxwhitemore_person);
-                market.addPerson(oldlegion_solaxwhitemore_person);
-                market.getCommDirectory().addPerson(oldlegion_solaxwhitemore_person, 0);
-                market.getCommDirectory().getEntryForPerson(oldlegion_solaxwhitemore_person).setHidden(false);
-
             } else {
                 log.info("OLDLEGION_RETROGEN: Solax Person already exists. No action taken");
             }
+            market.addPerson(oldlegion_solaxwhitemore_person);
+            market.getCommDirectory().addPerson(oldlegion_solaxwhitemore_person, 0);
+            market.getCommDirectory().getEntryForPerson(oldlegion_solaxwhitemore_person).setHidden(false);
+            market.addPerson(oldlegion_natah_person);
+            market.getCommDirectory().addPerson(oldlegion_natah_person, 1);
+            market.getCommDirectory().getEntryForPerson(oldlegion_natah_person).setHidden(false);
         }
     }
 

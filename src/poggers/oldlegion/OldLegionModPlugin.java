@@ -21,14 +21,13 @@ public class OldLegionModPlugin extends BaseModPlugin {
 
     // call order: onNewGame -> onNewGameAfterProcGen -> onNewGameAfterEconomyLoad -> onEnabled -> onNewGameAfterTimePass -> onGameLoad
 
-
     // TODO: Actual Dialog and art for characters (LOTS OF DIALOG TO FIX)
     // TODO: change license (maybe not?)
     // TODO: stop faction relationships from changing with NEX
-    // TODO: block transverse jump on outpost system (number 2 priority)
-    // TODO: fix npc comm order issue (number 1 priority)
+    // TODO: block transverse jump on outpost system (number 1 priority)
     // TODO: trade shroud/threat/omega items for rep
     // TODO: lock info on codex about domain stuff
+    // TODO: scuttle charge ''d-mod''
 
     private void addListenersIfNeeded() {
         ListenerManagerAPI l = Global.getSector().getListenerManager();
