@@ -23,6 +23,7 @@ $hassleComplete = true
 MakeOtherFleetPreventDisengage hassle true
 unset $ignorePlayerCommRequests
 HailPlayer",,,
+#artanis_joel_exposition,PickGreeting,$id == oldlegion_artanis,,"The bridge briefly falls silent in stupor before the navigation team scrambles to triple checks their calculations, you can hear the low grumble of them calmly but firmly arguing among themselves. They are interrupted shortly after by the sensors team. ""We've got unknown signatures on an interception course, sir."" The sensors officer says, with only a hint of worry in their voice.",expositionOption1:Continue,
 artanis_joel_FirstEncounter,OpenCommLink,"$id == oldlegion_artanis
 !$global.oldlegion_intro_completed
 $global.oldlegion_intro_missionGiven == false","$global.oldlegion_intro_missionGiven = true

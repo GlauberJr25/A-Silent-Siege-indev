@@ -1,6 +1,6 @@
 {
-  "id": "poggers_old_legion", # id used internally.
-  "name": "A Silent Siege", # Displayed to the player
+  "id": "poggers_old_legion",
+  "name": "A Silent Siege",
   "author": "Glauberjr, El Jojo",
   "utility": false,
   "version": "0.5.0",
@@ -11,7 +11,7 @@
   "dependencies": [
     {
         "id": "lw_lazylib",
-        "name": "LazyLib" # Optional (recommended)
+        "name": "LazyLib"
     }
   ]
 }

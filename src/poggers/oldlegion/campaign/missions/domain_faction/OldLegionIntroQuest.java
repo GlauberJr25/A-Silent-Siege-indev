@@ -22,9 +22,9 @@ public class OldLegionIntroQuest extends HubMissionWithSearch {
     protected MarketAPI Hunhow_market;
 
     protected boolean create(MarketAPI createdAt, boolean barEvent) {
-        if (!setGlobalReference("$oldlegion_intro_ref", "$oldlegion_intro_inProgress")) {
-            return false;
-        }
+        //if (!setGlobalReference("$oldlegion_intro_ref", "$oldlegion_intro_inProgress")) {
+        //    return false;
+        //}
         OLDLEGION_NATAH = getImportantPerson(OldLegionPeople.OLDLEGION_NATAH);
         if (OLDLEGION_NATAH == null) return false;
 
