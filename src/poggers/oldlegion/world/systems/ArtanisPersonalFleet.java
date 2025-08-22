@@ -47,7 +47,6 @@ public class ArtanisPersonalFleet extends PersonalFleetScript {
         FactionDoctrineAPI doctrine = Global.getSector().getFaction(OldLegionIDs.DOMINT).getDoctrine().clone();
         doctrine.setShipSize(5);
         doctrine.setCombatFreighterCombatUseFraction(0.65f);
-
         m.triggerCreateFleet(FleetSize.MAXIMUM, FleetQuality.SMOD_2, OldLegionIDs.DOMINT, FleetTypes.PATROL_LARGE, loc);
         m.triggerFleetSetFlagship("domain_capital_test");
         m.triggerAddShips("onslaught_di_Elite");
@@ -84,6 +83,7 @@ public class ArtanisPersonalFleet extends PersonalFleetScript {
         fleet.getFleetData().ensureHasFlagship();
         fleet.getFlagship().setShipName(shipName);
         fleet.getMemoryWithoutUpdate().set(MemFlags.MEMORY_KEY_SOURCE_MARKET, "Hunhow_market");
+        fleet.getMemoryWithoutUpdate().set("$oldlegion_finnish", true);
         fleet.removeScriptsOfClass(MissionFleetAutoDespawn.class);
         outpost.getContainingLocation().addEntity(fleet);
         fleet.setLocation(outpost.getLocation().x, outpost.getLocation().y);
