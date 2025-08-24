@@ -8,6 +8,7 @@ import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import exerelin.campaign.SectorManager;
 import poggers.oldlegion.listeners.CoreUIListener;
 import poggers.oldlegion.listeners.GateJumpTracker;
+import poggers.oldlegion.listeners.OldLegionJFIntCheckScript;
 import poggers.oldlegion.listeners.SystemListener;
 import poggers.oldlegion.utils.OldLegionPeople;
 import poggers.oldlegion.world.OldLegionModGen;
@@ -38,6 +39,9 @@ public class OldLegionModPlugin extends BaseModPlugin {
 
         if (!l.hasListenerOfClass(CoreUIListener.class))
             l.addListener(new CoreUIListener(), true);
+
+        if (!l.hasListenerOfClass(OldLegionJFIntCheckScript.class))
+            l.addListener(new OldLegionJFIntCheckScript(), true);
     }
 
     private static void addTransientScriptsIfNeeded(SectorAPI sector) {

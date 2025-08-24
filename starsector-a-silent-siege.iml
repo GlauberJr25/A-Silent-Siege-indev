@@ -12,14 +12,8 @@
     <orderEntry type="library" name="ExerelinCore" level="project" />
     <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
     <orderEntry type="library" name="KotlinJavaScript" level="project" />
-    <orderEntry type="library" name="Vok" level="project" />
-    <orderEntry type="library" name="RandomAssortmentofThings" level="project" />
     <orderEntry type="library" name="KnightsOfSelkie" level="project" />
     <orderEntry type="library" name="secretsofthefrontier" level="project" />
-    <orderEntry type="library" name="JaydeePiracy" level="project" />
     <orderEntry type="library" name="lw_Console" level="project" />
-    <orderEntry type="library" name="UAF" level="project" />
-    <orderEntry type="library" name="Sunrider" level="project" />
-    <orderEntry type="library" name="internalaffairs" level="project" />
   </component>
 </module>
