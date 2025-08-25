@@ -9,7 +9,6 @@ import com.fs.starfarer.api.campaign.TextPanelAPI;
 import com.fs.starfarer.api.campaign.VisualPanelAPI;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.combat.EngagementResultAPI;
-import data.scripts.campaign.ids.SotfPeople;
 import java.awt.Color;
 import java.util.Map;
 

@@ -13,8 +13,6 @@ import poggers.oldlegion.listeners.SystemListener;
 import poggers.oldlegion.utils.OldLegionPeople;
 import poggers.oldlegion.world.OldLegionModGen;
 
-import static com.fs.starfarer.api.Global.getSettings;
-
 public class OldLegionModPlugin extends BaseModPlugin {
 
     private static void initMyMod() {
@@ -40,16 +38,17 @@ public class OldLegionModPlugin extends BaseModPlugin {
         if (!l.hasListenerOfClass(CoreUIListener.class))
             l.addListener(new CoreUIListener(), true);
 
-        if (!l.hasListenerOfClass(OldLegionJFIntCheckScript.class))
-            l.addListener(new OldLegionJFIntCheckScript(), true);
+
     }
 
     private static void addTransientScriptsIfNeeded(SectorAPI sector) {
 
         // Add any transient scripts to this
-        if (!sector.hasTransientScript(SystemListener.class)) {
+        if (!sector.hasTransientScript(SystemListener.class))
             sector.addTransientScript(new SystemListener());
-        }
+
+        if (!sector.hasTransientScript(OldLegionJFIntCheckScript.class))
+            sector.addTransientScript(new OldLegionJFIntCheckScript());
 
     }
 
