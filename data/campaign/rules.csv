@@ -178,8 +178,6 @@ ajfsPart3Nevermind,DialogOptionSelected,"$option == ajfsOption2Nevermind","FireA
 # First Encounter,,,,,,
 JoelRequest,YourInitialTrigger,,,"You receive an alert. Joel has requested a comm-link.","0:acceptJoelRequest:Accept the comms request
 1:refuseJoelRequest:Refuse",
-JoelRequestConvPicker,JoelRequestConvPicker,,,"You receive an alert. Joel has requested a comm-link.","0:acceptJoelRequest:Accept the comms request
-1:refuseJoelRequest:Refuse",
 JoelRequestAccept,DialogOptionSelected,"$option == acceptJoelRequest","TestClass",,"0:JoelReturnDuties:Return to your duties",
 JoelRequestReturn,DialogOptionSelected,"$option == JoelReturnDuties","DismissDialog",,,
 "#END First Encounter",,,,,,
