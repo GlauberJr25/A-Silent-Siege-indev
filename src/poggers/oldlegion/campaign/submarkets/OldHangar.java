@@ -44,18 +44,18 @@ public class OldHangar extends BaseSubmarketPlugin {
             doctrineOverride.setShipQuality(2);
 
 //            addShips("domainspecops", 200.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, (Float)null, 0.0F, (FactionAPI.ShipPickMode)null, doctrineOverride);
-            addShip("onslaught_mk1_Ancient", true, 0);
-            addShip("onslaught_mk1_Ancient", true, 0);
-            addShip("onslaught_mk1_Ancient", true, 0);
-            addShip("onslaught_mk1_Ancient", true, 0);
-            addShip("onslaught_mk1_Ancient", true, 0);
-            addShip("onslaught_mk1_Ancient", true, 0);
-            addShip("onslaught_mk1_Ancient", true, 0);
-            addShip("onslaught_mk1_Ancient", true, 0);
-            addShip("onslaught_mk1_Ancient", true, 0);
-            addShip("onslaught_mk1_Ancient", true, 0);
-            addShip("onslaught_mk1_Ancient", true, 0);
-            addShip("onslaught_mk1_Ancient", true, 0);
+            addShip("onslaught_mk1_di_Ancient", true, 0);
+            addShip("onslaught_mk1_di_Ancient", true, 0);
+            addShip("onslaught_mk1_di_Ancient", true, 0);
+            addShip("onslaught_mk1_di_Ancient", true, 0);
+            addShip("onslaught_mk1_di_Ancient", true, 0);
+            addShip("onslaught_mk1_di_Ancient", true, 0);
+            addShip("onslaught_mk1_di_Ancient", true, 0);
+            addShip("onslaught_mk1_di_Ancient", true, 0);
+            addShip("onslaught_mk1_di_Ancient", true, 0);
+            addShip("onslaught_mk1_di_Ancient", true, 0);
+            addShip("onslaught_mk1_di_Ancient", true, 0);
+            addShip("onslaught_mk1_di_Ancient", true, 0);
             addHullMods(4, 2 + itemGenRandom.nextInt(4), "domainspecops");
         }
         getCargo().sort();
