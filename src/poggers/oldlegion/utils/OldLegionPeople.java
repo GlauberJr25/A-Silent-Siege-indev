@@ -15,10 +15,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class OldLegionPeople {
-
     public static String OLDLEGION_NATAH = "oldlegion_natah";
     public static String OLDLEGION_SOLAX = "oldlegion_solaxwhitemore";
-    //public static String DOMAIN_CAPTAIN_ZERATUL = "domain_capt_zeratul";
     public static String ARTANIS = "oldlegion_artanis";
     public static Logger log = Global.getLogger(OldLegionPeople.class);
 

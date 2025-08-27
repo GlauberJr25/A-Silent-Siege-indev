@@ -18,7 +18,6 @@ public class OldLegionIntroQuest extends HubMissionWithSearch {
     }
     protected PersonAPI OLDLEGION_NATAH;
     protected PersonAPI ARTANIS;
-    //protected PersonAPI DOMAIN_CAPTAIN_ZERATUL;
     protected MarketAPI Hunhow_market;
 
     protected boolean create(MarketAPI createdAt, boolean barEvent) {
@@ -30,9 +29,6 @@ public class OldLegionIntroQuest extends HubMissionWithSearch {
 
         ARTANIS = getImportantPerson(OldLegionPeople.ARTANIS);
         if (ARTANIS == null) return false;
-
-        //DOMAIN_CAPTAIN_ZERATUL = getImportantPerson(OldLegionPeople.DOMAIN_CAPTAIN_ZERATUL);
-        //if (DOMAIN_CAPTAIN_ZERATUL == null) return false;
 
         Hunhow_market = Global.getSector().getEconomy().getMarket("Hunhow_market");
         if (Hunhow_market == null) return false;
