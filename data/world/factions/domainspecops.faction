@@ -93,7 +93,8 @@
                  "legion_xiv",
                  #"onslaught_xiv",
                  "onslaught_di",
-                 "domain_capital"
+                 "domain_capital",
+                 "onslaught_mk1"
 		],
 	},
 	# listing ships here will make the faction mostly use them even if other hulls become available
@@ -258,9 +259,9 @@
 		
 		"officerQuality":5,
 		"shipQuality":4,
-		"numShips":2,
+		"numShips":3,
 		
-		"shipSize":3,
+		"shipSize":4,
 		
 		"aggression":2,
 		

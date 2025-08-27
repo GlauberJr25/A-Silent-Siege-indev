@@ -25,6 +25,7 @@ import org.apache.log4j.Logger;
 
 import org.lazywizard.lazylib.MathUtils;
 import poggers.oldlegion.scripts.OldLegionMisc;
+import poggers.oldlegion.campaign.submarkets.OldHangar;
 
 public class MySystemOne {
     ImportantPeopleAPI ip = Global.getSector().getImportantPeople();
@@ -182,8 +183,8 @@ public class MySystemOne {
         market.addIndustry("oldlegion_gate_infrastructure");
         //planet sub-markets
         market.addSubmarket(Submarkets.SUBMARKET_STORAGE);
-        //market.addSubmarket(Submarkets.SUBMARKET_BLACK);
         market.addSubmarket(Submarkets.SUBMARKET_OPEN);
+        market.addSubmarket("oldlegion_hangar");
         //Market needs to be added to the global economy after sub-markets and industries
         //if you dont do this, at best commodities will be 1$, at worst the game will crash
         market.setEconGroup(market.getFactionId());
@@ -255,6 +256,6 @@ public class MySystemOne {
         SectorEntityToken Arcon_15 = OldLegionMisc.addDerelict(domainOutpostSystem, domainOutpostSystem.getEntityById("warning_beacon_grave"), "eagle_xiv_Elite", ShipRecoverySpecial.ShipCondition.WRECKED, 481f, true);
         SectorEntityToken Arcon_16 = OldLegionMisc.addDerelict(domainOutpostSystem, domainOutpostSystem.getEntityById("warning_beacon_grave"), "eagle_xiv_Elite", ShipRecoverySpecial.ShipCondition.WRECKED, 394f, true);
 
-        Global.getSector().addScript(new ArtanisPersonalFleet());
+        //Global.getSector().addScript(new ArtanisPersonalFleet());
     }
 }

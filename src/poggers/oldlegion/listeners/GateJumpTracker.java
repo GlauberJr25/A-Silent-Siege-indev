@@ -21,13 +21,9 @@ public class GateJumpTracker implements GateTransitListener {
     // KoL Compat
     boolean isKoLEnabled = Global.getSettings().getModManager().isModEnabled("knights_of_ludd");
     String memoryKeyKoL = "$kol_nullspace_gate_glitch";
-
     String memoryKey = "$oldlegion_domainspace_gate_glitch";
-
     String memoryKeyInterceptChance = "$chanceToIntercept";
-
     int InterceptChanceInt;
-
     int UpdatedInterceptChanceInt;
 
     Random random = new Random();
@@ -48,7 +44,6 @@ public class GateJumpTracker implements GateTransitListener {
         if (isKoLEnabled) {
             //Dont trigger before KoL triggers their Gate Interceptor.
             if (!Global.getSector().getMemoryWithoutUpdate().getKeys().contains(memoryKeyKoL)) {
-                //Console.showMessage("If-Statement TWO fired their return");
                 return;
             }
         }
@@ -85,7 +80,6 @@ public class GateJumpTracker implements GateTransitListener {
 
             GateCMD.notifyScanned(dest);
             dest.getMemoryWithoutUpdate().set(GateEntityPlugin.GATE_SCANNED, true);
-
             Global.getSector().getMemoryWithoutUpdate().set(memoryKey, true);
 
         } else {

@@ -1,9 +1,9 @@
 {
   "id": "poggers_old_legion",
-  "name": "A Silent Siege",
+  "name": "Dead Gate Tales",
   "author": "Glauberjr, El Jojo",
   "utility": false,
-  "version": "0.5.0",
+  "version": "0.6.1",
   "description": "Adds the Domain of Man as a faction to the sector. Learn their objectives for the sector, as well as their discrete methods to achieve them.",
   "gameVersion": "0.98a-RC8",
   "jars": [ "jars/Legion.jar" ],
