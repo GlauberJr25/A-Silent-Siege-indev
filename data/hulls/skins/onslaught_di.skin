@@ -2,21 +2,21 @@
   "baseHullId": "onslaught",
   "baseValueMult": 1.75,
   "builtInMods": [
-    "DomainEngineeringMod",
-    "pointdefenseai",
-    "eccm"
+    "DomainRetrofitMod",
+    "pointdefenseai"
   ],
   "descriptionId": "onslaught",
   "descriptionPrefix": "Built to the specifications of DOMINT, this vessel is a prime example of the Domain's 'All seeing eye' doctrine, particularly exhibited by a series of radical structural modifications performed using pre-Collapse industrial technology.",
   "fighterBays": 0,
-  "fleetPoints": 35,
+  "fleetPoints": 40,
   "fpMod": 0,
   "hullDesignation": "Battleship",
   "hullName": "Onslaught (DI)",
-  "manufacturer": "???",
+  "manufacturer": "Domain Restricted",
   "ordnancePoints": 370,
   "restoreToBaseHull": false,
   "skinHullId": "onslaught_di",
   "spriteName": "graphics/ships/onslaught_domint.png",
-  "tech": "??? Battlegroup"
+  "tech": "Domain Restricted",
+  "tags":["codex_unlockable"]
 }

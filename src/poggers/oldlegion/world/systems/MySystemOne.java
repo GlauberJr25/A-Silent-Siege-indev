@@ -155,7 +155,7 @@ public class MySystemOne {
         market.addCondition(Conditions.ORE_ULTRARICH);
         market.addCondition(Conditions.RARE_ORE_ULTRARICH);
         //population tag is purely decorative. Can set to whatever you want or Omit it. For player colonies, adjusts to match growth of the market size.
-        market.addCondition(Conditions.POPULATION_4);
+        market.addCondition("oldlegion_population_0");
         //1) set the market faction ID
         //2) add industries and sub-markets to the market
         //3) add the market to the global economy

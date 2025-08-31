@@ -25,7 +25,7 @@ public class OldLegionModPlugin extends BaseModPlugin {
     // TODO: change license (maybe not?)
     // TODO: stop faction relationships from changing with NEX (2)
     // TODO: trade shroud/threat/omega items for rep
-    // TODO: lock info on codex about domain stuff (1)
+    // TODO: ~lock info on codex about domain stuff~ (1) (missing onslaught skin)
     // TODO: scuttle charge ''d-mod'' (3)
     // TODO: maaaybe add the seed as the domain id when talking?
     // TODO: slow/disable high value prisoners standing trade
