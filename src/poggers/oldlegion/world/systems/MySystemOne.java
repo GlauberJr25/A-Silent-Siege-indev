@@ -21,6 +21,7 @@ import com.fs.starfarer.api.impl.campaign.terrain.DebrisFieldTerrainPlugin.Debri
 import com.fs.starfarer.api.impl.campaign.terrain.EventHorizonPlugin;
 import com.fs.starfarer.api.impl.campaign.terrain.MagneticFieldTerrainPlugin;
 import com.fs.starfarer.api.util.Misc;
+import exerelin.campaign.SectorManager;
 import org.apache.log4j.Logger;
 
 import org.lazywizard.lazylib.MathUtils;
@@ -29,6 +30,8 @@ import poggers.oldlegion.campaign.submarkets.OldHangar;
 
 public class MySystemOne {
     ImportantPeopleAPI ip = Global.getSector().getImportantPeople();
+    boolean isJDPiracyEnabled = Global.getSettings().getModManager().isModEnabled("jaydeepiracy");
+    boolean isAOTDVoKEnabled = Global.getSettings().getModManager().isModEnabled("aotd_vok");
 
     public static Logger log = Global.getLogger(MySystemOne.class);
 
@@ -176,11 +179,20 @@ public class MySystemOne {
         market.addIndustry(Industries.WAYSTATION);
         //Adding orbital station will place a station in orbit and add station commander npc to Comms
         market.addIndustry(Industries.STARFORTRESS_MID);
-        market.addIndustry(Industries.ORBITALWORKS, new ArrayList(Arrays.asList("pristine_nanoforge")));
         market.addIndustry(Industries.HIGHCOMMAND);
         market.addIndustry(Industries.HEAVYBATTERIES);
-        market.addIndustry(Industries.MINING);
         market.addIndustry("oldlegion_gate_infrastructure");
+        if (isJDPiracyEnabled) {
+            market.addIndustry("jdp_pksilo", new ArrayList<>(Arrays.asList("planetkiller")));
+        }
+        if (isAOTDVoKEnabled) {
+            market.addIndustry("triheavy",new ArrayList<>(Arrays.asList("pristine_nanoforge")));
+            market.addIndustry("mining_megaplex");
+            market.addIndustry("logisitcbureau");
+        } else {
+            market.addIndustry(Industries.ORBITALWORKS, new ArrayList(Arrays.asList("pristine_nanoforge")));
+            market.addIndustry(Industries.MINING);
+        }
         //planet sub-markets
         market.addSubmarket(Submarkets.SUBMARKET_STORAGE);
         market.addSubmarket(Submarkets.SUBMARKET_OPEN);

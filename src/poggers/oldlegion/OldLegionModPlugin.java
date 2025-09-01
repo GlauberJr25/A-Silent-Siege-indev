@@ -23,12 +23,11 @@ public class OldLegionModPlugin extends BaseModPlugin {
 
     // TODO: Actual Dialog and art for characters (LOTS OF DIALOG TO FIX)
     // TODO: change license (maybe not?)
-    // TODO: stop faction relationships from changing with NEX (2)
+    // TODO: stop faction relationships from changing with NEX (2) (hopefully done?)
     // TODO: trade shroud/threat/omega items for rep
-    // TODO: ~lock info on codex about domain stuff~ (1) (missing onslaught skin)
     // TODO: scuttle charge ''d-mod'' (3)
     // TODO: maaaybe add the seed as the domain id when talking?
-    // TODO: slow/disable high value prisoners standing trade
+    // TODO: add AOTD/JDP compatibility
 
     private void addListenersIfNeeded() {
         ListenerManagerAPI l = Global.getSector().getListenerManager();
