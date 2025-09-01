@@ -176,7 +176,6 @@ public class MySystemOne {
         market.addIndustry(Industries.POPULATION);
         //spaceport adds quartermaster and portmaster npcs in Comms
         market.addIndustry(Industries.MEGAPORT);
-        market.addIndustry(Industries.WAYSTATION);
         //Adding orbital station will place a station in orbit and add station commander npc to Comms
         market.addIndustry(Industries.STARFORTRESS_MID);
         market.addIndustry(Industries.HIGHCOMMAND);
@@ -192,6 +191,7 @@ public class MySystemOne {
         } else {
             market.addIndustry(Industries.ORBITALWORKS, new ArrayList(Arrays.asList("pristine_nanoforge")));
             market.addIndustry(Industries.MINING);
+            market.addIndustry(Industries.WAYSTATION);
         }
         //planet sub-markets
         market.addSubmarket(Submarkets.SUBMARKET_STORAGE);
