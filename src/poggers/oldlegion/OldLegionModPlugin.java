@@ -27,7 +27,6 @@ public class OldLegionModPlugin extends BaseModPlugin {
     // TODO: trade shroud/threat/omega items for rep
     // TODO: scuttle charge ''d-mod'' (3)
     // TODO: maaaybe add the seed as the domain id when talking?
-    // TODO: add AOTD/JDP compatibility
 
     private void addListenersIfNeeded() {
         ListenerManagerAPI l = Global.getSector().getListenerManager();
