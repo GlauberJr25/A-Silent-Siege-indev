@@ -125,7 +125,8 @@ public class OldLegionPeople {
         person.getStats().setSkillLevel("support_doctrine", 1.0F);
         person.getStats().setSkillLevel("electronic_warfare", 1.0F);
         person.getStats().setSkillLevel("coordinated_maneuvers", 1.0F);
-        person.setPortraitSprite("graphics/portraits/stellaris_robot.png");
+
+        person.setPortraitSprite("graphics/portraits/portrait_generic_grayscale.png");
         return person;
     }
 

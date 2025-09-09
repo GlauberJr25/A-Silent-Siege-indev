@@ -189,13 +189,13 @@ In front of your eyes is the unmistakable and near ubiquitous emblem you have co
 1:joelComms:""Comms, are you certain this is legitimate ?""
 2:joelSickJoke:""This has to be some sick joke..."" 
 3:joelStaySilent:Stay silent ",
-JoelEncounter2Engage,DialogOptionSelected,"$option == joelEngage","SetOptionColor joelHail gold","""That is highly inadvisable, s- !"" Your tactical officer quickly interrupts before catching himself. ""Please excuse my tone, sir. I simply wished to prevent a mistake."" He rapidly navigates his tripad. ""To put it bluntly, we are currently sitting ducks. Crews are nowhere near combat ready and the drive field is still reeling from the jump. I'll immediately give the order to prepare for a fight, but you need to buy us some time, sir.""","0:joelHail:accept the Hail",
-JoelEncounter2Comms,DialogOptionSelected,"$option == joelComms",,"""The authentication codes attached to the request match with similar instances from the Explorarium, though newer obviously."" The comms officer shrugs while nervously scratching his neck.","0:joelHail:accept the Hail",
+JoelEncounter2Engage,DialogOptionSelected,"$option == joelEngage","SetOptionColor joelHail story","""That is highly inadvisable, s- !"" Your tactical officer quickly interrupts before catching himself. ""Please excuse my tone, sir. I simply wished to prevent a mistake."" He rapidly navigates his tripad. ""To put it bluntly, we are currently sitting ducks. Crews are nowhere near combat ready and the drive field is still reeling from the jump. I'll immediately give the order to prepare for a fight, but you need to buy us some time, sir.""","0:joelHail:accept the Hail",
+JoelEncounter2Comms,DialogOptionSelected,"$option == joelComms","SetOptionColor joelHail story","""The authentication codes attached to the request match with similar instances from the Explorarium, though newer obviously."" The comms officer shrugs while nervously scratching his neck.","0:joelHail:accept the Hail",
 JoelEncounter2SickJoke,DialogOptionSelected,"$option == joelSickJoke","$option = joelHail 0
 FireBest DialogOptionSelected","You accept the hail",,
 JoelEncounter3,DialogOptionSelected,"$option == joelStaySilent","$option = joelHail 0
 FireBest DialogOptionSelected","You accept the hail",,
-JoelEncounter3B,DialogOptionSelected,"$option == joelHail","ShowImageVisual portraits portrait_generic.png","""Greetings, Captain $playerLastName."" The comm link shows no feed of your interlocutor. ""My apologies for the sudden interruption you have experienced, but we have vital matters to discuss, and you are one particularly elusive individual. ""
+JoelEncounter3B,DialogOptionSelected,"$option == joelHail","ShowPersonVisual true oldlegion_artanis","""Greetings, Captain $playerLastName."" The comm link shows no feed of your interlocutor. ""My apologies for the sudden interruption you have experienced, but we have vital matters to discuss, and you are one particularly elusive individual. ""
 
 As you stand on the bridge and suspect this entire situation to be some form of power play, your tripad notifies you of new files being uploaded.
 

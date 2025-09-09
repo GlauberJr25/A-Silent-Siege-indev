@@ -13,10 +13,6 @@
 	"ruleCommandPackages":[
 		 "poggers.oldlegion.rulecmd",
 	],
-	"graphics":{
-		"characters":{
-			"oldlegion_natah":"graphics/portraits/baird.png",
-			"oldlegion_solaxwhitemore":"graphics/portraits/baird.png",
 		},
 	}
 }

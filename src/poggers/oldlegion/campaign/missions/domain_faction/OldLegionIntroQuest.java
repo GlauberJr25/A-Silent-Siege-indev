@@ -56,6 +56,7 @@ public class OldLegionIntroQuest extends HubMissionWithSearch {
     protected void updateInteractionDataImpl() {
         set("$oldlegion_intro_stage", getCurrentStage());
     }
+
     @Override
     public void addDescriptionForNonEndStage(TooltipMakerAPI info, float width, float height) {
         float opad = 10f;
@@ -74,10 +75,8 @@ public class OldLegionIntroQuest extends HubMissionWithSearch {
         }
         return false;
     }
-
     @Override
     public String getBaseName() {
         return "Unknown Operatives";
     }
-
 }
