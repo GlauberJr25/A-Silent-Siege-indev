@@ -112,7 +112,7 @@
 		"tarsus_Standard":3,
 		"buffalo_Standard":5,
 		"gemini_Standard":1,
-		"colossus_Standard":1,
+        "colossus_di_elite":1,
 		"ox_Standard":0.6,
 		"crig_Standard":3,
 	},
@@ -207,7 +207,7 @@
 		"fallback2":{"freighterLarge":0.25},
 	},
 	"freighterMedium":{
-		"colossus_Standard":10,
+        "colossus_di_elite":10,
 		"fallback":{"freighterSmall":1},
 		"fallback2":{"freighterLarge":0.5},
 	},

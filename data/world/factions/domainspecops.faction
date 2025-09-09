@@ -68,7 +68,7 @@
                  "valkyrie",
                  "starliner",
                  "tarsus",
-                 "colossus",
+                 "colossus_di",
                  "buffalo_hegemony",
 
                  "hound_hegemony",
@@ -91,7 +91,6 @@
                  "grendel", # 0 phase doctrine, but added to combatLarge elsewhere in this file
 
                  "legion_xiv",
-                 #"onslaught_xiv",
                  "onslaught_di",
                  "domain_capital"
 		],
@@ -104,7 +103,6 @@
         # despite the Legion being a carrier and the carrier portion of the doctrine being low
 		"hulls":[
             "legion_xiv",
-            #"onslaught_xiv",
             "domain_capital",
             "onslaught_di",
 

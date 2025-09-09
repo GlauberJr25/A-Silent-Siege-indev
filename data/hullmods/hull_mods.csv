@@ -1,9 +1,10 @@
 name,id,tier,rarity,tech/manufacturer,tags,uiTags,base value,unlocked,hidden,hiddenEverywhere,cost_frigate,cost_dest,cost_cruiser,cost_capital,script,desc,short,sModDesc,sprite
-Domain Retrofit,DomainRetrofitMod,1,,,"offensive, merc, domain",Weapons,2500,,TRUE,,3,5,7,10,poggers.oldlegion.data.hullmods.DomainRetrofit,"Reduces the chance for missiles launched by the ship to be affected by electronic counter-measures and flares by %s.
+DOMINT Retrofit,DomainRetrofitMod,1,,,"offensive, merc, domain",Weapons,2500,,TRUE,,0,0,0,0,poggers.oldlegion.data.hullmods.DomainRetrofit,"Reduces the chance for missiles launched by the ship to be affected by electronic counter-measures and flares by %s.
 
 A CPU core adjunct in each missile increases missile top speed by %s and missile maneuverability by %s, as well as significantly improving the guidance algorithm.
 
 Also reduces the weapon range reduction due to enemy ECM by %s.
 
-When deployed in combat, grants %s/%s/%s/%s ECM rating, depending on this ship's hull size.",Increases ammo/charges for ballistic and energy weapons.,"Fully negates the weapon range reduction, and makes the ship's missiles always ignore flares.",graphics/hullmods/domain_imresizer.png
-Domain Engineering,DomainEngineeringMod,1,,,"defensive, merc, domain",Weapons,2500,,TRUE,,3,5,7,10,poggers.oldlegion.data.hullmods.DomainEngineering,Domain hulls have a few shared properties.,Increases ammo/charges for ballistic and energy weapons.,,graphics/hullmods/domain_imresizer.png
+When deployed in combat, grants %s/%s/%s/%s ECM rating, depending on this ship's hull size.",ECCM and ECM bonuses combined,"Fully negates the weapon range reduction, and makes the ship's missiles always ignore flares.",graphics/hullmods/domain_imresizer.png
+Domain Standard Hull,DomainEngineeringMod,1,,,"defensive, merc, domain",Weapons,2500,,TRUE,,0,0,0,0,poggers.oldlegion.data.hullmods.DomainEngineering,Domain hulls have a few shared properties.,0 sensor profile and minor eccm bonus.,,graphics/hullmods/domain_imresizer.png
+Zero Emissions Engineering,DomainEmissionsMod,1,,,"defensive, domain",,2500,,TRUE,,0,0,0,0,poggers.oldlegion.data.hullmods.ZeroEmissionEngineering,Reduces ships Sensor Profile to %s.,0 sensor profile,,graphics/hullmods/domain_imresizer.png

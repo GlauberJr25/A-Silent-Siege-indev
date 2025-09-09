@@ -27,8 +27,8 @@ public class OldLegionIntroQuest extends HubMissionWithSearch {
         OLDLEGION_NATAH = getImportantPerson(OldLegionPeople.OLDLEGION_NATAH);
         if (OLDLEGION_NATAH == null) return false;
 
-        ARTANIS = getImportantPerson(OldLegionPeople.ARTANIS);
-        if (ARTANIS == null) return false;
+        //ARTANIS = getImportantPerson(OldLegionPeople.ARTANIS);
+        //if (ARTANIS == null) return false;
 
         Hunhow_market = Global.getSector().getEconomy().getMarket("Hunhow_market");
         if (Hunhow_market == null) return false;

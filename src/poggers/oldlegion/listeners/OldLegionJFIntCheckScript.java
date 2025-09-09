@@ -28,7 +28,6 @@ public class OldLegionJFIntCheckScript implements EveryFrameScript {
         }
     }
 
-
     public boolean isDone() {
         return false;
     }

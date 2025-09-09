@@ -6,6 +6,7 @@ import com.fs.starfarer.api.combat.MutableShipStatsAPI;
 import com.fs.starfarer.api.combat.ShipAPI.HullSize;
 import com.fs.starfarer.api.impl.campaign.ids.Stats;
 import com.fs.starfarer.api.util.Misc;
+import org.magiclib.util.MagicIncompatibleHullmods;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +24,6 @@ public class DomainRetrofit extends BaseHullMod {
 //	stats.getMissileAccelerationBonus().modifyPercent(id, 100f);
 //	stats.getMissileMaxTurnRateBonus().modifyPercent(id, 10f);
 //	stats.getMissileTurnAccelerationBonus().modifyPercent(id, 50f);
-
 
     public static float MISSILE_SPEED_BONUS = 25f;
     public static float MISSILE_RANGE_MULT = 0.8f;
@@ -68,15 +68,28 @@ public class DomainRetrofit extends BaseHullMod {
         stats.getMissileMaxTurnRateBonus().modifyPercent(id, MISSILE_RATE_BONUS);
         stats.getMissileTurnAccelerationBonus().modifyPercent(id, MISSILE_TURN_ACCEL_BONUS);
 
-
-        if (sMod) {
-            stats.getDynamic().getMod(Stats.ELECTRONIC_WARFARE_PENALTY_MOD).modifyMult(id, SMOD_EW);
-        } else {
-            stats.getDynamic().getMod(Stats.ELECTRONIC_WARFARE_PENALTY_MOD).modifyMult(id, EW_PENALTY_MULT);
-        }
+        if (sMod) {stats.getDynamic().getMod(Stats.ELECTRONIC_WARFARE_PENALTY_MOD).modifyMult(id, SMOD_EW);
+        } else {stats.getDynamic().getMod(Stats.ELECTRONIC_WARFARE_PENALTY_MOD).modifyMult(id, EW_PENALTY_MULT);}
         //stats.getDynamic().getMod(Stats.ELECTRONIC_WARFARE_PENALTY_MOD).modifyFlat(id, -EW_PENALTY_REDUCTION);
-
         //stats.getDynamic().getMod(Stats.ELECTRONIC_WARFARE_PENALTY_MAX_FOR_SHIP_MOD).modifyFlat(id, -MAX_EW_PENALTY_MOD);
+
+        //Incompatibilities
+        if(stats.getVariant().getHullMods().contains("eccm")) {
+            //if trying to install the hullmod, removes it
+            MagicIncompatibleHullmods.removeHullmodWithWarning(
+                    stats.getVariant(),
+                    "eccm",
+                    "DomainRetrofitMod"
+            );
+        }
+        if(stats.getVariant().getHullMods().contains("ecm")) {
+            //if trying to install the hullmod, removes it
+            MagicIncompatibleHullmods.removeHullmodWithWarning(
+                    stats.getVariant(),
+                    "eccm",
+                    "DomainRetrofitMod"
+            );
+        }
     }
 
     public String getDescriptionParam(int index, HullSize hullSize) {

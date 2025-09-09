@@ -21,11 +21,10 @@ public class OldLegionModPlugin extends BaseModPlugin {
 
     // call order: onNewGame -> onNewGameAfterProcGen -> onNewGameAfterEconomyLoad -> onEnabled -> onNewGameAfterTimePass -> onGameLoad
 
-    // TODO: Actual Dialog and art for characters (LOTS OF DIALOG TO FIX)
+    // TODO: Actual Dialog and art for characters (LOTS OF DIALOG TO FIX) (1)
     // TODO: change license (maybe not?)
-    // TODO: stop faction relationships from changing with NEX (2) (hopefully done?)
-    // TODO: trade shroud/threat/omega items for rep
-    // TODO: scuttle charge ''d-mod'' (3)
+    // TODO: trade shroud/threat/omega items for rep (3)
+    // TODO: scuttle charge ''d-mod'' (2)
     // TODO: maaaybe add the seed as the domain id when talking?
 
     private void addListenersIfNeeded() {
