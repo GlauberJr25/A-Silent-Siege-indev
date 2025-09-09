@@ -199,8 +199,8 @@ JoelEncounter3B,DialogOptionSelected,"$option == joelHail","ShowPersonVisual tru
 
 As you stand on the bridge and suspect this entire situation to be some form of power play, your tripad notifies you of new files being uploaded.
 
-""Coming from us, you should consider this a compliment."" The voice on the other end continues as your tripad displays the sigil of the Domain Ministry of Intelligence, alongside the credentials of ""Agent Joel Kepler"".","0:joelDomainDead:""The Domain is dead.""
-1:joelDomainHope:""I held some hope the Domain might still exist.""
+""Coming from us, you should consider this a compliment."" The voice on the other end continues as your tripad displays the sigil of the Domain Ministry of Intelligence, alongside the credentials of ""Agent Joel Kepler"".","1:joelDomainDead:""The Domain is dead.""
+0:joelDomainHope:""I held some hope the Domain might still exist.""
 2:joelDomainNothing:Say nothing",
 JoelEncounter4Dead,DialogOptionSelected,"$option == joelDomainDead","$option = joelDomainNothing 0
 FireBest DialogOptionSelected","""I can assure you it is quite alive and thriving, captain."" The voice corrects on the other end. ""I understand you may perceive so, we have held a no contact policy for both your sector's sake and the Domain at large. You deserve answers, and answers you shall have."" ",,

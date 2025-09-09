@@ -17,21 +17,17 @@ public class OldLegionIntroQuest extends HubMissionWithSearch {
         COMPLETED,
     }
     protected PersonAPI OLDLEGION_NATAH;
-    protected PersonAPI ARTANIS;
-    protected MarketAPI Hunhow_market;
+    //protected PersonAPI ARTANIS;
+    //protected MarketAPI Hunhow_market;
 
     protected boolean create(MarketAPI createdAt, boolean barEvent) {
-        //if (!setGlobalReference("$oldlegion_intro_ref", "$oldlegion_intro_inProgress")) {
-        //    return false;
-        //}
         OLDLEGION_NATAH = getImportantPerson(OldLegionPeople.OLDLEGION_NATAH);
         if (OLDLEGION_NATAH == null) return false;
 
         //ARTANIS = getImportantPerson(OldLegionPeople.ARTANIS);
         //if (ARTANIS == null) return false;
-
-        Hunhow_market = Global.getSector().getEconomy().getMarket("Hunhow_market");
-        if (Hunhow_market == null) return false;
+        //Hunhow_market = Global.getSector().getEconomy().getMarket("Hunhow_market");
+        //if (Hunhow_market == null) return false;
 
         setStartingStage(OldLegionIntroQuest.Stage.TALK_TO_JOEL_ON_BASE);
         addSuccessStages(OldLegionIntroQuest.Stage.COMPLETED);
@@ -39,14 +35,13 @@ public class OldLegionIntroQuest extends HubMissionWithSearch {
         setStoryMission();
 
         makeImportant(OLDLEGION_NATAH, null, OldLegionIntroQuest.Stage.TALK_TO_JOEL_ON_BASE);
-        setStageOnMemoryFlag(OldLegionIntroQuest.Stage.COMPLETED, OLDLEGION_NATAH.getMarket(), "$oldlegion_intro_completed");
-
         setStageOnGlobalFlag(OldLegionIntroQuest.Stage.COMPLETED, "$oldlegion_intro_completed");
+        //setStageOnMemoryFlag(OldLegionIntroQuest.Stage.COMPLETED, OLDLEGION_NATAH.getMarket(), "$oldlegion_intro_completed");
 
-        beginStageTrigger(OldLegionIntroQuest.Stage.COMPLETED);
-        triggerSetGlobalMemoryValue("$oldlegion_intro_completed", true);
-        triggerMakeNonStoryCritical(Hunhow_market, OLDLEGION_NATAH.getMarket());
-        endTrigger();
+        //beginStageTrigger(OldLegionIntroQuest.Stage.COMPLETED);
+        //triggerSetGlobalMemoryValue("$oldlegion_intro_completed", true);
+        //triggerMakeNonStoryCritical(Hunhow_market, OLDLEGION_NATAH.getMarket());
+        //endTrigger();
 
         setRepFactionChangesMedium();
         setRepPersonChangesNone();
@@ -64,7 +59,6 @@ public class OldLegionIntroQuest extends HubMissionWithSearch {
         if (currentStage == OldLegionIntroQuest.Stage.TALK_TO_JOEL_ON_BASE) {
             info.addPara("Reach out to the leader of the outpost located on the nearby planet in this system.", opad);
         }
-
     }
     @Override
     public boolean addNextStepText(TooltipMakerAPI info, Color tc, float pad) {
