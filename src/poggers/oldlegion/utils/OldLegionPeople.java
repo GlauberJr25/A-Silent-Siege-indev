@@ -54,7 +54,7 @@ public class OldLegionPeople {
             natah_person.getName().setLast("Kepler");
             natah_person.setFaction("domainspecops");
             natah_person.setGender(Gender.MALE);
-            natah_person.setPortraitSprite("graphics/portraits/stellaris_robot.png");
+            natah_person.setPortraitSprite("graphics/portraits/domint_proxy_badge.png");
             natah_person.setRankId("factionLeader");
             natah_person.setPostId("factionLeader");
             natah_person.setImportance(PersonImportance.VERY_HIGH);
@@ -79,7 +79,7 @@ public class OldLegionPeople {
             solaxwhitemore_person.setPostId("supplyOfficer");
             solaxwhitemore_person.setImportance(PersonImportance.HIGH);
             solaxwhitemore_person.getName().setFirst("Solax Whitemore");
-            solaxwhitemore_person.setPortraitSprite("graphics/portraits/stellaris_robot.png");
+            solaxwhitemore_person.setPortraitSprite("graphics/portraits/domint_proxy.png");
             solaxwhitemore_person.addTag("domain");
             //BaseMissionHub.set(solaxwhitemore_person, new BaseMissionHub(solaxwhitemore_person));
             //solaxwhitemore_person.getMemoryWithoutUpdate().set(BaseMissionHub.NUM_BONUS_MISSIONS, 1);
