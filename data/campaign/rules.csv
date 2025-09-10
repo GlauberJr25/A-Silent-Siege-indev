@@ -1,20 +1,20 @@
 id,trigger,conditions,script,text,options,notes
-"#RULESET_NAME ASS",,,,,,
+#RULESET_NAME ASS,,,,,,
 ,,,,,,
 # Domain Gate,,,,,,
 oldlegionDomainGateOpt,PopulateGateOptions,"$global.gatesActive
 $global.playerCanUseGates
 $gateScanned
-DomainGateCMD CanBeAdded",,,"18:DOMAIN_GATE:Travel towards Domain Space",
+DomainGateCMD CanBeAdded",,,18:DOMAIN_GATE:Travel towards Domain Space,
 oldlegionDomainGateOptDescription,PopulateGateOptions,"$global.gatesActive
 $global.playerCanUseGates
 $gateScanned
-DomainGateCMD CanBeAdded","DomainGateCMD Highlight",,,
-oldlegionDomainGateUseOpt,DialogOptionSelected,"$option == DOMAIN_GATE","DomainGateCMD Traverse",,,
-"#END Domain Gate",,,,,,
+DomainGateCMD CanBeAdded",DomainGateCMD Highlight,,,
+oldlegionDomainGateUseOpt,DialogOptionSelected,$option == DOMAIN_GATE,DomainGateCMD Traverse,,,
+#END Domain Gate,,,,,,
 ,,,,,,
 # Fleet Captain Directing to Outpost,,,,,,
-oldlegionHHOffInitial,BeginFleetEncounter,"!$hassle_didAlready
+#oldlegionHHOffInitial,BeginFleetEncounter,"!$hassle_didAlready
 !$isHostile
 $pursuePlayer_hassle score:50
 $hassleType == oldlegion_HHtOff","$hassle_didAlready = true 0
@@ -22,123 +22,88 @@ $hassleComplete = true
 MakeOtherFleetPreventDisengage hassle true
 unset $ignorePlayerCommRequests
 $fidpi_addContinue = true 0
-HailPlayer","The bridge briefly falls silent in stupor before the navigation team scrambles to triple checks their calculations, you can hear the low grumble of them calmly but firmly arguing among themselves. They are interrupted shortly after by the sensors team. ""We've got unknown signatures on an interception course, sir."" The sensors officer says, with only a hint of worry in their voice.",,
-artanis_joel_exposition,BeginFleetEncounter2,"$oldlegion_finnish score:51
+HailPlayer",[PH after removal],,
+#artanis_joel_exposition,BeginFleetEncounter2,"$oldlegion_finnish score:51
 $firstJoelExposition == false","$fidpi_addContinue = true 0
-$firstJoelExposition = true 0","Your attention strays as the impression of something not unlike distant music insinuates itself into your consciousness; as if a chorus was singing at some great distance, their voices brought to you by a chance gust of wind. When you attempt to focus on the music the impression slips away.
-
-You become suddenly aware that your bridge crew is staring expectantly, waiting for your next command.",,
-artanis_joel_exposition1,BeginFleetEncounter3,"$oldlegion_finnish score:52
-$firstJoelExposition == true",,"This is the second part im testing to see if it actually adds another option",,
-#artanis_joel_expositionDesc,BeginFleetEncounter,"$oldlegion_finnish score:51",,"The bridge briefly falls silent in stupor before the navigation team scrambles to triple checks their calculations, you can hear the low grumble of them calmly but firmly arguing among themselves. They are interrupted shortly after by the sensors team. ""We've got unknown signatures on an interception course, sir."" The sensors officer says, with only a hint of worry in their voice.","expositionOption1:Continue",
-#artanis_joel_exposition1,DialogOptionSelected,"$option == expositionOption1",,"This is the second part im testing to see if it actually adds another option",,
-artanis_joel_FirstEncounter,OpenCommLink,"$id == oldlegion_artanis
+$firstJoelExposition = true 0",[PH after removal],,
+#artanis_joel_exposition1,BeginFleetEncounter3,"$oldlegion_finnish score:52
+$firstJoelExposition == true",,[PH after removal],,
+#artanis_joel_expositionDesc,BeginFleetEncounter,$oldlegion_finnish score:51,,[PH after removal],expositionOption1:Continue,
+#artanis_joel_exposition1,DialogOptionSelected,$option == expositionOption1,,[PH after removal],,
+#artanis_joel_FirstEncounter,OpenCommLink,"$id == oldlegion_artanis
 !$global.oldlegion_intro_completed
 $global.oldlegion_intro_missionGiven == false","$global.oldlegion_intro_missionGiven = true
 BeginMission oldlegion_intro
 SetTextHighlightColors story
 OldLegionShowDomint
-AddTextSmall ""New faction entry: Domain FOB"" highlight","""John starsector, I've been told to direct your towards the outpost at the near planet. go there''","cutCommLinkNoText:Cut comm link and prepare for travel.",
-"#END Fleet Captain Directing to Outpost",,,,,,
-,,,,,,
-# Meeting with Outpost Leader (Joel )1st time,,,,,,
-JKIntro,PopulateOptions,"$id == oldlegion_natah
-!$global.oldlegion_intro_completed
-$global.oldlegion_intro_missionGiven",,"""oh, if it isn't John Starsector""","JK_introCont1:Hello",
-JKIntro1,DialogOptionSelected,"$option == JK_introCont1","AddStoryPoints 1
-$global.oldlegion_intro_completed = true
-Call $global.oldlegion_intro_ref updateStage","""introductions end here. Go to the quartermaster to get missions""","cutCommLink:Goodbye",
-"#END Meeting with Outpost Leader (Joel )1st time",,,,,,
+AddTextSmall ""New faction entry: Domain FOB"" highlight",[PH after removal],cutCommLinkNoText:Cut comm link and prepare for travel.,
+#END Fleet Captain Directing to Outpost,,,,,,
 ,,,,,,
 # Joel Generic Missions,,,,,,
 joel_contact_GeneralGreeting,PickGreeting,"$id == oldlegion_natah score:10
 $global.oldlegion_intro_completed
 ","ShowPersonVisual
-FireAll PopulateOptions","""$playerName, greetings. New collaborations, desired?""
-OR
-""You return, $playerName.""
-OR
-""$playerName back, welcome. Wishes to fulfill, any?""",,
+FireAll PopulateOptions","""Greetings $playerName. Ready to assist our mission ?""",,
 joel_contact_MHOpenText,MHOpenText,"$id == oldlegion_natah score:10
-$global.oldlegion_intro_completed == true","FireBest ContactPreMissionListText","$personFirstName's avatar does a familiar flicker. ""List, generating. Stand by, please.""
-OR
-$personFirstName's avatar morphs into a rotating shield around a Paragon. ""Querying, please hold.""
-OR
-$personFirstName vanishes, replaced by a stream of flowing geometric primitives. ""Database, scanning.""",,
-joel_contact_PrintAcceptText,ContactPrintAcceptText,"$id == oldlegion_natah score:10",,"""Mutually satisfactory.""
-OR
-""Working with you, $playerName, a pleasure.""
-OR
-The avatar shimmers. ""Very good.""",,
-joel_contact_PrintDeclineText,ContactPrintDeclineText,"$id == oldlegion_natah score:10",,"""Unfortunate, $playerName. Perhaps, next time?""
-OR
-The avatar fades slightly in disappointment. ""So be it.""
-OR
-""Interested, not? Then, very well.""",,
+$global.oldlegion_intro_completed == true",FireBest ContactPreMissionListText,"Joel's proxy stands still. ""Searching the database for any scheduled ops, this should only take a moment.""",,
+joel_contact_PrintAcceptText,ContactPrintAcceptText,$id == oldlegion_natah score:10,,"""Most excellent.""",,
+joel_contact_PrintDeclineText,ContactPrintDeclineText,$id == oldlegion_natah score:10,,"""I suppose we'll have to assign someone else to this.""",,
 joel_contact_NoMissions,ContactPreMissionListText,"$mh_count <= 0
-$id == oldlegion_natah",,"""No missions found. Then, next time?""
-OR
-""Query results, empty. Apologies, $playerName"".",,
+$id == oldlegion_natah",,"""All potential operations are either not approved or already underway. Come back later.""",,
 joel_contact_OneMission,ContactPreMissionListText,"$mh_count == 1
 $mh_firstInlineBlurb != null
-$id == oldlegion_natah","$mh_doNotPrintBlurbs = true 0","""Query returned one result. $playerName, interested?""
-OR
-""Missions, available, just one.""",,
+$id == oldlegion_natah",$mh_doNotPrintBlurbs = true 0,"""There is exactly one mission I could sign you up for right away, interested ?""",,
 joel_contact_MultipleMissionsPost,MHPostMissionListText,"$mh_count > 1
-$id == oldlegion_natah",,"""Awaiting decision, $playerName.""
-OR
-""Query completed in 7.12 ms.""
-OR
-""Mission of your choice, please select.""",,
-joel_ddroBlurb,solax_ddroRem_blurb,,,"""Dead drop for selfkind, deliver surreptitiously.""",,
-joel_ddroOfferOption,solax_ddroRem_option,,,,"ddro_start:Ask about the secret package delivery",
+$id == oldlegion_natah",,"""We have a backlog of ops that needs trimming. Pick one and I'll sign you up immediately.""",,
+joel_ddroBlurb,joel_ddroRem_blurb,,,"""Dead drop for selfkind, deliver surreptitiously.""",,
+joel_ddroOfferOption,joel_ddroRem_option,,,,ddro_start:Ask about the secret package delivery,
 joel_ddroOfferTextContact,DialogOptionSelected,"$option == ddro_start
 $id == oldlegion_natah score:10","$missionId = ddro
-Highlight $ddro_dist $ddro_reward","$PersonName's avatar seems to shudder, as if in the depths of thought. Of course, it only lasts for a handful of milliseconds.
-
-""This item to specified location $ddro_systemName, $ddro_dist light-years away deliver. Do not be spotted. Do not inform others. Reward is $ddro_reward credits."" The avatar fades into $ddro_aOrAnThing. ""Acceptable?""","contact_accept:Accept
+Highlight $ddro_dist $ddro_reward","""Deliver the package to dead drop at the attached coordinates, at $ddro_systemName, $ddro_dist light-years away. One of the oldest and simplest plays in the book."" Joel says amused. ""We need it done clean and quiet, as usual. Your reward will be $ddro_reward credits.""","contact_accept:Accept
 contact_decline:Decline",
-#in case needed later,,,"Call $ddro_ref showMap ""Destination: $ddro_systemName""
-Call $ssat_ref showMap ""Target: $ssat_marketName""",,,
-joel_ssatBlurb,solax_ssat_blurb,,,"""Observation package in $ssat_marketName orbit, stealth insertion, selfkind requires.""
+joel_ssatBlurb,joel_ssat_blurb,,,"""Observation package in $ssat_marketName orbit, stealth insertion, selfkind requires.""
 OR
 ""Strategic observation of $ssat_marketName, package insertion into orbit: direct, quiet.""",,
-joel_ssatOfferOption,solax_ddroRem_option,,,,"ssat_start:Ask about the secret package delivery",
+joel_ssatOfferOption,joel_ddroRem_option,,,,ssat_start:Ask about the secret observation package,
 joel_ssatOfferTextContact,DialogOptionSelected,"$option == ssat_start
 $id == oldlegion_natah score:10","$missionId = ssat
-SetTextHighlights $ssat_reward","""Enter standard orbit, $ssat_marketName in the $ssat_systemName. Then spy satellite package deploy while unobserved. Stealth imperative, patrols tracking you must be none. Reward is $ssat_reward credits.""","contact_accept:Accept
+SetTextHighlights $ssat_reward","""Our surveillance network needs maintenance. Deploy the provided satellite in standard orbit of $ssat_marketName in  $ssat_systemName and we'll do the rest. It goes without saying that under no circumstances should you be observed or actively tracked by patrols while deploying the satellite. Your reward will be $ssat_reward credits.""","contact_accept:Accept
 contact_decline:Decline",
-"#END Joel Generic Missions",,,,,,
+#in case needed later,,,"Call $ddro_ref showMap ""Destination: $ddro_systemName""
+Call $ssat_ref showMap ""Target: $ssat_marketName""
+
+$global.oldlegion_intro_completed = true 0",,,
+#END Joel Generic Missions,,,,,,
 ,,,,,,
 # Domain Faction Relationship Status,,,,,,
 relLevelNeutralDOMINT,RelationshipLevelDesc,"$faction.rel == NEUTRAL
 $faction.id == domainspecops",,"You are viewed in a better light than most sector polities, although this has little in the way of implications.",,
 relLevelFavorableDOMINT,RelationshipLevelDesc,"$faction.rel == FAVORABLE
-$faction.id == domainspecops",,"You are considered an upstanding citizen of the Domain and your cooperation is appreciated.",,
+$faction.id == domainspecops",,You are considered an upstanding citizen of the Domain and your cooperation is appreciated.,,
 relLevelWelcomingDOMINT,RelationshipLevelDesc,"$faction.rel == WELCOMING
-$faction.id == domainspecops",,"Your continued efforts in furthering the Domain's goals in the sector has been noted by officials. Restricted hardware and information have been made available to access.",,
+$faction.id == domainspecops",,Your continued efforts in furthering the Domain's goals in the sector has been noted by officials. Restricted hardware and information have been made available to access.,,
 relLevelFriendlyDOMINT,RelationshipLevelDesc,"$faction.rel == FRIENDLY
 $faction.id == domainspecops",,"Although officially an independent asset, you have become an agent in all but name, and may enjoy the benefits of this position. You have been granted access to classified information and hardware many sector intelligence agencies would kill to possess.",,
 relLevelCooperativeDOMINT,RelationshipLevelDesc,"$faction.rel == COOPERATIVE
-$faction.id == domainspecops",,"The Domain of Man considers you an essential part of their plans for the sector's future should it be reconnected to civilisation. Your name has been noticed by high ranking Domain officials as a potential candidate for the post of sector governor.",,
+$faction.id == domainspecops",,The Domain of Man considers you an essential part of their plans for the sector's future should it be reconnected to civilisation. Your name has been noticed by high ranking Domain officials as a potential candidate for the post of sector governor.,,
 relLevelSuspiciousDOMINT,RelationshipLevelDesc,"$faction.rel == SUSPICIOUS
-$faction.id == domainspecops",,"You do not stand out in any particular way from the millions tracked by the Domain. Any dealings or movements will come under close scrutiny and port access is granted begrudgingly.",,
+$faction.id == domainspecops",,You do not stand out in any particular way from the millions tracked by the Domain. Any dealings or movements will come under close scrutiny and port access is granted begrudgingly.,,
 relLevelInhospitableDOMINT,RelationshipLevelDesc,"$faction.rel == INHOSPITABLE
-$faction.id == domainspecops",,"You have been tagged as a likely security risk and Domain officials will refuse to have any dealings with you. However they are willing to show leniency should you improve your standing.",,
+$faction.id == domainspecops",,You have been tagged as a likely security risk and Domain officials will refuse to have any dealings with you. However they are willing to show leniency should you improve your standing.,,
 relLevelHostileDOMINT,RelationshipLevelDesc,"$faction.rel == HOSTILE
 $faction.id == domainspecops",,"Your IDENT-chip and all known associates have been flagged as insurgent. If historical records are to be believed, your life expectancy has significantly decreased.",,
 relLevelVengefulDOMINT,RelationshipLevelDesc,"$faction.rel == VENGEFUL
 $faction.id == domainspecops",,"Vengeful: // DISPLAY OVERRIDE //
 
 //Tread carefully, ""citizen"".",,
-"#END Domain Faction Relationship Status",,,,,,
+#END Domain Faction Relationship Status,,,,,,
 ,,,,,,
 # Visit Outpost,,,,,,
 BarPopulate,DialogOptionSelected,"$faction.id == domainspecops
 $market.id == Hunhow_market
-$option == marketVisitBar",,"You search all around the outpost for a bar, but every area you expect there to be a bar, you see automation. Guess there aren't any bars around anymore.","outpostBarLeave:Move along",
-BarLeave,DialogOptionSelected,"$option == outpostBarLeave","BarCMD leaveBar",,,
-"#END Visit Outpost",,,,,,
+$option == marketVisitBar",,"You search all around the outpost for a bar, but every area you expect there to be a bar, you see automation. Guess there aren't any bars around anymore.",outpostBarLeave:Move along,
+BarLeave,DialogOptionSelected,$option == outpostBarLeave,BarCMD leaveBar,,,
+#END Visit Outpost,,,,,,
 ,,,,,,
 # Ask Joel For Stuff,,,,,,
 ajfsOption,PopulateOptions,"$id == oldlegion_natah
@@ -149,25 +114,25 @@ ajfsDenied,PopulateOptions,"$gavePlayerSpecialItems
 SetTooltip ajfsOption1 ""$personName remembers giving you supplies recently. You'll have to wait 1 month for $himOrHer to forget.""
 SetTooltipHighlights ajfsOption1 ''1 month''
 SetEnabled ajfsOption1 false","""If you're here to ask for any extra supplies, I'm afraid I'll have to refuse you. Our budget is immense, but not unlimited""",,
-ajfsPart2,DialogOptionSelected,"$option == ajfsOption1",,"""Sure, you have been a valuable asset, we can spare something special for you""","ajfsOption2Forge:""Do you happen to have a nanoforge to spare?""
+ajfsPart2,DialogOptionSelected,$option == ajfsOption1,,"""Sure, you have been a valuable asset, we can spare something special for you""","ajfsOption2Forge:""Do you happen to have a nanoforge to spare?""
 ajfsOption2SyncCore:""Do you happen to have a synchronotron Core to spare?
 ajfsOption2CryoEngine:''Do you happen to have a cryoarithmetic engine to spare?
 ajfsOption2HyperTap:""Do you happen to have a Hypershunt tap to spare?
 ajfsOption2Nevermind:""Nevermind, I don't need anything right now""",
-ajfsPart3Forge,DialogOptionSelected,"$option == ajfsOption2Forge","AddRemoveAnyItem SPECIAL pristine_nanoforge 1
+ajfsPart3Forge,DialogOptionSelected,$option == ajfsOption2Forge,"AddRemoveAnyItem SPECIAL pristine_nanoforge 1
 $gavePlayerSpecialItems = true 30
 AdjustRep domainspecops -5","""Sure, here you go, a Pristine Nanoforge""","cutCommLink:Thank you, I'll be going now",
-ajfsPart3SyncCore,DialogOptionSelected,"$option == ajfsOption2SyncCore","AddRemoveAnyItem SPECIAL synchrotron 1
+ajfsPart3SyncCore,DialogOptionSelected,$option == ajfsOption2SyncCore,"AddRemoveAnyItem SPECIAL synchrotron 1
 $gavePlayerSpecialItems = true 30
 AdjustRep domainspecops -5","""Sure, here you go, a Cryoarithmetic Engine""","cutCommLink:Thank you, I'll be going now",
-ajfsPart3CryoEngine,DialogOptionSelected,"$option == ajfsOption2CryoEngine","AddRemoveAnyItem SPECIAL cryoarithmetic_engine 1
+ajfsPart3CryoEngine,DialogOptionSelected,$option == ajfsOption2CryoEngine,"AddRemoveAnyItem SPECIAL cryoarithmetic_engine 1
 $gavePlayerSpecialItems = true 30
 AdjustRep domainspecops -5","""Sure, here you go, a Synchronotron Core ""","cutCommLink:Thank you, I'll be going now",
-ajfsPart3HypershuntTap,DialogOptionSelected,"$option == ajfsOption2HyperTap","AddRemoveAnyItem SPECIAL coronal_portal 1
+ajfsPart3HypershuntTap,DialogOptionSelected,$option == ajfsOption2HyperTap,"AddRemoveAnyItem SPECIAL coronal_portal 1
 $gavePlayerSpecialItems = true 30
 AdjustRep domainspecops -5","""Sure, here you go, a Hypershunt Tap""","cutCommLink:Thank you, I'll be going now",
-ajfsPart3Nevermind,DialogOptionSelected,"$option == ajfsOption2Nevermind","FireAll PopulateOptions","""Sure, suit yourself.""","cutCommLink:Goodbye",
-"#END Ask Joel For Stuff",,,,,,
+ajfsPart3Nevermind,DialogOptionSelected,$option == ajfsOption2Nevermind,FireAll PopulateOptions,"""Sure, suit yourself.""",cutCommLink:Goodbye,
+#END Ask Joel For Stuff,,,,,,
 ,,,,,,
 # First Encounter,,,,,,
 JoelEncounter1,YourInitialTrigger,,"IntroStartDialog
@@ -175,38 +140,36 @@ FireAll joelBeginOpts",,"3:joelContinue:Continue
 2:joelGrumble:Grumble
 0:joelNavOffcourse:""Nav, why have we gone off course ?""
 1:joelAskSignatures:""Sensors, report.""",
-JoelEncounter1Grumble,DialogOptionSelected,"$option == joelGrumble","$option = joelContinue 0
+JoelEncounter1Grumble,DialogOptionSelected,$option == joelGrumble,"$option = joelContinue 0
 FireBest DialogOptionSelected","Noting your discontent, the bridge crew tries their best to assess the situation swiftly and silently.",,
-JoelEncounter1NavCourse,DialogOptionSelected,"$option == joelNavOffcourse
-!$joelOffCourse","$joelOffCourse = true 0
+JoelEncounter1NavCourse,DialogOptionSelected,$option == joelNavOffcourse,"$joelOffCourse = true 0
 FireAll PopulateOptions","""We have no explanation, sir. "" The officer looks down in shame. ""The drive field was properly synced and the link established between the gates. We're still awaiting a report on the Janus device's condition.""",,
-JoelEncounter1Signatures,DialogOptionSelected,"$option == joelAskSignatures
-!$joelSignatures","$joelSignatures = true 0
+JoelEncounter1Signatures,DialogOptionSelected,$option == joelAskSignatures,"$joelSignatures = true 0
 FireAll PopulateOptions","The officer nods before tapping at his tripad, sending you pictures taken by cameras on the hull. ""The fleet's combined coverage could barely confirm there even was something until they were on top of us. We had to get a visual to even hazard a guess."" You look at the images taken, barely making out shapes against the darkness of space. ""Ships. Though nothing we recognise.""",,
-JoelEncounter2,DialogOptionSelected,"$option == joelContinue",,"""Sir!"" Your comms officer calls over, pale as a ghost yet maintaining proper etiquette. ""I believe you may want to see this for yourself."" He says while leading you over to his post, a communication request flashing on the screen. Without a word the officer displays the attached fleet information and a wave of surprise washes over you.
+JoelEncounter2,DialogOptionSelected,$option == joelContinue,,"""Sir!"" Your comms officer calls over, pale as a ghost yet maintaining proper etiquette. ""I believe you may want to see this for yourself."" He says while leading you over to his post, a communication request flashing on the screen. Without a word the officer displays the attached fleet information and a wave of surprise washes over you.
 
 In front of your eyes is the unmistakable and near ubiquitous emblem you have come to associate with all things past, the Domain of Man's.","0:joelEngage:""Order to fleet to power up weapons and engage immediately !"" 
 1:joelComms:""Comms, are you certain this is legitimate ?""
 2:joelSickJoke:""This has to be some sick joke..."" 
 3:joelStaySilent:Stay silent ",
-JoelEncounter2Engage,DialogOptionSelected,"$option == joelEngage","SetOptionColor joelHail story","""That is highly inadvisable, s- !"" Your tactical officer quickly interrupts before catching himself. ""Please excuse my tone, sir. I simply wished to prevent a mistake."" He rapidly navigates his tripad. ""To put it bluntly, we are currently sitting ducks. Crews are nowhere near combat ready and the drive field is still reeling from the jump. I'll immediately give the order to prepare for a fight, but you need to buy us some time, sir.""","0:joelHail:accept the Hail",
-JoelEncounter2Comms,DialogOptionSelected,"$option == joelComms","SetOptionColor joelHail story","""The authentication codes attached to the request match with similar instances from the Explorarium, though newer obviously."" The comms officer shrugs while nervously scratching his neck.","0:joelHail:accept the Hail",
-JoelEncounter2SickJoke,DialogOptionSelected,"$option == joelSickJoke","$option = joelHail 0
-FireBest DialogOptionSelected","You accept the hail",,
-JoelEncounter3,DialogOptionSelected,"$option == joelStaySilent","$option = joelHail 0
-FireBest DialogOptionSelected","You accept the hail",,
-JoelEncounter3B,DialogOptionSelected,"$option == joelHail","ShowPersonVisual true oldlegion_artanis","""Greetings, Captain $playerLastName."" The comm link shows no feed of your interlocutor. ""My apologies for the sudden interruption you have experienced, but we have vital matters to discuss, and you are one particularly elusive individual. ""
+JoelEncounter2Engage,DialogOptionSelected,$option == joelEngage,SetOptionColor joelHail story,"""That is highly inadvisable, s- !"" Your tactical officer quickly interrupts before catching himself. ""Please excuse my tone, sir. I simply wished to prevent a mistake."" He rapidly navigates his tripad. ""To put it bluntly, we are currently sitting ducks. Crews are nowhere near combat ready and the drive field is still reeling from the jump. I'll immediately give the order to prepare for a fight, but you need to buy us some time, sir.""",0:joelHail:accept the Hail,
+JoelEncounter2Comms,DialogOptionSelected,$option == joelComms,SetOptionColor joelHail story,"""The authentication codes attached to the request match with similar instances from the Explorarium, though newer obviously."" The comms officer shrugs while nervously scratching his neck.",0:joelHail:accept the Hail,
+JoelEncounter2SickJoke,DialogOptionSelected,$option == joelSickJoke,"$option = joelHail 0
+FireBest DialogOptionSelected",You accept the hail,,
+JoelEncounter3,DialogOptionSelected,$option == joelStaySilent,"$option = joelHail 0
+FireBest DialogOptionSelected",You accept the hail,,
+JoelEncounter3B,DialogOptionSelected,$option == joelHail,ShowPersonVisual true oldlegion_artanis,"""Greetings, Captain $playerLastName."" The comm link shows no feed of your interlocutor. ""My apologies for the sudden interruption you have experienced, but we have vital matters to discuss, and you are one particularly elusive individual. ""
 
 As you stand on the bridge and suspect this entire situation to be some form of power play, your tripad notifies you of new files being uploaded.
 
 ""Coming from us, you should consider this a compliment."" The voice on the other end continues as your tripad displays the sigil of the Domain Ministry of Intelligence, alongside the credentials of ""Agent Joel Kepler"".","1:joelDomainDead:""The Domain is dead.""
 0:joelDomainHope:""I held some hope the Domain might still exist.""
 2:joelDomainNothing:Say nothing",
-JoelEncounter4Dead,DialogOptionSelected,"$option == joelDomainDead","$option = joelDomainNothing 0
+JoelEncounter4Dead,DialogOptionSelected,$option == joelDomainDead,"$option = joelDomainNothing 0
 FireBest DialogOptionSelected","""I can assure you it is quite alive and thriving, captain."" The voice corrects on the other end. ""I understand you may perceive so, we have held a no contact policy for both your sector's sake and the Domain at large. You deserve answers, and answers you shall have."" ",,
-JoelEncounter4Hope,DialogOptionSelected,"$option == joelDomainHope","$option = joelDomainNothing 0
+JoelEncounter4Hope,DialogOptionSelected,$option == joelDomainHope,"$option = joelDomainNothing 0
 FireBest DialogOptionSelected","""And you have been vindicated."" The voice says approvingly. ""I am aware we have a lot of explaining to do, and are opened to answer any questions you may have once our business is concluded."" He pauses ""Within reasonable boundaries of course.""",,
-JoelEncounter4Nothing,DialogOptionSelected,"$option == joelDomainNothing",,"""Considering you have proven yourself uniquely capable, the Ministry wishes to enlist your help to assist our mission."" He pauses for a moment before continuing. ""Given that the potential reopening of the gates (highlight that) is closely tied to success of said mission, it is within your and the sector's interest to cooperate. You have proven yourself willing to work towards that goal in the past have you not ?"" You perceive almost a tinge of bitterness in the agent's words. 
+JoelEncounter4Nothing,DialogOptionSelected,$option == joelDomainNothing,,"""Considering you have proven yourself uniquely capable, the Ministry wishes to enlist your help to assist our mission."" He pauses for a moment before continuing. ""Given that the potential reopening of the gates (highlight that) is closely tied to success of said mission, it is within your and the sector's interest to cooperate. You have proven yourself willing to work towards that goal in the past have you not ?"" You perceive almost a tinge of bitterness in the agent's words. 
 
  ""I am sure you had good intentions at heart, but unknowingly almost shattered two centuries of work."" He pauses. ""Without mentioning putting in danger the lives of trillions."" Another pause ""But these faults can be forgiven, among many other benefits.""
 
@@ -214,36 +177,49 @@ JoelEncounter4Nothing,DialogOptionSelected,"$option == joelDomainNothing",,"""Co
 1:joelDomainAccept2:""Sure, why not.""
 2:joelDomainNoDeal1:""No deal.""
 ",
-JoelEncounter4Deal,DialogOptionSelected,"$option == joelDomainAccept1","$global.oldlegion_intro_missionGiven = true
+JoelEncounter4Deal,DialogOptionSelected,$option == joelDomainAccept1,"$global.oldlegion_intro_missionGiven = true
 BeginMission oldlegion_intro
 SetTextHighlightColors story
 OldLegionShowDomint
-AddTextSmall ""New faction entry: Domain FOB"" highlight","""Then the matter is settled. Head over to (outpost planet name) so that we may discuss the finer details face to face, as well as answer any burning questions you may have."" The agent says before cutting the comm link.","joelCutCommLinkNoText:Cut comm link and prepare for travel.",
-JoelEncounter4NoDeal,DialogOptionSelected,"$option == joelDomainNoDeal1","AddCredits 1000000","""Right."" The agent replies with no hint of annoyance in his voice. Moments later your Tripad notifies you of a sizeable sum being transferred into your account.
+AddTextSmall ""New faction entry: The Domain of Man"" highlight","""Then the matter is settled. Head over to (outpost planet name) so that we may discuss the finer details face to face, as well as answer any burning questions you may have."" The agent says before cutting the comm link.",joelCutCommLinkNoText:Cut comm link and prepare for travel.,
+JoelEncounter4NoDeal,DialogOptionSelected,$option == joelDomainNoDeal1,AddCredits 1000000,"""Right."" The agent replies with no hint of annoyance in his voice. Moments later your Tripad notifies you of a sizeable sum being transferred into your account.
 
 ""It goes without saying that you will be handsomely rewarded for all missions you may carry out for us, be it credits or other forms of compensation. Our operational funds are, after all, nearly bottomless."" He continues with some amusement in his voice.
 ""Are the terms more to your satisfaction now ?""
 ","0:joelDomainAccept2:""It sounds more agreeable to me.""
 1:joelDomainNoDeal2:""Your proposal could use some work."" (silently signal your fleet to engage)",
-JoelEncounter5Deal,DialogOptionSelected,"$option == joelDomainAccept2","$global.oldlegion_intro_missionGiven = true
+JoelEncounter5Deal,DialogOptionSelected,$option == joelDomainAccept2,"$global.oldlegion_intro_missionGiven = true
 BeginMission oldlegion_intro
 SetTextHighlightColors story
 OldLegionShowDomint
-AddTextSmall ""New faction entry: Domain FOB"" highlight","""I knew you'd hear reason, captain. Head over to (outpost planet name) so that we may discuss the finer details face to face, as well as answer any burning questions you may have."" The agent says before cutting the comm link.""","joelCutCommLinkNoText:Cut comm link and prepare for travel.",
-JoelEncounter5NoDeal,DialogOptionSelected,"$option == joelDomainNoDeal2","$global.oldlegion_intro_missionGiven = true
+AddTextSmall ""New faction entry: The Domain of Man"" highlight","""I knew you'd hear reason, captain. Head over to (outpost planet name) so that we may discuss the finer details face to face, as well as answer any burning questions you may have."" The agent says before cutting the comm link.""",joelCutCommLinkNoText:Cut comm link and prepare for travel.,
+JoelEncounter5NoDeal,DialogOptionSelected,$option == joelDomainNoDeal2,"$global.oldlegion_intro_missionGiven = true
 BeginMission oldlegion_intro
 SetTextHighlightColors story
 OldLegionShowDomint
-AddTextSmall ""New faction entry: Domain FOB"" highlight","""I see."" The agent's tone is cold yet devoid of any anger. ""Did you think we wouldn't notice your fleet readying for an engagement ? I gave you the benefit of the doubt given the unusual circumstances of our meeting.""
+AddTextSmall ""New faction entry: The Domain of Man"" highlight","""I see."" The agent's tone is cold yet devoid of any anger. ""Did you think we wouldn't notice your fleet readying for an engagement ? I gave you the benefit of the doubt given the unusual circumstances of our meeting.""
 
 ""It matters little anymore."" He says dismissively. ""You have no place in the Domain, and it is my duty to wipe you from it.""
-","joelCutCommLinkNoText:Cut comm link and prepare for battle. [PH no battle]",
-JoelEncounterCloseDialog,DialogOptionSelected,"$option == joelCutCommLinkNoText","DismissDialog",,,
-"#END First Encounter",,,,,,
+",joelCutCommLinkNoText:Cut comm link and prepare for battle. [PH no battle],
+JoelEncounterCloseDialog,DialogOptionSelected,$option == joelCutCommLinkNoText,DismissDialog,,,
+#END First Encounter,,,,,,
+,,,,,,
+# Meeting with Outpost Leader (Joel )1st time,,,,,,
+JKIntro,PopulateOptions,"$id == oldlegion_natah
+$global.oldlegion_intro_completed == false",,"""oh, if it isn't John Starsector""",JK_introCont1:Hello,
+JKIntro1,DialogOptionSelected,$option == JK_introCont1,"AddStoryPoints 1
+$global.oldlegion_intro_completed = true 0
+Call $global.oldlegion_intro_ref updateStage
+FireAll PopulateOptions","""introductions end here. Go to the quartermaster to get missions""",cutCommLink:Goodbye,
+#END Meeting with Outpost Leader (Joel )1st time,,,,,,
 ,,,,,,
 # HangarPermission,,,,,,
 AskAboutHangar,PopulateOptions,"$id == oldlegion_solaxwhitemore
 RepIsAtWorst domainspecops COOPERATIVE",,,"aahOption1:""what is inside that giant hangar?""",
-HangarStory1,DialogOptionSelected,"$option == aahOption1","$player.OldlegionHangarSubmarketPermission = true","""it has a bunch of stuff in there, you can buy them now""","cutCommLink:""Thank you, I'll be going now""",
-"#END HangarPermission",,,,,,
-
+HangarStory1,DialogOptionSelected,$option == aahOption1,$player.OldlegionHangarSubmarketPermission = true,"""it has a bunch of stuff in there, you can buy them now""","cutCommLink:""Thank you, I'll be going now""",
+#END HangarPermission,,,,,,
+,,,,,,
+# Trade panel flavor text,,,,,,
+flavorTextMarketGeneric,TradePanelFlavorText,"$global.tradePanelMode == MARKET
+$faction.id == domainspecops
+$stability > 1","AddText ""The port concourse is unusually cold and quiet. Automated drones and lifts work in silence, performing their duties with a speed and precision unattainable by human hands."" marketFlavorTextColor",,,

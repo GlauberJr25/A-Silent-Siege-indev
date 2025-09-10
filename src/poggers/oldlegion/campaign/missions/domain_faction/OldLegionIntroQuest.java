@@ -1,5 +1,6 @@
 package poggers.oldlegion.campaign.missions.domain_faction;
 
+import com.fs.starfarer.api.impl.campaign.missions.academy.GAIntro2;
 import com.fs.starfarer.api.impl.campaign.missions.hub.HubMissionWithSearch;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
@@ -17,15 +18,12 @@ public class OldLegionIntroQuest extends HubMissionWithSearch {
         COMPLETED,
     }
     protected PersonAPI OLDLEGION_NATAH;
-    //protected PersonAPI ARTANIS;
     //protected MarketAPI Hunhow_market;
 
     protected boolean create(MarketAPI createdAt, boolean barEvent) {
         OLDLEGION_NATAH = getImportantPerson(OldLegionPeople.OLDLEGION_NATAH);
         if (OLDLEGION_NATAH == null) return false;
 
-        //ARTANIS = getImportantPerson(OldLegionPeople.ARTANIS);
-        //if (ARTANIS == null) return false;
         //Hunhow_market = Global.getSector().getEconomy().getMarket("Hunhow_market");
         //if (Hunhow_market == null) return false;
 
@@ -34,16 +32,11 @@ public class OldLegionIntroQuest extends HubMissionWithSearch {
 
         setStoryMission();
 
-        makeImportant(OLDLEGION_NATAH, null, OldLegionIntroQuest.Stage.TALK_TO_JOEL_ON_BASE);
+        makeImportant(OLDLEGION_NATAH, "$olIntro1_goHere", OldLegionIntroQuest.Stage.TALK_TO_JOEL_ON_BASE);
+        //makeImportant(OLDLEGION_NATAH, null, OldLegionIntroQuest.Stage.TALK_TO_JOEL_ON_BASE);
         setStageOnGlobalFlag(OldLegionIntroQuest.Stage.COMPLETED, "$oldlegion_intro_completed");
-        //setStageOnMemoryFlag(OldLegionIntroQuest.Stage.COMPLETED, OLDLEGION_NATAH.getMarket(), "$oldlegion_intro_completed");
 
-        //beginStageTrigger(OldLegionIntroQuest.Stage.COMPLETED);
-        //triggerSetGlobalMemoryValue("$oldlegion_intro_completed", true);
-        //triggerMakeNonStoryCritical(Hunhow_market, OLDLEGION_NATAH.getMarket());
-        //endTrigger();
-
-        setRepFactionChangesMedium();
+        setRepFactionChangesNone();
         setRepPersonChangesNone();
 
         return true;
