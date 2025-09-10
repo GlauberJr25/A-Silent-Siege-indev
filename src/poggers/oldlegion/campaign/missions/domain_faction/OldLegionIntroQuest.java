@@ -1,6 +1,5 @@
 package poggers.oldlegion.campaign.missions.domain_faction;
 
-import com.fs.starfarer.api.impl.campaign.missions.academy.GAIntro2;
 import com.fs.starfarer.api.impl.campaign.missions.hub.HubMissionWithSearch;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
@@ -23,9 +22,6 @@ public class OldLegionIntroQuest extends HubMissionWithSearch {
     protected boolean create(MarketAPI createdAt, boolean barEvent) {
         OLDLEGION_NATAH = getImportantPerson(OldLegionPeople.OLDLEGION_NATAH);
         if (OLDLEGION_NATAH == null) return false;
-
-        //Hunhow_market = Global.getSector().getEconomy().getMarket("Hunhow_market");
-        //if (Hunhow_market == null) return false;
 
         setStartingStage(OldLegionIntroQuest.Stage.TALK_TO_JOEL_ON_BASE);
         addSuccessStages(OldLegionIntroQuest.Stage.COMPLETED);
