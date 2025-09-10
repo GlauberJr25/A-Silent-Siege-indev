@@ -13,6 +13,9 @@
 	"ruleCommandPackages":[
 		 "poggers.oldlegion.rulecmd",
 	],
+	"graphics":{
+		"characters":{
+			"oldlegion_natah":"graphics/portraits/domint_proxy_badge.png",
 		},
 	}
 }

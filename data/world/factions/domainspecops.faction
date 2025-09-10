@@ -283,9 +283,11 @@
 	"portraits":{
 		"standard_male":[
 			"graphics/portraits/stellaris_robot.png",
+			"graphics/portraits/domint_proxy.png",
 		],
 		"standard_female":[
 			"graphics/portraits/stellaris_robot.png",
+			"graphics/portraits/domint_proxy.png",
 		],
 	},
 	"ranks":{

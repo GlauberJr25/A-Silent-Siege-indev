@@ -206,11 +206,13 @@ JoelEncounterCloseDialog,DialogOptionSelected,$option == joelCutCommLinkNoText,D
 ,,,,,,
 # Meeting with Outpost Leader (Joel )1st time,,,,,,
 JKIntro,PopulateOptions,"$id == oldlegion_natah
-!$global.oldlegion_intro_completed",,"""oh, if it isn't John Starsector""",JK_introCont1:Hello,
+$global.oldlegion_intro_completed == false
+!$talkedAboutQuestPH",,"""oh, if it isn't John Starsector""",JK_introCont1:Hello,
 JKIntro1,DialogOptionSelected,$option == JK_introCont1,"AddStoryPoints 1
-$global.oldlegion_intro_completed = true 0
+$global.oldlegion_intro_completed = true
 Call $global.oldlegion_intro_ref updateStage
-FireAll PopulateOptions","""introductions end here. Go to the quartermaster to get missions""",cutCommLink:Goodbye,
+FireAll PopulateOptions
+$talkedAboutQuestPH = true 0","""introductions end here. Go to the quartermaster to get missions""",cutCommLink:Goodbye,
 #END Meeting with Outpost Leader (Joel )1st time,,,,,,
 ,,,,,,
 # HangarPermission,,,,,,
