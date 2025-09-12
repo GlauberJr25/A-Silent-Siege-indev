@@ -13,17 +13,17 @@ public class CoreUIListener implements CoreUITabListener {
     public void reportAboutToOpenCoreTab(CoreUITabId tab, Object param) {
 
         /// Uncomment the code below and change "corvus" into the system id of the checkpoint
-//        CampaignFleetAPI playerFleet = Global.getSector().getPlayerFleet();
-//        StarSystemAPI currSystem = playerFleet.getStarSystem();
-//        boolean inHyperspace = playerFleet.isInHyperspace();
-//        boolean isInCheckpointSystem = currSystem != null && currSystem.getId().equals("corvus");
-//
-//        if (tab.equals(CoreUITabId.MAP) && isInCheckpointSystem) {
-//            Global.getSector().addTransientScript(new DisableSectorMapButton());
-//        }
-//        if (tab.equals(CoreUITabId.MAP) && (inHyperspace || !isInCheckpointSystem)) {
-//            Global.getSector().addTransientScript(new EnableSectorMapButton());
-//        }
+       // CampaignFleetAPI playerFleet = Global.getSector().getPlayerFleet();
+       // StarSystemAPI currSystem = playerFleet.getStarSystem();
+       // boolean inHyperspace = playerFleet.isInHyperspace();
+       // boolean isInCheckpointSystem = currSystem != null && currSystem.getId().equals("corvus");
+       //
+       // if (tab.equals(CoreUITabId.MAP) && isInCheckpointSystem) {
+       //     Global.getSector().addTransientScript(new DisableSectorMapButton());
+       // }
+       // if (tab.equals(CoreUITabId.MAP) && (inHyperspace || !isInCheckpointSystem)) {
+       //     Global.getSector().addTransientScript(new EnableSectorMapButton());
+       // }
 
     }
 }

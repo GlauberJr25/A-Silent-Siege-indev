@@ -15,10 +15,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class OldLegionPeople {
-
     public static String OLDLEGION_NATAH = "oldlegion_natah";
     public static String OLDLEGION_SOLAX = "oldlegion_solaxwhitemore";
-    public static String DOMAIN_CAPTAIN_ZERATUL = "domain_capt_zeratul";
     public static String ARTANIS = "oldlegion_artanis";
     public static Logger log = Global.getLogger(OldLegionPeople.class);
 
@@ -50,58 +48,50 @@ public class OldLegionPeople {
                 }
             }
 
-            PersonAPI oldlegion_natah_person = Global.getFactory().createPerson();
-            oldlegion_natah_person.setId(OLDLEGION_NATAH);
-            oldlegion_natah_person.getName().setFirst("Joel");
-            oldlegion_natah_person.getName().setLast("Kepler");
-            oldlegion_natah_person.setFaction("domainspecops");
-            oldlegion_natah_person.setGender(Gender.MALE);
-            oldlegion_natah_person.setPortraitSprite("graphics/portraits/stellaris_robot.png");
-            oldlegion_natah_person.setRankId("factionLeader");
-            oldlegion_natah_person.setPostId("factionLeader");
-            oldlegion_natah_person.setImportance(PersonImportance.VERY_HIGH);
-            oldlegion_natah_person.getStats().setSkillLevel("industrial_planning", 3.0F);
-            oldlegion_natah_person.addTag("domain");
-            if (!ip.containsPerson(oldlegion_natah_person)) {
-                //log.info("OLDLEGION_RETROGEN: Natah Person did not exist. He has been generated retroactively");
-                ip.addPerson(oldlegion_natah_person);
-                market.addPerson(oldlegion_natah_person);
-                market.getCommDirectory().addPerson(oldlegion_natah_person, 0);
-                market.getCommDirectory().getEntryForPerson(oldlegion_natah_person).setHidden(false);
-            } else {
-                log.info("OLDLEGION_RETROGEN: Natah Person already exists. No action taken");
-            }
+            PersonAPI natah_person = Global.getFactory().createPerson();
+            natah_person.setId(OLDLEGION_NATAH);
+            natah_person.getName().setFirst("Joel");
+            natah_person.getName().setLast("Kepler");
+            natah_person.setFaction("domainspecops");
+            natah_person.setGender(Gender.MALE);
+            natah_person.setPortraitSprite("graphics/portraits/domint_proxy_badge.png");
+            natah_person.setRankId("factionLeader");
+            natah_person.setPostId("factionLeader");
+            natah_person.setImportance(PersonImportance.VERY_HIGH);
+            natah_person.getStats().setSkillLevel("industrial_planning", 3.0F);
+            natah_person.addTag("domain");
+            BaseMissionHub.set(natah_person, new BaseMissionHub(natah_person));
+            natah_person.getMemoryWithoutUpdate().set(BaseMissionHub.NUM_BONUS_MISSIONS, 1);
+            if (!ip.containsPerson(natah_person)) {
+                ip.addPerson(natah_person);}
+            else {log.info("OLDLEGION_RETROGEN: Natah Person already exists. No action taken");}
             PersonAPI old_admin = market.getAdmin();
             if (old_admin != null) {
                 market.getCommDirectory().removePerson(old_admin);
-                market.setAdmin(oldlegion_natah_person);
-            }
-            if (old_admin == null) {
-                market.setAdmin(oldlegion_natah_person);
-            }
+                market.setAdmin(natah_person);}
+            if (old_admin == null) {market.setAdmin(natah_person);}
 
-            PersonAPI oldlegion_solaxwhitemore_person = Global.getFactory().createPerson();
-            oldlegion_solaxwhitemore_person.setId(OLDLEGION_SOLAX);
-            oldlegion_solaxwhitemore_person.setFaction("domainspecops");
-            oldlegion_solaxwhitemore_person.setGender(Gender.MALE);
-            oldlegion_solaxwhitemore_person.setRankId("spaceCommander");
-            oldlegion_solaxwhitemore_person.setPostId("supplyOfficer");
-            oldlegion_solaxwhitemore_person.setImportance(PersonImportance.HIGH);
-            oldlegion_solaxwhitemore_person.getName().setFirst("Solax Whitemore");
-            oldlegion_solaxwhitemore_person.setPortraitSprite("graphics/portraits/stellaris_robot.png");
-            oldlegion_solaxwhitemore_person.addTag("domain");
-            BaseMissionHub.set(oldlegion_solaxwhitemore_person, new BaseMissionHub(oldlegion_solaxwhitemore_person));
-            oldlegion_solaxwhitemore_person.getMemoryWithoutUpdate().set(BaseMissionHub.NUM_BONUS_MISSIONS, 1);
-            if (!ip.containsPerson(oldlegion_solaxwhitemore_person)) {
-                //log.info("OLDLEGION_RETROGEN: Solax Person did not exist. He has been generated retroactively");
-                ip.addPerson(oldlegion_solaxwhitemore_person);
-                market.addPerson(oldlegion_solaxwhitemore_person);
-                market.getCommDirectory().addPerson(oldlegion_solaxwhitemore_person, 0);
-                market.getCommDirectory().getEntryForPerson(oldlegion_solaxwhitemore_person).setHidden(false);
-
-            } else {
-                log.info("OLDLEGION_RETROGEN: Solax Person already exists. No action taken");
-            }
+            PersonAPI solaxwhitemore_person = Global.getFactory().createPerson();
+            solaxwhitemore_person.setId(OLDLEGION_SOLAX);
+            solaxwhitemore_person.setFaction("domainspecops");
+            solaxwhitemore_person.setGender(Gender.MALE);
+            solaxwhitemore_person.setRankId("spaceCommander");
+            solaxwhitemore_person.setPostId("supplyOfficer");
+            solaxwhitemore_person.setImportance(PersonImportance.HIGH);
+            solaxwhitemore_person.getName().setFirst("Solax Whitemore");
+            solaxwhitemore_person.setPortraitSprite("graphics/portraits/domint_proxy.png");
+            solaxwhitemore_person.addTag("domain");
+            //BaseMissionHub.set(solaxwhitemore_person, new BaseMissionHub(solaxwhitemore_person));
+            //solaxwhitemore_person.getMemoryWithoutUpdate().set(BaseMissionHub.NUM_BONUS_MISSIONS, 1);
+            if (!ip.containsPerson(solaxwhitemore_person)) {
+                ip.addPerson(solaxwhitemore_person);}
+            else {log.info("OLDLEGION_RETROGEN: Solax Person already exists. No action taken");}
+            market.addPerson(solaxwhitemore_person);
+            market.getCommDirectory().addPerson(solaxwhitemore_person, 0);
+            market.getCommDirectory().getEntryForPerson(solaxwhitemore_person).setHidden(false);
+            market.addPerson(natah_person);
+            market.getCommDirectory().addPerson(natah_person, 1);
+            market.getCommDirectory().getEntryForPerson(natah_person).setHidden(false);
         }
     }
 
@@ -135,7 +125,8 @@ public class OldLegionPeople {
         person.getStats().setSkillLevel("support_doctrine", 1.0F);
         person.getStats().setSkillLevel("electronic_warfare", 1.0F);
         person.getStats().setSkillLevel("coordinated_maneuvers", 1.0F);
-        person.setPortraitSprite("graphics/portraits/stellaris_robot.png");
+
+        person.setPortraitSprite("graphics/portraits/portrait_generic_grayscale.png");
         return person;
     }
 

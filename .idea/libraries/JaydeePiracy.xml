@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="JaydeePiracy">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../JaydeePiracy-4.0.1/jars/JaydeePiracy.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

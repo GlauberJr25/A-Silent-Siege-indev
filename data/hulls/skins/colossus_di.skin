@@ -1,22 +1,26 @@
 {
-  "baseHullId": "onslaught",
+  "baseHullId": "colossus",
+  "baseValue": 40000,
   "baseValueMult": 1.75,
   "builtInMods": [
     "DomainRetrofitMod",
-    "pointdefenseai"
+    "shielded_holds"
   ],
-  "descriptionId": "onslaught",
+  "descriptionId": "colossus",
   "descriptionPrefix": "Built to the specifications of DOMINT, this vessel is a prime example of the Domain's 'All seeing eye' doctrine, particularly exhibited by a series of radical structural modifications performed using pre-Collapse industrial technology.",
   "fighterBays": 0,
-  "fleetPoints": 40,
+  "fleetPoints": 7,
   "fpMod": 0,
-  "hullDesignation": "Battleship",
-  "hullName": "Onslaught (DI)",
+  "hullDesignation": "FRIGATE",
+  "hullName": "Colossus (DI)",
   "manufacturer": "Domain Restricted",
-  "ordnancePoints": 370,
+  "ordnancePoints": 55,
+  "removeBuiltInMods": [
+    "civgrade"
+  ],
   "restoreToBaseHull": false,
-  "skinHullId": "onslaught_di",
-  "spriteName": "graphics/ships/onslaught_domint.png",
-  "tech": "Domain Restricted",
-  "tags":["codex_unlockable"]
+  "skinHullId": "colossus_di",
+  "spriteName": "graphics/ships/Decolossus_alt_domint.png",
+  "systemId": "flarelauncher",
+  "tech": "Domain Restricted"
 }

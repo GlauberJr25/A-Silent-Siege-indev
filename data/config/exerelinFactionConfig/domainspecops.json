@@ -1,0 +1,16 @@
+{
+    "playableFaction":false,
+    "corvusCompatible":true,
+    "dropPrisoners":false,
+    "noMissionTarget":true,
+    "hostileToAll":2,
+    "startRelationships":{ "tritachyon": 0 },
+    "noRandomizeRelations":true,
+    "noSyncRelations":true,
+    "raidsFromBases":true,
+    "disableDiplomacy":true,
+    "invasionOnlyRetake":true,
+    "allowPrisonerActions":false,
+    
+    "invasionSupportFleetName":"Legion",
+}

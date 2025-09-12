@@ -1,0 +1,20 @@
+{
+
+  "comm_relay_domint":{
+    "baseId":"base_campaign_objective",
+    "defaultName":"Comm Relay", # used if name=null in addCustomEntity()
+    "nameInText":"comm relay",
+    "shortName":"relay",
+    "icon":"graphics/icons/relay.png",
+    "iconWidth":30,
+    "iconHeight":30,
+    "sprite":"graphics/ships/com_relay.png",
+    "spriteWidth":139,
+    "spriteHeight":98,
+    "customDescriptionId":"comm_relay",
+    "interactionImage":"graphics/illustrations/comm_relay.jpg",
+    "tags":["comm_relay", "neutrino_high", "objective"],
+    "layers":[STATIONS], # what layer(s) to render in. See CampaignEngineLayers.java for possible values
+    "pluginClass":"com.fs.starfarer.api.impl.campaign.CommRelayEntityPlugin"
+  }
+}

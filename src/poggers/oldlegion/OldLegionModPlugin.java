@@ -8,10 +8,10 @@ import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import exerelin.campaign.SectorManager;
 import poggers.oldlegion.listeners.CoreUIListener;
 import poggers.oldlegion.listeners.GateJumpTracker;
+import poggers.oldlegion.listeners.OldLegionJFIntCheckScript;
+import poggers.oldlegion.listeners.SystemListener;
 import poggers.oldlegion.utils.OldLegionPeople;
 import poggers.oldlegion.world.OldLegionModGen;
-
-import static com.fs.starfarer.api.Global.getSettings;
 
 public class OldLegionModPlugin extends BaseModPlugin {
 
@@ -21,23 +21,32 @@ public class OldLegionModPlugin extends BaseModPlugin {
 
     // call order: onNewGame -> onNewGameAfterProcGen -> onNewGameAfterEconomyLoad -> onEnabled -> onNewGameAfterTimePass -> onGameLoad
 
-
-    // TODO: Actual Dialog and art for characters (LOTS OF DIALOG TO FIX)
+    // TODO: Actual Dialog and art for characters (LOTS OF DIALOG TO FIX) (1)
     // TODO: change license (maybe not?)
-    // TODO: stop faction relationships from changing with NEX
-    // TODO: block transverse jump on outpost system (number 2 priority)
-    // TODO: fix npc comm order issue (number 1 priority)
-    // TODO: trade shroud/threat/omega items for rep
-    // TODO: lock info on codex about domain stuff
+    // TODO: trade shroud/threat/omega items for rep (3)
+    // TODO: scuttle charge ''d-mod'' (2)
+    // TODO: maaaybe add the seed as the domain id when talking?
 
     private void addListenersIfNeeded() {
         ListenerManagerAPI l = Global.getSector().getListenerManager();
-
+        // Add any listener to this
         if (!l.hasListenerOfClass(GateJumpTracker.class))
             l.addListener(new GateJumpTracker(), true);
 
         if (!l.hasListenerOfClass(CoreUIListener.class))
             l.addListener(new CoreUIListener(), true);
+
+
+    }
+
+    private static void addTransientScriptsIfNeeded(SectorAPI sector) {
+
+        // Add any transient scripts to this
+        if (!sector.hasTransientScript(SystemListener.class))
+            sector.addTransientScript(new SystemListener());
+
+        if (!sector.hasTransientScript(OldLegionJFIntCheckScript.class))
+            sector.addTransientScript(new OldLegionJFIntCheckScript());
 
     }
 
@@ -46,6 +55,7 @@ public class OldLegionModPlugin extends BaseModPlugin {
         MemoryAPI sector_mem = Global.getSector().getMemoryWithoutUpdate();
 
         addListenersIfNeeded();
+        addTransientScriptsIfNeeded(sector);
 
         OldLegionModGen.trySpawnOutpost(sector);
 

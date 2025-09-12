@@ -1,0 +1,4 @@
+id,name,faction,desc,script,icon,order
+oldlegion_hangar,"Deprecated
+Hangar",domainspecops,"Pulls old, deprecated warships and weapons from across the Sector for those who are willing to pay a premium and don't ask too many questions.",poggers.oldlegion.campaign.submarkets.OldHangar,graphics/factions/storage.png,250
+,,,,,,

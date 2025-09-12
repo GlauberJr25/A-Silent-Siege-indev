@@ -1,6 +1,6 @@
 {
 	id:"domainspecops",
-	"color":[150,150,150,255],
+	"color":[255,213,133,255],
 	"displayName":"Domain of Man",
 	"displayNameWithArticle":"the Domain of Man",
 	"displayNameLong":"Domain Operatives",
@@ -68,7 +68,7 @@
                  "valkyrie",
                  "starliner",
                  "tarsus",
-                 "colossus",
+                 "colossus_di",
                  "buffalo_hegemony",
 
                  "hound_hegemony",
@@ -91,7 +91,6 @@
                  "grendel", # 0 phase doctrine, but added to combatLarge elsewhere in this file
 
                  "legion_xiv",
-                 #"onslaught_xiv",
                  "onslaught_di",
                  "domain_capital"
 		],
@@ -104,7 +103,6 @@
         # despite the Legion being a carrier and the carrier portion of the doctrine being low
 		"hulls":[
             "legion_xiv",
-            #"onslaught_xiv",
             "domain_capital",
             "onslaught_di",
 
@@ -258,9 +256,9 @@
 		
 		"officerQuality":5,
 		"shipQuality":4,
-		"numShips":2,
+		"numShips":3,
 		
-		"shipSize":3,
+		"shipSize":4,
 		
 		"aggression":2,
 		
@@ -285,9 +283,11 @@
 	"portraits":{
 		"standard_male":[
 			"graphics/portraits/stellaris_robot.png",
+			"graphics/portraits/domint_proxy.png",
 		],
 		"standard_female":[
 			"graphics/portraits/stellaris_robot.png",
+			"graphics/portraits/domint_proxy.png",
 		],
 	},
 	"ranks":{

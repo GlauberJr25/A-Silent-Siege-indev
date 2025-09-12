@@ -1,3 +1,3 @@
 id,name,cost mult,build time,income,upkeep,downgrade,upgrade,tags,data,image,plugin,desc,order,disruptDanger
-oldlegion_gate_infrastructure,Gate-Based Infrastructure,100,60,,100,,,industry,,graphics/icons/industry/gatesupplyruns.png,poggers.oldlegion.campaign.econ.industry.GateResupplyRun,[PH] custom description will go here,2500,EXTREME
+oldlegion_gate_infrastructure,Gate-Based Infrastructure,100,60,,100,,,industry,,graphics/icons/industry/gatesupplyruns.png,poggers.oldlegion.campaign.econ.industry.GateResupplyRun,"Supply barges deliver on a regular basis the wide variety of good required to keep (planet name) running. Dismantled after crossing, they are the only form of gate traffic allowed.",2500,EXTREME
 ,,,,,,,,,,,,,,
