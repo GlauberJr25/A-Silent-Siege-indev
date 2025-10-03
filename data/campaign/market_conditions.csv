@@ -1,2 +1,3 @@
 name,id,tags,planetary,decivRemove,script,desc,icon,order
 Population,oldlegion_population_0,,,TRUE,com.fs.starfarer.api.impl.campaign.econ.Population,Less than 10 people live inside $marketName.,graphics/icons/markets/population00.png,20
+Fried,oldlegion_baja_blast,,,FALSE,poggers.oldlegion.campaign.econ.Markets.BajaBlast,"This planet's surface is constantly blasted by high intensity cosmic rays, are you SURE you want to settle here?",graphics/icons/markets/blasted.png,21

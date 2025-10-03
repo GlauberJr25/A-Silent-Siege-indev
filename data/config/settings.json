@@ -17,5 +17,8 @@
 		"characters":{
 			"oldlegion_natah":"graphics/portraits/domint_proxy_badge.png",
 		},
+		"planets":{
+			"BajaBlast":"graphics/planets/oldlegion_baja_blasted.jpg",
+		},
 	}
 }
