@@ -154,7 +154,8 @@ public class MySystemOne {
         //and that you set it using the modifyFlat() function with a decimal value.
         market.getTariff().modifyFlat("generator", 0.3f);
         market.setPlanetConditionMarketOnly(false);
-        market.addCondition(Conditions.THIN_ATMOSPHERE);
+        market.addCondition(Conditions.NO_ATMOSPHERE);
+        market.addCondition(Conditions.POOR_LIGHT);
         market.addCondition(Conditions.ORE_ULTRARICH);
         market.addCondition(Conditions.RARE_ORE_ULTRARICH);
         //population tag is purely decorative. Can set to whatever you want or Omit it. For player colonies, adjusts to match growth of the market size.
@@ -173,7 +174,7 @@ public class MySystemOne {
         //stability information will be available by hovering
         //there will be severe accessibility penalty from lack of spaceport
         //finally, population adds an admnistrator npc to the comm directiory
-        market.addIndustry(Industries.POPULATION);
+        market.addIndustry(Industries.POPULATION, new ArrayList<>(Arrays.asList("orbital_fusion_lamp")));
         //spaceport adds quartermaster and portmaster npcs in Comms
         market.addIndustry(Industries.MEGAPORT);
         //Adding orbital station will place a station in orbit and add station commander npc to Comms
