@@ -36,12 +36,13 @@ public class DomainEngineering extends BaseHullMod {
         Color t = Misc.getTextColor();
         Color g = Misc.getGrayColor();
 
-        tooltip.addSectionHeading("Campaign", Alignment.MID, opad);
-        tooltip.addPara("Sensor profile reduced to %s.", opad, h, "0");
-
         tooltip.addSectionHeading("Combat", Alignment.MID, opad);
         tooltip.addPara("Target leading accuracy increased to maximum for all weapons, including missiles. Effect "
                 + "of enemy ECM rating reduced by %s.", opad, h, "" + (int) Math.round(EW_PENALTY_MULT * 100f) + "%");
+
+        tooltip.addSectionHeading("Campaign", Alignment.MID, opad);
+        tooltip.addPara("Sensor profile reduced to %s.", opad, h, "0");
+        tooltip.addPara("Warning: Active scuttle charges. Ships with this hullmod cannot be recovered after combat.", opad, bad, "Warning: Active scuttle charges. Ships with this hullmod cannot be recovered after combat.");
     }
 
     /*public String getDescriptionParam(int index, HullSize hullSize) {
