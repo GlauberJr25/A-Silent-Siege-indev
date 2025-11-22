@@ -16,7 +16,7 @@ public class OldLegionJFIntCheckScript implements EveryFrameScript {
             StarSystemAPI currSystem = playerFleet.getStarSystem();
             if (Global.getSector().getMemoryWithoutUpdate().contains("$oldlegion_IntroExpositionDone")) {
                 Global.getSector().removeTransientScript(this);
-            } else if (currSystem != null && currSystem.getName().contains("Nataruk")) {
+            } else if (currSystem != null && currSystem.getName().contains("Orthanc")) {
                 if (!Global.getSector().getMemoryWithoutUpdate().contains("$oldlegion_IntroExpositionDone")) {
                     Global.getSector().getMemoryWithoutUpdate().set("$oldlegion_IntroExpositionDone", true);
 //                    Global.getSector().getCampaignUI().showInteractionDialog(new NatarukIntroTestPlugin(), (SectorEntityToken)null);

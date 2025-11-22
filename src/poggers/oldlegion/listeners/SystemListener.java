@@ -21,12 +21,12 @@ public class SystemListener implements EveryFrameScript {
         CampaignFleetAPI playerFleet = Global.getSector().getPlayerFleet();
         if (playerFleet.getStarSystem() == null) return;
         // Adds script when in Nataruk system
-        if (playerFleet.getStarSystem().getName().contains("ataruk") &&
+        if (playerFleet.getStarSystem().getName().contains("Orthanc") &&
                 !playerFleet.hasScriptOfClass(TransverseAvailabilityScript.class)) {
             playerFleet.addScript(new TransverseAvailabilityScript());
         }
         // Removes script when no longer in Nataruk system
-        if (!playerFleet.getStarSystem().getName().contains("ataruk") &&
+        if (!playerFleet.getStarSystem().getName().contains("Orthanc") &&
                 playerFleet.hasScriptOfClass(TransverseAvailabilityScript.class)) {
             playerFleet.removeScriptsOfClass(TransverseAvailabilityScript.class);
         }

@@ -36,7 +36,7 @@ public class MySystemOne {
     public static Logger log = Global.getLogger(MySystemOne.class);
 
     public void generate(SectorAPI sector) {
-        StarSystemAPI domainOutpostSystem = sector.createStarSystem("Nataruk");
+        StarSystemAPI domainOutpostSystem = sector.createStarSystem("Orthanc");
         domainOutpostSystem.getLocation().set(0,-65000); //bottom centerish - was +80000,-55000
 
       //domainOutpost.setOptionalUniqueId("oldlegion_domint_outpost");
@@ -133,7 +133,7 @@ public class MySystemOne {
         //domainOutpost.addRingBand(relay, "misc", "rings_asteroids0", 256f, 0, Color.gray, 256f, asteroidBelt1Dist, 350f);
         //domainOutpost.addRingBand(relay, "misc", "rings_asteroids0", 256f, 2, Color.gray, 256f, asteroidBelt1Dist + 200, 400f);
 
-        PlanetAPI Hunhow = domainOutpostSystem.addPlanet("Hunhow", relay, "Hunhow's Fall", "barren", 0, 273, 4977, 157);
+        PlanetAPI Hunhow = domainOutpostSystem.addPlanet("Hunhow", relay, "Palantir", "barren", 0, 273, 4977, 157);
         Hunhow.setFaction("domainspecops");
         MarketAPI market = Global.getFactory().createMarket(
                 "Hunhow_market",
