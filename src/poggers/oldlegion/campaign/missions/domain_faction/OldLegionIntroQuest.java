@@ -17,7 +17,6 @@ public class OldLegionIntroQuest extends HubMissionWithSearch {
         COMPLETED,
     }
     protected PersonAPI OLDLEGION_NATAH;
-    //protected MarketAPI Hunhow_market;
 
     protected boolean create(MarketAPI createdAt, boolean barEvent) {
         setName("Unknown Operatives");
@@ -28,13 +27,12 @@ public class OldLegionIntroQuest extends HubMissionWithSearch {
 
         OLDLEGION_NATAH = getImportantPerson(OldLegionPeople.OLDLEGION_NATAH);
         if (OLDLEGION_NATAH == null) return false;
-        makeImportant(OLDLEGION_NATAH, "olintro", Stage.TALK_TO_JOEL_ON_BASE);
+        makeImportant(OLDLEGION_NATAH, "$olintro", Stage.TALK_TO_JOEL_ON_BASE);
 
         //setting the stages
         setStartingStage(Stage.TALK_TO_JOEL_ON_BASE);
         setSuccessStage(Stage.COMPLETED);
         setNoAbandon();
-
         //setting stage transition
         setStageOnGlobalFlag(Stage.COMPLETED, "$oldlegion_intro_completed");
         return true;
