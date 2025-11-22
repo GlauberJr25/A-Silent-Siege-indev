@@ -24,6 +24,7 @@ public class GateResupplyRun extends BaseIndustry {
         supply("ships", size + 2);
         supply("domestic_goods", size - 1);
         supply("luxury_goods", size - 3);
+        supply("volatiles", size + 4);
         if (isAOTDVoKEnabled) {
             supply("purified_rare_metal", size + 1);
         }

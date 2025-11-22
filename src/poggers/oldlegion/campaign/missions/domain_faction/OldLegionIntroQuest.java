@@ -28,14 +28,12 @@ public class OldLegionIntroQuest extends HubMissionWithSearch {
 
         OLDLEGION_NATAH = getImportantPerson(OldLegionPeople.OLDLEGION_NATAH);
         if (OLDLEGION_NATAH == null) return false;
+        makeImportant(OLDLEGION_NATAH, "olintro", Stage.TALK_TO_JOEL_ON_BASE);
 
         //setting the stages
         setStartingStage(Stage.TALK_TO_JOEL_ON_BASE);
         setSuccessStage(Stage.COMPLETED);
-
         setNoAbandon();
-
-        makeImportant(OLDLEGION_NATAH, "$olIntro1_goHere", Stage.TALK_TO_JOEL_ON_BASE);
 
         //setting stage transition
         setStageOnGlobalFlag(Stage.COMPLETED, "$oldlegion_intro_completed");
