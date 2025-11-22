@@ -101,7 +101,7 @@ $faction.id == domainspecops",,"Vengeful: // DISPLAY OVERRIDE //
 # Visit Outpost,,,,,,
 BarPopulate,DialogOptionSelected,"$faction.id == domainspecops
 $market.id == Hunhow_market
-$option == marketVisitBar",,"You search all around the outpost for a bar, but every area you expect there to be a bar, you see automation. Guess there aren't any bars around anymore.",outpostBarLeave:Move along,
+$option == marketVisitBar",,"You search all around the outpost for a bar, but instead only find automation and closed off areas. Guess there aren't any bars around.",outpostBarLeave:Move along,
 BarLeave,DialogOptionSelected,$option == outpostBarLeave,BarCMD leaveBar,,,
 #END Visit Outpost,,,,,,
 ,,,,,,

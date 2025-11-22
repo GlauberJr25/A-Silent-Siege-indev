@@ -20,21 +20,25 @@ public class OldLegionIntroQuest extends HubMissionWithSearch {
     //protected MarketAPI Hunhow_market;
 
     protected boolean create(MarketAPI createdAt, boolean barEvent) {
+        setName("Unknown Operatives");
+        setStoryMission();
+        setRepFactionChangesNone();
+        setRepPersonChangesNone();
+        completedKey = "$oldlegion_intro_completed";
+
         OLDLEGION_NATAH = getImportantPerson(OldLegionPeople.OLDLEGION_NATAH);
         if (OLDLEGION_NATAH == null) return false;
 
-        setStartingStage(OldLegionIntroQuest.Stage.TALK_TO_JOEL_ON_BASE);
-        addSuccessStages(OldLegionIntroQuest.Stage.COMPLETED);
+        //setting the stages
+        setStartingStage(Stage.TALK_TO_JOEL_ON_BASE);
+        setSuccessStage(Stage.COMPLETED);
 
-        setStoryMission();
+        setNoAbandon();
 
-        makeImportant(OLDLEGION_NATAH, "$olIntro1_goHere", OldLegionIntroQuest.Stage.TALK_TO_JOEL_ON_BASE);
-        //makeImportant(OLDLEGION_NATAH, null, OldLegionIntroQuest.Stage.TALK_TO_JOEL_ON_BASE);
-        setStageOnGlobalFlag(OldLegionIntroQuest.Stage.COMPLETED, "$oldlegion_intro_completed");
+        makeImportant(OLDLEGION_NATAH, "$olIntro1_goHere", Stage.TALK_TO_JOEL_ON_BASE);
 
-        setRepFactionChangesNone();
-        setRepPersonChangesNone();
-
+        //setting stage transition
+        setStageOnGlobalFlag(Stage.COMPLETED, "$oldlegion_intro_completed");
         return true;
     }
     protected void updateInteractionDataImpl() {
@@ -45,21 +49,17 @@ public class OldLegionIntroQuest extends HubMissionWithSearch {
     public void addDescriptionForNonEndStage(TooltipMakerAPI info, float width, float height) {
         float opad = 10f;
         Color h = Misc.getHighlightColor();
-        if (currentStage == OldLegionIntroQuest.Stage.TALK_TO_JOEL_ON_BASE) {
+        if (currentStage == Stage.TALK_TO_JOEL_ON_BASE) {
             info.addPara("Reach out to the leader of the outpost located on the nearby planet in this system.", opad);
         }
     }
     @Override
     public boolean addNextStepText(TooltipMakerAPI info, Color tc, float pad) {
         Color h = Misc.getHighlightColor();
-        if (currentStage == OldLegionIntroQuest.Stage.TALK_TO_JOEL_ON_BASE) {
+        if (currentStage == Stage.TALK_TO_JOEL_ON_BASE) {
             info.addPara("Go to the nearby planetary outpost.", tc, pad);
             return true;
         }
         return false;
-    }
-    @Override
-    public String getBaseName() {
-        return "Unknown Operatives";
     }
 }

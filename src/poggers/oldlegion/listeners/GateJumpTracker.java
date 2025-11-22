@@ -7,7 +7,6 @@ import com.fs.starfarer.api.campaign.listeners.GateTransitListener;
 import com.fs.starfarer.api.impl.campaign.GateEntityPlugin;
 import com.fs.starfarer.api.impl.campaign.rulecmd.missions.GateCMD;
 import com.fs.starfarer.api.util.Misc;
-import org.lazywizard.console.Console;
 
 import java.util.ArrayList;
 import java.util.Random;

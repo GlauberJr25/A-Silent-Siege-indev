@@ -25,8 +25,8 @@ public class OldLegionModPlugin extends BaseModPlugin {
     // TODO: FIX INTRO QUEST AAAAHHHHHH (1!!)
     // TODO: change license (maybe not?)
     // TODO: trade shroud/threat/omega items for rep (4)
-    // TODO: scuttle charge ''d-mod'' (3)
     // TODO: maaaybe add the seed as the domain id when talking?
+    // TODO: remove marines and crew from outpost market (3)
 
     private void addListenersIfNeeded() {
         ListenerManagerAPI l = Global.getSector().getListenerManager();
