@@ -21,12 +21,11 @@ public class OldLegionModPlugin extends BaseModPlugin {
 
     // call order: onNewGame -> onNewGameAfterProcGen -> onNewGameAfterEconomyLoad -> onEnabled -> onNewGameAfterTimePass -> onGameLoad
 
+    // TODO: remove marines and crew from outpost market (1)
     // TODO: Actual Dialog and art for characters (LOTS OF DIALOG TO FIX) (2)
-    // TODO: FIX INTRO QUEST AAAAHHHHHH (1!!)
     // TODO: change license (maybe not?)
-    // TODO: trade shroud/threat/omega items for rep (4)
     // TODO: maaaybe add the seed as the domain id when talking?
-    // TODO: remove marines and crew from outpost market (3)
+    // TODO: fix intro quest marker disappearing (low priority because how the F am I supposed to fix that honestly???)
 
     private void addListenersIfNeeded() {
         ListenerManagerAPI l = Global.getSector().getListenerManager();

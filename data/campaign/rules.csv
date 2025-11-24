@@ -134,6 +134,20 @@ AdjustRep domainspecops -5","""Sure, here you go, a Hypershunt Tap""","cutCommLi
 ajfsPart3Nevermind,DialogOptionSelected,$option == ajfsOption2Nevermind,FireAll PopulateOptions,"""Sure, suit yourself.""",cutCommLink:Goodbye,
 #END Ask Joel For Stuff,,,,,,
 ,,,,,,
+# Give Joel Weird Stuff,,,,,,
+JKtechReturn,PopulateOptions,$id == oldlegion_natah score,FireBest JKdisableTurnInTech,,"jk_techReturn:""I've found some 'interesting' specimens for you...""",
+JKtechReturnDisable,JKdisableTurnInTech,!JKTurnIn playerHasSellableItems,"SetEnabled jk_techReturn false
+SetTooltip jk_techReturn ""You do not have any 'interesting' specimens in your possession.""",,,
+JKtechReturnOptFirst,DialogOptionSelected,$option == jk_techReturn,FireAll PopulateJKturnInOpts,"""My strategic predictors tagged you with reasonable odds of success,"" he says. ""I must congratulate their operators.""",,
+JKtechPlayerHasOption,PopulateJKturnInOpts,,,,0:jk_techSelectCargo:Select specimens to turn in,
+JKtechNeverMindOption,PopulateJKturnInOpts,,,,"100:jk_techNeverMind:""I have nothing for you right now.""",
+JKtechPlayerHasOptionCheck,PopulateJKturnInOpts,!JKTurnIn playerHasSellableItems,"SetEnabled jk_techSelectCargo false
+SetTooltip jk_techSelectCargo ""You do not have any 'interesting' specimens in your possession.""",,,
+JKtechNeverMindOptionSelected,DialogOptionSelected,$option == jk_techSelectCargo,JKTurnIn selectSellableItems,,,
+JKtechTurnInOptionSelected,DialogOptionSelected,$option == jk_techNeverMind,FireAll PopulateOptions,Glamor-Kepler gives you a frosty look.,,
+JKtechTurnInResponseFirst,JKItemsTurnedIn,,FireAll PopulateOptions,"""You've been most useful,"" she says ominously.",,
+# END Give Joel Weird Stuff,,,,,,
+,,,,,,
 # First Encounter,,,,,,
 JoelEncounter1,YourInitialTrigger,,"IntroStartDialog
 FireAll joelBeginOpts",,"3:joelContinue:Continue
