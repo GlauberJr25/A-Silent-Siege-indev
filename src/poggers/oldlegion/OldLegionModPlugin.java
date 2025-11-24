@@ -36,11 +36,9 @@ public class OldLegionModPlugin extends BaseModPlugin {
         if (!l.hasListenerOfClass(CoreUIListener.class))
             l.addListener(new CoreUIListener(), true);
 
-
     }
 
     private static void addTransientScriptsIfNeeded(SectorAPI sector) {
-
         // Add any transient scripts to this
         if (!sector.hasTransientScript(SystemListener.class))
             sector.addTransientScript(new SystemListener());

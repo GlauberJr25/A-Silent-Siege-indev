@@ -39,29 +39,36 @@ public class GateResupplyRun extends BaseIndustry {
             supply.clear();
             unapply();
         }
-
     }
-
+    //code to remove crews and marines from open market (doesn't get them to zero because they get produced after being removed)
+//    @Override
+//    public void advance(float amount) {
+//        super.advance(amount);
+//
+//        if (!isDisrupted() && market.hasSubmarket(Submarkets.SUBMARKET_OPEN) &&  market.getSubmarket(Submarkets.SUBMARKET_OPEN).getCargo().getCommodityQuantity(Commodities.CREW) > 1)  {
+//            float commoditiesPerDay = 10000f;
+//            float availableQuant = market.getSubmarket(Submarkets.SUBMARKET_OPEN).getCargo().getCommodityQuantity(Commodities.CREW);
+//            float total = Math.min(availableQuant, commoditiesPerDay);
+//            market.getSubmarket(Submarkets.SUBMARKET_OPEN).getCargo().removeCommodity(Commodities.CREW, total);
+//        } else if (!isDisrupted() && market.hasSubmarket(Submarkets.SUBMARKET_OPEN) &&  market.getSubmarket(Submarkets.SUBMARKET_OPEN).getCargo().getCommodityQuantity(Commodities.MARINES) > 1) {
+//            float commoditiesPerDay = 10000f;
+//            float availableQuant = market.getSubmarket(Submarkets.SUBMARKET_OPEN).getCargo().getCommodityQuantity(Commodities.MARINES);
+//            float total = Math.min(availableQuant, commoditiesPerDay);
+//            market.getSubmarket(Submarkets.SUBMARKET_OPEN).getCargo().removeCommodity(Commodities.MARINES, total);
+//        }
+//    }
     public boolean isAvailableToBuild() {
         return false;
     }
-
     public boolean isDemandLegal(CommodityOnMarketAPI com) {
         return true;
     }
-
     public boolean isSupplyLegal(CommodityOnMarketAPI com) {
         return true;
     }
-
     public boolean showWhenUnavailable() {
         return false;
     }
-
-    //public String getUnavailableReason() {
-    //return "Needs to be allied with Domain FOB";
-    //}
-
     protected boolean canImproveToIncreaseProduction() {
         return true;
     }

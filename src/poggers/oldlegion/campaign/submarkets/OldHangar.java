@@ -2,20 +2,13 @@ package poggers.oldlegion.campaign.submarkets;
 
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.*;
-import com.fs.starfarer.api.campaign.SubmarketPlugin.TransferAction;
-import com.fs.starfarer.api.campaign.econ.CommodityOnMarketAPI;
 import com.fs.starfarer.api.campaign.econ.SubmarketAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.fleet.FleetMemberType;
 import com.fs.starfarer.api.impl.campaign.DModManager;
-import com.fs.starfarer.api.impl.campaign.fleets.DefaultFleetInflater;
 import com.fs.starfarer.api.impl.campaign.ids.Factions;
 import com.fs.starfarer.api.impl.campaign.submarkets.BaseSubmarketPlugin;
-import com.fs.starfarer.api.impl.campaign.submarkets.MilitarySubmarketPlugin;
-import com.fs.starfarer.api.util.Misc;
-import java.util.HashSet;
 import java.util.Random;
-import java.util.Set;
 
 public class OldHangar extends BaseSubmarketPlugin {
     public static RepLevel MIN_REPUTATION = RepLevel.COOPERATIVE;
@@ -78,14 +71,14 @@ public class OldHangar extends BaseSubmarketPlugin {
         return member;
     }
     @Override
-    public boolean isEnabled(CoreUIAPI ui)
-    {
+    public boolean isEnabled(CoreUIAPI ui) {
         RepLevel level = submarket.getFaction().getRelationshipLevel(Global.getSector().getFaction(Factions.PLAYER));
         boolean hangarPermission = Global.getSector().getCharacterData().getMemoryWithoutUpdate().getBoolean("$OldlegionHangarSubmarketPermission");
         return level.isAtWorst(MIN_REPUTATION) && hangarPermission;
     }
-    protected boolean requiresCommission(RepLevel req) {return false;}
-
+    protected boolean requiresCommission(RepLevel req) {
+        return false;
+    }
     public boolean isParticipatesInEconomy() {
         return false;
     }
