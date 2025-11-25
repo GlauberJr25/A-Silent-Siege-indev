@@ -198,6 +198,7 @@ public class MySystemOne {
         market.addSubmarket(Submarkets.SUBMARKET_STORAGE);
         market.addSubmarket(Submarkets.SUBMARKET_OPEN);
         market.addSubmarket("oldlegion_hangar");
+        market.addCondition("oldlegion_automation");
         //Market needs to be added to the global economy after sub-markets and industries
         //if you dont do this, at best commodities will be 1$, at worst the game will crash
         market.setEconGroup(market.getFactionId());
