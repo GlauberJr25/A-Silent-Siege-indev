@@ -21,7 +21,7 @@ public class OldLegionModPlugin extends BaseModPlugin {
 
     // call order: onNewGame -> onNewGameAfterProcGen -> onNewGameAfterEconomyLoad -> onEnabled -> onNewGameAfterTimePass -> onGameLoad
 
-    // TODO: Actual Dialog and art for characters (LOTS OF DIALOG TO FIX) (1)
+    // TODO: Actual Dialog and art for characters (some dialog to fix and quest to finish) (1)
     // TODO: change license (maybe not?)
     // TODO: maaaybe add the seed as the domain id when talking?
     // TODO: fix intro quest marker disappearing (low priority because how the F am I supposed to fix that honestly???)
