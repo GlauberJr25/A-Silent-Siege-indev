@@ -1,6 +1,8 @@
 id,type,text1,text2,text3,text4,notes,,,
 # Types: WEAPON,SHIP,RESOURCE,CUSTOM,ACTION_TOOLTIP,ASTEROID,PLANET,SHIP_SYSTEM,FACTION,TERRAIN
 #astral,SHIP,Text goes here,,,,,,,
+#SuperCap,,,,,,,,,
+supercapcloning,SHIP_SYSTEM,,Main System,"Introduces false data into the systems of nearby ships, creating illusions and chaos.",,,,,
 ,,,,,,,,,
 #CAMPAIGN,,,,,,,,,
 domainspecops,FACTION,"[PH] The uncontested authority over mankind for as long as publicly accessible records show, the Domain of Man is a multi-sector polity unified through its military supremacy, industrial might and the gate network. Originally in control of the entire persean sector, it is unknown why they have suddenly isolated it nor have not dispelled any rumours about their supposed fall. Their current and future plans for the sector or its inhabitants remain a mystery. ",,,,,,,
