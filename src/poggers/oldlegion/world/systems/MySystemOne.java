@@ -37,23 +37,21 @@ public class MySystemOne {
 
     public void generate(SectorAPI sector) {
         StarSystemAPI domainOutpostSystem = sector.createStarSystem("Orthanc");
-        domainOutpostSystem.getLocation().set(0,-65000); //bottom centerish - was +80000,-55000
+        domainOutpostSystem.getLocation().set(0,-65000); //bottom centerish
 
-      //domainOutpost.setOptionalUniqueId("oldlegion_domint_outpost");
         domainOutpostSystem.addTag(Tags.THEME_HIDDEN);
         domainOutpostSystem.addTag(Tags.THEME_SPECIAL);
         domainOutpostSystem.addTag(Tags.THEME_UNSAFE);
         domainOutpostSystem.addTag(Tags.NOT_RANDOM_MISSION_TARGET);
 
         domainOutpostSystem.setBackgroundTextureFilename("graphics/mymod/backgrounds/mybackground.jpg");
-
         domainOutpostSystem.initNonStarCenter();
+
 //        PlanetAPI argonStar = domainOutpost.initStar("Argonian", // unique id for this star
 //                "star_red_giant", // id in planets.json
 //                100f, // radius (in pixels at default zoom)
 //                650); // corona radius, from star edge
-//        domainOutpost.setLightColor(new Color(239, 155, 128)); // light color in entire DomainOutpost, affects all entities
-//        domainOutpost.removeEntity(argonStar);
+//        domainOutpost.setLightColor(new Color(239, 155, 128)); // light color in entire system, affects all entities
 
         SectorEntityToken relay = domainOutpostSystem.addCustomEntity("mam_relay", "Domain Comm Relay", "comm_relay_domint", "domainspecops");
 
@@ -127,12 +125,6 @@ public class MySystemOne {
                         new Color(154, 154, 154))); // 10, 0, 150
         relay_field3.setCircularOrbit(relay, 0, 0, 100);
 
-        //asteroid belt1 ring
-        //domainOutpost.addAsteroidBelt(relay, 1000, asteroidBelt1Dist, 800, 250, 400, Terrain.ASTEROID_BELT, "Inner Band");
-        //domainOutpost.addRingBand(relay, "misc", "rings_asteroids0", 256f, 3, Color.gray, 256f, asteroidBelt1Dist - 200, 250f);
-        //domainOutpost.addRingBand(relay, "misc", "rings_asteroids0", 256f, 0, Color.gray, 256f, asteroidBelt1Dist, 350f);
-        //domainOutpost.addRingBand(relay, "misc", "rings_asteroids0", 256f, 2, Color.gray, 256f, asteroidBelt1Dist + 200, 400f);
-
         PlanetAPI Hunhow = domainOutpostSystem.addPlanet("Hunhow", relay, "Palantir", "barren", 0, 273, 4977, 157);
         Hunhow.setFaction("domainspecops");
         MarketAPI market = Global.getFactory().createMarket(
@@ -158,7 +150,6 @@ public class MySystemOne {
         market.addCondition(Conditions.POOR_LIGHT);
         market.addCondition(Conditions.ORE_ULTRARICH);
         market.addCondition(Conditions.RARE_ORE_ULTRARICH);
-        //population tag is purely decorative. Can set to whatever you want or Omit it. For player colonies, adjusts to match growth of the market size.
         market.addCondition("oldlegion_population_0");
         //1) set the market faction ID
         //2) add industries and sub-markets to the market
@@ -166,13 +157,10 @@ public class MySystemOne {
         //the markets owning faction must be set before adding sub-markets and industries or the game will crash.
         market.setFactionId("domainspecops");
         //if no industries are added, the game wont crash...
-        //weapons and such will be available for purchase from black and open markets.
         //colonies will have a -10 stability rating
         //there will be no supply or demand for goods under ''commodities'' though there will be procurement missions
         //once population is added, there will be supply/demand for supplies
         //stability will be around 5
-        //stability information will be available by hovering
-        //there will be severe accessibility penalty from lack of spaceport
         //finally, population adds an admnistrator npc to the comm directiory
         market.addIndustry(Industries.POPULATION, new ArrayList<>(Arrays.asList("orbital_fusion_lamp")));
         //spaceport adds quartermaster and portmaster npcs in Comms
@@ -207,16 +195,12 @@ public class MySystemOne {
 
         SectorEntityToken buoy = domainOutpostSystem.addCustomEntity("nav_buoy", "Nav Buoy", "nav_buoy", "domainspecops");
         buoy.setCircularOrbit(relay, 25, 6561, 315);
-
         SectorEntityToken array = domainOutpostSystem.addCustomEntity("sensor_array", "Sensor Array", "sensor_array", "domainspecops");
         array.setCircularOrbit(relay, 25, 2361, 93);
-
         SectorEntityToken stableLoc1 = domainOutpostSystem.addCustomEntity("argon_stableloc_1", "Stable Location", "stable_location", Factions.NEUTRAL);
         stableLoc1.setCircularOrbit(relay, MathUtils.getRandomNumberInRange(0f, 360f), 3700f, 520);
-
         SectorEntityToken domaingate = domainOutpostSystem.addCustomEntity("domain_ops_gate", "Domain Gate", "inactive_gate", "domainspecops");
         domaingate.setCircularOrbit(relay, 10, 5736, 273);
-
         SectorEntityToken beacon = domainOutpostSystem.addCustomEntity("warning_beacon_grave","Warning Beacon", "warning_beacon","domainspecops");
         beacon.setCircularOrbit(relay,2,7934,1256);
         beacon.setCustomDescriptionId("graveyard_beacon");
@@ -269,7 +253,6 @@ public class MySystemOne {
         SectorEntityToken Arcon_14 = OldLegionMisc.addDerelict(domainOutpostSystem, domainOutpostSystem.getEntityById("warning_beacon_grave"), "eagle_xiv_Elite", ShipRecoverySpecial.ShipCondition.WRECKED, 121f, true);
         SectorEntityToken Arcon_15 = OldLegionMisc.addDerelict(domainOutpostSystem, domainOutpostSystem.getEntityById("warning_beacon_grave"), "eagle_xiv_Elite", ShipRecoverySpecial.ShipCondition.WRECKED, 481f, true);
         SectorEntityToken Arcon_16 = OldLegionMisc.addDerelict(domainOutpostSystem, domainOutpostSystem.getEntityById("warning_beacon_grave"), "eagle_xiv_Elite", ShipRecoverySpecial.ShipCondition.WRECKED, 394f, true);
-
         //Global.getSector().addScript(new ArtanisPersonalFleet());
     }
 }
