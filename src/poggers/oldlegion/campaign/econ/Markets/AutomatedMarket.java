@@ -8,6 +8,7 @@ import com.fs.starfarer.api.util.Misc;
 public class AutomatedMarket extends BaseHazardCondition {
 
     public static float CREW_MULT_PENALTY = 0f;
+    public static float DRUGS_FLAT_REDUCTION = 1f;
 
     public void apply(String id) {
         super.apply(id);
@@ -17,6 +18,10 @@ public class AutomatedMarket extends BaseHazardCondition {
         market.getCommodityData("marines").setMaxDemand(0);
         market.getCommodityData("crew").setMaxDemand(0);
         market.getCommodityData("food").setMaxDemand(1);
+        market.getCommodityData("drugs").setMaxDemand(2);
+        market.getCommodityData("drugs").setMaxSupply(2);
+        market.getCommodityData("organs").setMaxDemand(1);
+        market.getCommodityData("organs").setMaxSupply(1);
         market.getCommodityData("food").setStockpile(100);
         market.getIndustry("population").getSupply("crew").getQuantity().modifyMult(id, CREW_MULT_PENALTY);
         market.getIndustry("population").getDemand("domestic_goods").getQuantity().modifyMult(id, CREW_MULT_PENALTY);
@@ -27,6 +32,7 @@ public class AutomatedMarket extends BaseHazardCondition {
         market.getIndustry("starfortress_mid").getDemand("crew").getQuantity().modifyMult(id, CREW_MULT_PENALTY);
         market.getIndustry("waystation").getDemand("crew").getQuantity().modifyMult(id, CREW_MULT_PENALTY);
         market.getIndustry("heavybatteries").getSupply("marines").getQuantity().modifyMult(id, CREW_MULT_PENALTY);
+        market.getIndustry("mining").getDemand("drugs").getQuantity().modifyMult(id, CREW_MULT_PENALTY);
     }
 
     public void unapply(String id) {

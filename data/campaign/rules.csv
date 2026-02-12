@@ -146,7 +146,7 @@ SetTooltip jk_techSelectCargo ""You do not have any 'interesting' specimens in y
 JKtechNeverMindOptionSelected,DialogOptionSelected,$option == jk_techSelectCargo,JKTurnIn selectSellableItems,,,
 JKtechTurnInOptionSelected,DialogOptionSelected,$option == jk_techNeverMind,FireAll PopulateOptions,Glamor-Kepler gives you a frosty look.,,
 JKtechTurnInResponseFirst,JKItemsTurnedIn,,FireAll PopulateOptions,"""You've been most useful,"" she says ominously.",,
-# END Give Joel Weird Stuff,,,,,,
+#END Give Joel Weird Stuff,,,,,,
 ,,,,,,
 # First Encounter,,,,,,
 JoelEncounter1,YourInitialTrigger,,"IntroStartDialog
@@ -166,12 +166,14 @@ In front of your eyes is the unmistakable and near ubiquitous emblem you have co
 1:joelComms:""Comms, are you certain this is legitimate ?""
 2:joelSickJoke:""This has to be some sick joke..."" 
 3:joelStaySilent:Stay silent ",
-JoelEncounter2Engage,DialogOptionSelected,$option == joelEngage,SetOptionColor joelHail story,"""That is highly inadvisable, s- !"" Your tactical officer quickly interrupts before catching himself. ""Please excuse my tone, sir. I simply wished to prevent a mistake."" He rapidly navigates his tripad. ""To put it bluntly, we are currently sitting ducks. Crews are nowhere near combat ready and the drive field is still reeling from the jump. I'll immediately give the order to prepare for a fight, but you need to buy us some time, sir.""",0:joelHail:accept the Hail,
-JoelEncounter2Comms,DialogOptionSelected,$option == joelComms,SetOptionColor joelHail story,"""The authentication codes attached to the request match with similar instances from the Explorarium, though newer obviously."" The comms officer shrugs while nervously scratching his neck.",0:joelHail:accept the Hail,
-JoelEncounter2SickJoke,DialogOptionSelected,$option == joelSickJoke,"$option = joelHail 0
-FireBest DialogOptionSelected",You accept the hail,,
-JoelEncounter3,DialogOptionSelected,$option == joelStaySilent,"$option = joelHail 0
-FireBest DialogOptionSelected",You accept the hail,,
+JoelEncounter2Engage,DialogOptionSelected,$option == joelEngage,SetOptionColor joelHail highlight,"""That is highly inadvisable, s- !"" Your tactical officer quickly interrupts before catching himself. ""Please excuse my tone, sir. I simply wished to prevent a mistake."" He rapidly navigates his tripad. ""To put it bluntly, we are currently sitting ducks. Crews are nowhere near combat ready and the drive field is still reeling from the jump. I'll immediately give the order to prepare for a fight, but you need to buy us some time, sir.""",0:joelHail:accept the Hail,
+JoelEncounter2Comms,DialogOptionSelected,$option == joelComms,SetOptionColor joelHail highlight,"""The authentication codes attached to the request match with similar instances from the Explorarium, though newer obviously."" The comms officer shrugs while nervously scratching his neck.",0:joelHail:accept the Hail,
+JoelEncounter2SickJoke,DialogOptionSelected,$option == joelSickJoke,"AddText ""You accept the hail"" highlight
+$option = joelHail 0
+FireBest DialogOptionSelected",,,
+JoelEncounter3,DialogOptionSelected,$option == joelStaySilent,"AddText ""You accept the hail"" highlight
+$option = joelHail 0
+FireBest DialogOptionSelected",,,
 JoelEncounter3B,DialogOptionSelected,$option == joelHail,ShowPersonVisual true oldlegion_artanis,"""Greetings, Captain $playerLastName."" The comm link shows no feed of your interlocutor. ""My apologies for the sudden interruption you have experienced, but we have vital matters to discuss, and you are one particularly elusive individual. ""
 
 As you stand on the bridge and suspect this entire situation to be some form of power play, your tripad notifies you of new files being uploaded.
@@ -179,8 +181,9 @@ As you stand on the bridge and suspect this entire situation to be some form of 
 ""Coming from us, you should consider this a compliment."" The voice on the other end continues as your tripad displays the sigil of the Domain Ministry of Intelligence, alongside the credentials of ""Agent Joel Kepler"".","1:joelDomainDead:""The Domain is dead.""
 0:joelDomainHope:""I held some hope the Domain might still exist.""
 2:joelDomainNothing:Say nothing",
-JoelEncounter4Dead,DialogOptionSelected,$option == joelDomainDead,"$option = joelDomainNothing 0
-FireBest DialogOptionSelected","""I can assure you it is quite alive and thriving, captain."" The voice corrects on the other end. ""I understand you may perceive so, we have held a no contact policy for both your sector's sake and the Domain at large. You deserve answers, and answers you shall have."" ",,
+JoelEncounter4Dead,DialogOptionSelected,$option == joelDomainDead,"$option = joelHail 0
+FireBest DialogOptionSelected
+","""I can assure you it is quite alive and thriving, captain."" The voice corrects on the other end. ""I understand you may perceive so, we have held a no contact policy for both your sector's sake and the Domain at large. You deserve answers, and answers you shall have."" ",,
 JoelEncounter4Hope,DialogOptionSelected,$option == joelDomainHope,"$option = joelDomainNothing 0
 FireBest DialogOptionSelected","""And you have been vindicated."" The voice says approvingly. ""I am aware we have a lot of explaining to do, and are opened to answer any questions you may have once our business is concluded."" He pauses ""Within reasonable boundaries of course.""",,
 JoelEncounter4Nothing,DialogOptionSelected,$option == joelDomainNothing,,"""Considering you have proven yourself uniquely capable, the Ministry wishes to enlist your help to assist our mission."" He pauses for a moment before continuing. ""Given that the potential reopening of the gates (highlight that) is closely tied to success of said mission, it is within your and the sector's interest to cooperate. You have proven yourself willing to work towards that goal in the past have you not ?"" You perceive almost a tinge of bitterness in the agent's words. 

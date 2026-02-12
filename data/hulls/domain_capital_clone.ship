@@ -1,7 +1,7 @@
 {
   "hullName": "Nameless Mist",
   "hullId": "domain_capital_clone",
-  "hullSize": "FIGHTER",
+  "hullSize": "CAPITAL_SHIP",
   "spriteName": "graphics/ships/domain_capital.png",
   "style": "HIGH_TECH",
   "height": 384,
