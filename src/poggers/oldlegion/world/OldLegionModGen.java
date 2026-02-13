@@ -22,13 +22,13 @@ public class OldLegionModGen {
             (new MySystemOne()).generate(sector);
         }
     }
-//    public static void trySpawnStormEye(SectorAPI sector) {
-//        MemoryAPI sector_mem = sector.getMemoryWithoutUpdate();
-//        StarSystemAPI StormEye = sector.getStarSystem("Eye of the Storm");
-//        if (StormEye == null) {
-//            (new EyeOfTheStorm()).generate(sector);
-//        }
-//    }
+    public static void trySpawnStormEye(SectorAPI sector) {
+        MemoryAPI sector_mem = sector.getMemoryWithoutUpdate();
+        StarSystemAPI StormEye = sector.getStarSystem("Eye of the Storm");
+        if (StormEye == null) {
+           (new EyeOfTheStorm()).generate(sector);
+        }
+    }
 
     public static void initFactionRelationships(SectorAPI sector) {
         FactionAPI domint = sector.getFaction("domainspecops");

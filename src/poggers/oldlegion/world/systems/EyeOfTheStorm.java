@@ -41,23 +41,6 @@ public class EyeOfTheStorm {
         StormsEyeSystem.setTertiary(NeutronStar3);
         StormsEyeSystem.setType(StarSystemGenerator.StarSystemType.TRINARY_2CLOSE);
 
-//        SectorEntityToken NeutronStar1_field = StormsEyeSystem.addTerrain(Terrain.CORONA,
-//                new MagneticFieldTerrainPlugin.MagneticFieldParams(
-//                        NeutronStar1.getRadius() + 150f, // terrain effect band width
-//                        (NeutronStar1.getRadius() + 150f), // terrain effect middle radius
-//                        NeutronStar1, // entity that it's around
-//                        NeutronStar1.getRadius()-25f, // visual band start
-//                        NeutronStar1.getRadius() + 50f + 100f, // visual band end
-//                        new Color(149, 149, 149, 50), // base color
-//                        0.75f, // probability to spawn aurora sequence, checked once/day when no aurora in progress
-//                        new Color(90, 180, 40),
-//                        new Color(130, 145, 90),
-//                        new Color(165, 110, 145),
-//                        new Color(95, 55, 160),
-//                        new Color(117, 104, 140), // 45, 0, 130
-//                        new Color(128, 128, 128), // 20, 0, 130
-//                        new Color(154, 154, 154))); // 10, 0, 150
-//        NeutronStar1_field.setCircularOrbit(NeutronStar1, 0, 0, 100);
 
         SectorEntityToken NeutronStar2_corona = StormsEyeSystem.addTerrain(Terrain.CORONA,
                 new StarCoronaTerrainPlugin.CoronaParams(
@@ -78,10 +61,18 @@ public class EyeOfTheStorm {
                 new StarCoronaTerrainPlugin.CoronaParams(NeutronStar3.getRadius() + 50f, (NeutronStar3.getRadius() + 50f), NeutronStar3, 1f, 2f, 1f));
         NeutronStar3_corona.setCircularOrbit(NeutronStar3, 0, 0, 100);
 
-        SectorEntityToken NeutronStar1_beam = StormsEyeSystem.addTerrain(Terrain.PULSAR_BEAM,
-                new PulsarBeamTerrainPlugin()
-        );
-        NeutronStar1_beam.setCircularOrbit(NeutronStar1,0,0,100);
+
+        SectorEntityToken peripherybeams1 = StormsEyeSystem.addTerrain(Terrain.PULSAR_BEAM,
+                new StarCoronaTerrainPlugin.CoronaParams(NeutronStar1.getRadius() + 20000, (NeutronStar1.getRadius() + 20000) / 2f, NeutronStar1, 15f, 2f, 2f));
+        peripherybeams1.setCircularOrbit(NeutronStar1, 0, 0, 100);
+
+        SectorEntityToken peripherybeams2 = StormsEyeSystem.addTerrain(Terrain.PULSAR_BEAM,
+                new StarCoronaTerrainPlugin.CoronaParams(NeutronStar2.getRadius() + 20000, (NeutronStar2.getRadius() + 20000) / 2f, NeutronStar2, 15f, 2f, 2f));
+        peripherybeams2.setCircularOrbit(NeutronStar2, 120, 0, 100);
+
+        SectorEntityToken peripherybeams3 = StormsEyeSystem.addTerrain(Terrain.PULSAR_BEAM,
+                new StarCoronaTerrainPlugin.CoronaParams(NeutronStar3.getRadius() + 20000, (NeutronStar3.getRadius() + 20000) / 2f, NeutronStar3, 15f, 2f, 2f));
+        peripherybeams3.setCircularOrbit(NeutronStar3, 240, 0, 100);
 
         PlanetAPI RandomBaja1 = StormsEyeSystem.addPlanet("baja_gamma", beacon, "Gamma", "barren", 20, 297, 3100, 674);
         PlanetConditionGenerator.generateConditionsForPlanet(RandomBaja1, StarAge.OLD);

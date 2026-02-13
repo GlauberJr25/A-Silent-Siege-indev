@@ -55,7 +55,7 @@ public class OldLegionModPlugin extends BaseModPlugin {
         addTransientScriptsIfNeeded(sector);
 
         OldLegionModGen.trySpawnOutpost(sector);
-        //OldLegionModGen.trySpawnStormEye(sector);
+        OldLegionModGen.trySpawnStormEye(sector);
 
         OldLegionPeople.oldlegion_createStoryCharacters();
         OldLegionPeople.create();
