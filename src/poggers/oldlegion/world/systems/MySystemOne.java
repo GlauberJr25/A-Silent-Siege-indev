@@ -205,6 +205,12 @@ public class MySystemOne {
         beacon.setCircularOrbit(relay,2,7934,1256);
         beacon.setCustomDescriptionId("graveyard_beacon");
 
+//        SectorEntityToken TestShunt = domainOutpostSystem.addCustomEntity("TestHypershuntD","Destroyed Hypershunt","oldlegion_hypershunt","domainspecops");
+//        TestShunt.setCircularOrbit(relay,2,6000,300);
+//        TestShunt.setSensorProfile(1.0F);
+//        TestShunt.setDiscoverable(true);
+//        TestShunt.getDetectedRangeMod().modifyFlat("gen", 5000.0F);
+
         SectorEntityToken argonAF1 = domainOutpostSystem.addTerrain(Terrain.ASTEROID_FIELD,
                 new AsteroidFieldTerrainPlugin.AsteroidFieldParams(
                         300f, // min radius

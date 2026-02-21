@@ -11,6 +11,7 @@ import com.fs.starfarer.api.campaign.StarSystemAPI;
 
 import poggers.oldlegion.world.systems.EyeOfTheStorm;
 import poggers.oldlegion.world.systems.MySystemOne;
+import poggers.oldlegion.world.systems.Xaphar;
 
 public class OldLegionModGen {
     public void generate(SectorAPI sector) { initFactionRelationships(sector); }
@@ -27,6 +28,14 @@ public class OldLegionModGen {
         StarSystemAPI StormEye = sector.getStarSystem("Eye of the Storm");
         if (StormEye == null) {
            (new EyeOfTheStorm()).generate(sector);
+        }
+    }
+
+    public static void trySpawnXaphar(SectorAPI sector) {
+        MemoryAPI sector_mem = sector.getMemoryWithoutUpdate();
+        StarSystemAPI XapharSys = sector.getStarSystem("Xaphar");
+        if (XapharSys == null) {
+            (new Xaphar()).generate(sector);
         }
     }
 

@@ -56,6 +56,7 @@ public class OldLegionModPlugin extends BaseModPlugin {
 
         OldLegionModGen.trySpawnOutpost(sector);
         OldLegionModGen.trySpawnStormEye(sector);
+        OldLegionModGen.trySpawnXaphar(sector);
 
         OldLegionPeople.oldlegion_createStoryCharacters();
         OldLegionPeople.create();
