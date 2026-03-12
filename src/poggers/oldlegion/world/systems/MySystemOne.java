@@ -18,10 +18,8 @@ import com.fs.starfarer.api.campaign.SectorEntityToken;
 import com.fs.starfarer.api.impl.campaign.terrain.DebrisFieldTerrainPlugin;
 import com.fs.starfarer.api.impl.campaign.terrain.DebrisFieldTerrainPlugin.DebrisFieldParams;
 
-import com.fs.starfarer.api.impl.campaign.terrain.EventHorizonPlugin;
 import com.fs.starfarer.api.impl.campaign.terrain.MagneticFieldTerrainPlugin;
 import com.fs.starfarer.api.util.Misc;
-import exerelin.campaign.SectorManager;
 import org.apache.log4j.Logger;
 
 import org.lazywizard.lazylib.MathUtils;
@@ -204,12 +202,6 @@ public class MySystemOne {
         SectorEntityToken beacon = domainOutpostSystem.addCustomEntity("warning_beacon_grave","Warning Beacon", "warning_beacon","domainspecops");
         beacon.setCircularOrbit(relay,2,7934,1256);
         beacon.setCustomDescriptionId("graveyard_beacon");
-
-//        SectorEntityToken TestShunt = domainOutpostSystem.addCustomEntity("TestHypershuntD","Destroyed Hypershunt","oldlegion_hypershunt","domainspecops");
-//        TestShunt.setCircularOrbit(relay,2,6000,300);
-//        TestShunt.setSensorProfile(1.0F);
-//        TestShunt.setDiscoverable(true);
-//        TestShunt.getDetectedRangeMod().modifyFlat("gen", 5000.0F);
 
         SectorEntityToken argonAF1 = domainOutpostSystem.addTerrain(Terrain.ASTEROID_FIELD,
                 new AsteroidFieldTerrainPlugin.AsteroidFieldParams(

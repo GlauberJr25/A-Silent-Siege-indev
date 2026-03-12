@@ -9,8 +9,7 @@ import com.fs.starfarer.api.Script;
 import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.impl.campaign.ids.*;
 import com.fs.starfarer.api.impl.campaign.ids.Factions;
-import com.fs.starfarer.api.impl.campaign.procgen.NebulaEditor;
-import com.fs.starfarer.api.impl.campaign.procgen.StarSystemGenerator;
+import com.fs.starfarer.api.impl.campaign.procgen.*;
 import com.fs.starfarer.api.impl.campaign.rulecmd.salvage.special.ShipRecoverySpecial;
 import com.fs.starfarer.api.campaign.PlanetAPI;
 import com.fs.starfarer.api.campaign.SectorAPI;
@@ -29,14 +28,24 @@ import org.lwjgl.util.vector.Vector2f;
 public class Xaphar {
     public void generate(SectorAPI sector) {
         StarSystemAPI Xaphar = sector.createStarSystem("Xaphar");
+
         Xaphar.getLocation().set(10000, 10000);
 
         Xaphar.addTag(Tags.THEME_HIDDEN);
         Xaphar.addTag(Tags.THEME_SPECIAL);
         Xaphar.addTag(Tags.NOT_RANDOM_MISSION_TARGET);
 
-        PlanetAPI argonianStar = Xaphar.initStar("Argonian", "star_browndwarf", 450.0F, -46450.0F, 8760.0F, 200.0F);
+        PlanetAPI argonianStar = Xaphar.initStar("Argonian", "star_browndwarf", 450.0F, -46450.0F, 10760.0F, 200.0F);
         Xaphar.setLightColor(new Color(239, 155, 128)); // light color in entire system, affects all entities
+
+        HyperspaceTerrainPlugin plugin = (HyperspaceTerrainPlugin)Misc.getHyperspaceTerrain().getPlugin();
+        NebulaEditor editor = new NebulaEditor(plugin);
+        float minRadius = plugin.getTileSize() * 2.0F;
+        float radius = Xaphar.getMaxRadiusInHyperspace() * 3.0F;
+        editor.clearArc(Xaphar.getLocation().x, Xaphar.getLocation().y, 0.0F, radius + minRadius * 0.65F, 0.0F, 360.0F);
+        editor.clearArc(Xaphar.getLocation().x, Xaphar.getLocation().y, 0.0F, radius + minRadius, 0.0F, 360.0F, 0.25F);
+
+        StarSystemGenerator.addSystemwideNebula(Xaphar, StarAge.YOUNG);
 
         SectorEntityToken argonAF1 = Xaphar.addTerrain(Terrain.ASTEROID_FIELD,
                 new AsteroidFieldTerrainPlugin.AsteroidFieldParams(
@@ -60,25 +69,6 @@ public class Xaphar {
         Xaphar.addAsteroidBelt(argonianStar, 150, 2500.0F, 515.0F, 351.0F, 400.0F, "asteroid_belt", "Outer Ring");
         Xaphar.addRingBand(argonianStar, "misc", "rings_asteroids0", 512.0F, 3, Color.white, 512.0F, 2500.0F, 350.0F);
 
-//        SectorEntityToken TestShunt = Xaphar.addCustomEntity("TestHypershuntD","Destroyed Hypershunt","oldlegion_hypershunt","domainspecops");
-//        TestShunt.setCircularOrbit(argonianStar,2,3000,300);
-//        TestShunt.setSensorProfile(1.0F);
-//        TestShunt.setDiscoverable(true);
-//        TestShunt.getDetectedRangeMod().modifyFlat("gen", 5000.0F);
-
-//        DebrisFieldParams DebrisF1 = new DebrisFieldParams(
-//                800f, // field radius - should not go above 1000 for performance reasons
-//                1.5f, // density, visual - affects number of debris pieces
-//                10000000f, // duration in days
-//                0f); // days the field will keep generating glowing pieces
-//        DebrisF1.source = DebrisFieldTerrainPlugin.DebrisFieldSource.MIXED;
-//        DebrisF1.baseSalvageXP = 250; // base XP for scavenging in field
-//        SectorEntityToken debrisNextToShunt = Misc.addDebrisField(Xaphar, DebrisF1, StarSystemGenerator.random);
-//        debrisNextToShunt.setSensorProfile(1000f);
-//        debrisNextToShunt.setDiscoverable(true);
-//        debrisNextToShunt.setCircularOrbit(TestShunt, 0f, 0f, 250f);
-//        debrisNextToShunt.setId("domain_debrisF1Xaphar");
-
         DebrisFieldParams DebrisF2 = new DebrisFieldParams(600f, 1.5f, 10000000f, 0f);
         DebrisF2.source = DebrisFieldTerrainPlugin.DebrisFieldSource.MIXED;
         DebrisF2.baseSalvageXP = 250; // base XP for scavenging in field
@@ -95,7 +85,7 @@ public class Xaphar {
         debrisField3.setSensorProfile(700f);
         debrisField3.setDiscoverable(true);
         debrisField3.setCircularOrbit(argonianStar, 70f, 3500f, 90000f);
-        debrisField3.setId("domain_debrisF2Xaphar");
+        debrisField3.setId("domain_debrisF3Xaphar");
 
         DebrisFieldParams DebrisF4 = new DebrisFieldParams(400f, 1.5f, 10000000f, 0f);
         DebrisF4.source = DebrisFieldTerrainPlugin.DebrisFieldSource.MIXED;
@@ -104,8 +94,22 @@ public class Xaphar {
         debrisField4.setSensorProfile(600f);
         debrisField4.setDiscoverable(true);
         debrisField4.setCircularOrbit(argonianStar, 59f, 5500f, 90000f);
-        debrisField4.setId("domain_debrisF2Xaphar");
+        debrisField4.setId("domain_debrisF4Xaphar");
 
-        Xaphar.autogenerateHyperspaceJumpPoints(true, true);
+        DebrisFieldParams DebrisF5 = new DebrisFieldParams(350f, 1.5f, 10000000f, 0f);
+        DebrisF5.source = DebrisFieldTerrainPlugin.DebrisFieldSource.MIXED;
+        DebrisF5.baseSalvageXP = 250; // base XP for scavenging in field
+        SectorEntityToken debrisField5= Misc.addDebrisField(Xaphar, DebrisF4, StarSystemGenerator.random);
+        debrisField5.setSensorProfile(500f);
+        debrisField5.setDiscoverable(true);
+        debrisField5.setCircularOrbit(argonianStar, 51f, 7500f, 90000f);
+        debrisField5.setId("domain_debrisF5Xaphar");
+
+//        JumpPointAPI jumpPoint1 = Global.getFactory().createJumpPoint("fringe_jump", "Fringe System Jump");
+//        jumpPoint1.setCircularOrbit(Xaphar.getEntityById("Argonian"), 2, 6103f, 4000f);
+//        jumpPoint1.setStandardWormholeToHyperspaceVisual();
+//        Xaphar.addEntity(jumpPoint1);
+
+       Xaphar.autogenerateHyperspaceJumpPoints(false, true);
     }
 }

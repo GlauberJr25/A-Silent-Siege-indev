@@ -11,6 +11,7 @@ import com.fs.starfarer.api.campaign.StarSystemAPI;
 
 import poggers.oldlegion.world.systems.EyeOfTheStorm;
 import poggers.oldlegion.world.systems.MySystemOne;
+import poggers.oldlegion.world.systems.NowhereMiddle;
 import poggers.oldlegion.world.systems.Xaphar;
 
 public class OldLegionModGen {
@@ -36,6 +37,14 @@ public class OldLegionModGen {
         StarSystemAPI XapharSys = sector.getStarSystem("Xaphar");
         if (XapharSys == null) {
             (new Xaphar()).generate(sector);
+        }
+    }
+
+    public static void trySpawnNowhere(SectorAPI sector) {
+        MemoryAPI sector_mem = sector.getMemoryWithoutUpdate();
+        StarSystemAPI NowhereSys = sector.getStarSystem("Middle of Nowhere");
+        if (NowhereSys == null) {
+            (new NowhereMiddle()).generate(sector);
         }
     }
 
