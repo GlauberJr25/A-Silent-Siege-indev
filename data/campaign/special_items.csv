@@ -1,0 +1,3 @@
+name,id,tags,tech/manufacturer,rarity,base price,stack size,cargo space,baseRaidDanger,icon,sound id,sound id drop,plugin,plugin params,desc,order
+Prism Core,dgt_prismcore,"mission_item, hide_in_codex",Anomalous AI tech,,10000,1000,1,,graphics/icons/cargo/getmeoutofhere.png,ui_chip_pickup,ui_alpha_core_drop,com.fs.starfarer.api.campaign.impl.items.GenericSpecialItemPlugin,,An AI core of unknown design and purpose.,0.43
+,,,,,,,,,,,,,,,

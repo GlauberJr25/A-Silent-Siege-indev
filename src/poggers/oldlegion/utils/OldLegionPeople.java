@@ -6,8 +6,11 @@ import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.characters.ImportantPeopleAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.characters.FullName.Gender;
+import com.fs.starfarer.api.impl.campaign.ids.Personalities;
 import com.fs.starfarer.api.impl.campaign.ids.Ranks;
+import com.fs.starfarer.api.impl.campaign.ids.Skills;
 import com.fs.starfarer.api.impl.campaign.missions.hub.BaseMissionHub;
+import data.scripts.campaign.ids.SotfIDs;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -18,6 +21,7 @@ public class OldLegionPeople {
     public static String OLDLEGION_NATAH = "oldlegion_natah";
     public static String OLDLEGION_SOLAX = "oldlegion_solaxwhitemore";
     public static String ARTANIS = "oldlegion_artanis";
+    public static String PRISM = "oldlegion_prism";
     public static Logger log = Global.getLogger(OldLegionPeople.class);
 
     public static final List<String> TAG_AS_DOMAIN_MISSION = new ArrayList<>(Arrays.asList(
@@ -26,10 +30,6 @@ public class OldLegionPeople {
 
     public static PersonAPI getPerson(String id) {
         return Global.getSector().getImportantPeople().getPerson(id);
-    }
-
-    public static void create() {
-        createCharacters();
     }
 
     public static void oldlegion_createStoryCharacters() {
@@ -48,6 +48,7 @@ public class OldLegionPeople {
                 }
             }
 
+            //Create Joel Kepler, outpost boss and admin
             PersonAPI natah_person = Global.getFactory().createPerson();
             natah_person.setId(OLDLEGION_NATAH);
             natah_person.getName().setFirst("Joel");
@@ -71,6 +72,7 @@ public class OldLegionPeople {
                 market.setAdmin(natah_person);}
             if (old_admin == null) {market.setAdmin(natah_person);}
 
+            //create Solax, outpost quartermaster
             PersonAPI solaxwhitemore_person = Global.getFactory().createPerson();
             solaxwhitemore_person.setId(OLDLEGION_SOLAX);
             solaxwhitemore_person.setFaction("domainspecops");
@@ -97,9 +99,42 @@ public class OldLegionPeople {
 
     public static void createCharacters() {
         ImportantPeopleAPI ip = Global.getSector().getImportantPeople();
-        if (getPerson(ARTANIS) == null) {
-            PersonAPI person = genArtanis();
-            ip.addPerson(person);
+//        if (getPerson(ARTANIS) == null) {
+//            PersonAPI person = genArtanis();
+//            ip.addPerson(person);
+//        }
+        //Prism AI
+        if (getPerson(PRISM) == null) {
+            PersonAPI Prism = Global.getFactory().createPerson();
+            Prism.setId(PRISM);
+            Prism.setAICoreId(OldLegionIDs.PRISM_CORE_OFFICER);
+            Prism.setFaction(OldLegionIDs.PRISM_FACTION);
+            Prism.setGender(Gender.MALE);
+            Prism.setRankId("spaceCommander");
+            Prism.setPostId("supplyOfficer");
+            Prism.setImportance(PersonImportance.VERY_HIGH);
+            Prism.getName().setFirst("Prism");
+            Prism.getName().setLast("");
+            Prism.setPortraitSprite("graphics/portraits/prism.png");
+            Prism.addTag("omega");
+            Prism.setPersonality(Personalities.STEADY);
+            Prism.getStats().setLevel(8);
+            Prism.getStats().setSkillLevel(Skills.FIELD_MODULATION, 2);
+            Prism.getStats().setSkillLevel(Skills.SYSTEMS_EXPERTISE, 2);
+            Prism.getStats().setSkillLevel(Skills.HELMSMANSHIP, 2);
+            Prism.getStats().setSkillLevel(Skills.ENERGY_WEAPON_MASTERY, 2);
+            Prism.getStats().setSkillLevel(Skills.ORDNANCE_EXPERTISE, 2);
+            Prism.getStats().setSkillLevel(Skills.TARGET_ANALYSIS, 2);
+            Prism.getStats().setSkillLevel(Skills.GUNNERY_IMPLANTS, 2);
+            Prism.getStats().setSkillLevel(Skills.POLARIZED_ARMOR, 2);
+
+            Prism.getStats().setSkillLevel(Skills.COORDINATED_MANEUVERS, 1);
+            Prism.getStats().setSkillLevel(Skills.PHASE_CORPS, 1);
+            Prism.getStats().setSkillLevel(Skills.FLUX_REGULATION, 1);
+
+            if (!ip.containsPerson(Prism)) {
+                ip.addPerson(Prism);}
+            else {log.info("OLDLEGION_RETROGEN: Prism already exists. No action taken");}
         }
     }
 

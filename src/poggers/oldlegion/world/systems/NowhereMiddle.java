@@ -46,10 +46,12 @@ public class NowhereMiddle {
         Nowhere.addTag(Tags.THEME_SPECIAL);
         Nowhere.addTag(Tags.NOT_RANDOM_MISSION_TARGET);
 
+        //clean hyperspace around entrance
         HyperspaceTerrainPlugin hyperTerrain = (HyperspaceTerrainPlugin) Misc.getHyperspaceTerrain().getPlugin();
         NebulaEditor editor = new NebulaEditor(hyperTerrain);
         editor.clearArc(Nowhere.getLocation().x, Nowhere.getLocation().y, 0, 100, 0, 360f);
 
+        //destroyed coronal hypershunt
         SectorEntityToken TestShunt = Nowhere.addCustomEntity("TestHypershuntD","Destroyed Hypershunt","oldlegion_hypershunt","domainspecops");
         TestShunt.setSensorProfile(1.0F);
         TestShunt.setDiscoverable(true);

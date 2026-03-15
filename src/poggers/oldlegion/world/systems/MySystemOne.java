@@ -236,6 +236,7 @@ public class MySystemOne {
                 100f, //Orbital radius
                 true //Recoverable?
         );
+        //XIV ship graveyard
         SectorEntityToken Arcon_1 = OldLegionMisc.addDerelict(domainOutpostSystem, domainOutpostSystem.getEntityById("warning_beacon_grave"), "onslaught_xiv_Elite", ShipRecoverySpecial.ShipCondition.WRECKED, 234f, true);
         SectorEntityToken Arcon_2 = OldLegionMisc.addDerelict(domainOutpostSystem, domainOutpostSystem.getEntityById("warning_beacon_grave"), "onslaught_xiv_Elite", ShipRecoverySpecial.ShipCondition.WRECKED, 407f, true);
         SectorEntityToken Arcon_3 = OldLegionMisc.addDerelict(domainOutpostSystem, domainOutpostSystem.getEntityById("warning_beacon_grave"), "onslaught_xiv_Elite", ShipRecoverySpecial.ShipCondition.WRECKED, 458f, true);
@@ -251,6 +252,7 @@ public class MySystemOne {
         SectorEntityToken Arcon_14 = OldLegionMisc.addDerelict(domainOutpostSystem, domainOutpostSystem.getEntityById("warning_beacon_grave"), "eagle_xiv_Elite", ShipRecoverySpecial.ShipCondition.WRECKED, 121f, true);
         SectorEntityToken Arcon_15 = OldLegionMisc.addDerelict(domainOutpostSystem, domainOutpostSystem.getEntityById("warning_beacon_grave"), "eagle_xiv_Elite", ShipRecoverySpecial.ShipCondition.WRECKED, 481f, true);
         SectorEntityToken Arcon_16 = OldLegionMisc.addDerelict(domainOutpostSystem, domainOutpostSystem.getEntityById("warning_beacon_grave"), "eagle_xiv_Elite", ShipRecoverySpecial.ShipCondition.WRECKED, 394f, true);
+
         //Global.getSector().addScript(new ArtanisPersonalFleet());
     }
 }

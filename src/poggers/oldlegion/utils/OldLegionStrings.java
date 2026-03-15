@@ -7,9 +7,7 @@ import java.util.Objects;
 public class OldLegionStrings {
 
     public static class OldLegionEntities {
-
         public static final String DOMAIN_GATE = "domain_ops_gate";
-
     }
 
     public static final String DomainSpaceSysName = "Nataruk";

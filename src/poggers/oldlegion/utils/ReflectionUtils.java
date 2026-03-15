@@ -18,7 +18,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 public class ReflectionUtils {
-    // Code taken and modified from Grand Colonies
+    // Code taken and modified from Knights of Ludd
     private static final Class<?> fieldClass;
     private static final MethodHandles.Lookup lookup = MethodHandles.lookup();
     private static final MethodHandle setFieldHandle;

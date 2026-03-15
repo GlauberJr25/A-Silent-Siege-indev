@@ -60,7 +60,7 @@ public class OldLegionModPlugin extends BaseModPlugin {
         OldLegionModGen.trySpawnNowhere(sector);
 
         OldLegionPeople.oldlegion_createStoryCharacters();
-        OldLegionPeople.create();
+        OldLegionPeople.createCharacters();
     }
 
     @Override
