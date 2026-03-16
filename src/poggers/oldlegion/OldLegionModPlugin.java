@@ -10,6 +10,7 @@ import poggers.oldlegion.listeners.CoreUIListener;
 import poggers.oldlegion.listeners.GateJumpTracker;
 import poggers.oldlegion.listeners.OldLegionJFIntCheckScript;
 import poggers.oldlegion.listeners.SystemListener;
+import poggers.oldlegion.plugins.CampaignPluginImpl;
 import poggers.oldlegion.utils.OldLegionPeople;
 import poggers.oldlegion.world.OldLegionModGen;
 
@@ -53,6 +54,8 @@ public class OldLegionModPlugin extends BaseModPlugin {
 
         addListenersIfNeeded();
         addTransientScriptsIfNeeded(sector);
+
+        Global.getSector().registerPlugin(new CampaignPluginImpl());//Allows DGT Prism Cores to be officers (should only be 1 but eh lets keep it simple for now
 
         OldLegionModGen.trySpawnOutpost(sector);
         OldLegionModGen.trySpawnStormEye(sector);
