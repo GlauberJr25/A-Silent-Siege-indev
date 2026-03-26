@@ -25,12 +25,14 @@ public class PrismCoreOfficerPluginImpl extends BaseAICoreOfficerPluginImpl {
         person.setFaction(factionId);
         person.setAICoreId(aiCoreId);
 
+        //get the AI core data
         CommoditySpecAPI spec = Global.getSettings().getCommoditySpec(aiCoreId);
         boolean dgt_prism = OldLegionIDs.PRISM_CORE_OFFICER.equals(aiCoreId);
 
         person.getStats().setSkipRefresh(true);
 
-        person.setName(new FullName("Prism", "", Gender.ANY));
+        //actually create the officer
+        person.setName(new FullName(spec.getName(), "", Gender.ANY));
         int points = 0;
         float mult = 1f;
         if (dgt_prism) {
@@ -46,6 +48,7 @@ public class PrismCoreOfficerPluginImpl extends BaseAICoreOfficerPluginImpl {
             person.getStats().setSkillLevel(Skills.POINT_DEFENSE, 2);
         }
 
+        //automated ship points thingy
         points = DGT_PRISM_POINTS;
         mult = DGT_PRISM_MULT;
         if (points != 0) {
