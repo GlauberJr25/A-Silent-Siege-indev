@@ -26,6 +26,9 @@ import org.lazywizard.lazylib.MathUtils;
 import poggers.oldlegion.scripts.OldLegionMisc;
 import poggers.oldlegion.campaign.submarkets.OldHangar;
 
+import static com.fs.starfarer.api.impl.MusicPlayerPluginImpl.MUSIC_ENCOUNTER_MYSTERIOUS_AGGRO;
+import static com.fs.starfarer.api.impl.MusicPlayerPluginImpl.MUSIC_SET_MEM_KEY;
+
 public class MySystemOne {
     ImportantPeopleAPI ip = Global.getSector().getImportantPeople();
     boolean isJDPiracyEnabled = Global.getSettings().getModManager().isModEnabled("jaydeepiracy");
@@ -42,6 +45,7 @@ public class MySystemOne {
         domainOutpostSystem.addTag(Tags.THEME_UNSAFE);
         domainOutpostSystem.addTag(Tags.NOT_RANDOM_MISSION_TARGET);
 
+        domainOutpostSystem.getMemoryWithoutUpdate().set(MUSIC_SET_MEM_KEY, "music_title");
         domainOutpostSystem.setBackgroundTextureFilename("graphics/mymod/backgrounds/mybackground.jpg");
         domainOutpostSystem.initNonStarCenter();
 
