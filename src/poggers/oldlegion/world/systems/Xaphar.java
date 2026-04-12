@@ -99,11 +99,33 @@ public class Xaphar {
         DebrisFieldParams DebrisF5 = new DebrisFieldParams(350f, 1.5f, 10000000f, 0f);
         DebrisF5.source = DebrisFieldTerrainPlugin.DebrisFieldSource.MIXED;
         DebrisF5.baseSalvageXP = 250; // base XP for scavenging in field
-        SectorEntityToken debrisField5= Misc.addDebrisField(Xaphar, DebrisF4, StarSystemGenerator.random);
+        SectorEntityToken debrisField5= Misc.addDebrisField(Xaphar, DebrisF5, StarSystemGenerator.random);
         debrisField5.setSensorProfile(500f);
         debrisField5.setDiscoverable(true);
         debrisField5.setCircularOrbit(argonianStar, 51f, 7500f, 90000f);
         debrisField5.setId("domain_debrisF5Xaphar");
+
+        //testing for another stuff, please disregard
+//        PlanetAPI RandomBaja1 = Xaphar.addPlanet("baja_gamma4", argonianStar, "Gamma", "barren", 20, 297, 10100, 674);
+//        PlanetConditionGenerator.generateConditionsForPlanet(RandomBaja1, StarAge.OLD);
+//
+//        DebrisFieldParams DebrisF6 = new DebrisFieldParams(350f, 1.5f, 10000000f, 0f);
+//        DebrisF6.source = DebrisFieldTerrainPlugin.DebrisFieldSource.MIXED;
+//        DebrisF6.baseSalvageXP = 250; // base XP for scavenging in field
+//        SectorEntityToken debrisField6= Misc.addDebrisField(Xaphar, DebrisF4, StarSystemGenerator.random);
+//        debrisField6.setSensorProfile(500f);
+//        debrisField6.setDiscoverable(true);
+//        debrisField6.setCircularOrbit(RandomBaja1, 0f, 1000f, 360f);
+//        debrisField6.setId("domain_debrisF6Xaphar");
+//
+//        DebrisFieldParams DebrisF7 = new DebrisFieldParams(350f, 1.5f, 10000000f, 0f);
+//        DebrisF7.source = DebrisFieldTerrainPlugin.DebrisFieldSource.MIXED;
+//        DebrisF7.baseSalvageXP = 250; // base XP for scavenging in field
+//        SectorEntityToken debrisField7= Misc.addDebrisField(Xaphar, DebrisF4, StarSystemGenerator.random);
+//        debrisField7.setSensorProfile(500f);
+//        debrisField7.setDiscoverable(true);
+//        debrisField7.setCircularOrbit(RandomBaja1, 0f, 2000f, 360f);
+//        debrisField7.setId("domain_debrisF7Xaphar");
 
 //        JumpPointAPI jumpPoint1 = Global.getFactory().createJumpPoint("fringe_jump", "Fringe System Jump");
 //        jumpPoint1.setCircularOrbit(Xaphar.getEntityById("Argonian"), 2, 6103f, 4000f);

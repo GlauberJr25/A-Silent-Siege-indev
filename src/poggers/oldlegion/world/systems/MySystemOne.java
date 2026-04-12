@@ -194,6 +194,7 @@ public class MySystemOne {
         market.setEconGroup(market.getFactionId());
         market.addTag("market_no_officer_spawn");
         Global.getSector().getEconomy().addMarket(market, false); //the ''WithJunkerAndChatter'' flag. it will add space debris in orbit and radio chatter sound effects.
+        Hunhow.getMemoryWithoutUpdate().set(MUSIC_SET_MEM_KEY, "music_default_market_friendly");
 
         SectorEntityToken buoy = domainOutpostSystem.addCustomEntity("nav_buoy", "Nav Buoy", "nav_buoy", "domainspecops");
         buoy.setCircularOrbit(relay, 25, 6561, 315);
