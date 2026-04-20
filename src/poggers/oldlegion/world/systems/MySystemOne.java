@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import com.fs.starfarer.api.Global;
-import com.fs.starfarer.api.Script;
 import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.characters.ImportantPeopleAPI;
@@ -26,7 +25,6 @@ import org.lazywizard.lazylib.MathUtils;
 import poggers.oldlegion.scripts.OldLegionMisc;
 import poggers.oldlegion.campaign.submarkets.OldHangar;
 
-import static com.fs.starfarer.api.impl.MusicPlayerPluginImpl.MUSIC_ENCOUNTER_MYSTERIOUS_AGGRO;
 import static com.fs.starfarer.api.impl.MusicPlayerPluginImpl.MUSIC_SET_MEM_KEY;
 
 public class MySystemOne {
@@ -145,7 +143,7 @@ public class MySystemOne {
         //this part of the code uses a mechanism called "MutableStat"
         //Used in a variety of places throughout Starsector to accomplish a variety of things
         //here it is important to simply know that "generator" is the id of the tariff value
-        //and that you set it using the modifyFlat() function with a decimal value.
+        //and that you set it using the modifyFlat() function with a decimal.
         market.getTariff().modifyFlat("generator", 0.3f);
         market.setPlanetConditionMarketOnly(false);
         market.addCondition(Conditions.NO_ATMOSPHERE);
@@ -154,11 +152,11 @@ public class MySystemOne {
         market.addCondition(Conditions.RARE_ORE_ULTRARICH);
         market.addCondition("oldlegion_population_0");
         //1) set the market faction ID
-        //2) add industries and sub-markets to the market
+        //2) add industries and submarkets to the market
         //3) add the market to the global economy
-        //the markets owning faction must be set before adding sub-markets and industries or the game will crash.
+        //the markets owning faction must be set before adding submarkets and industries or the game will crash.
         market.setFactionId("domainspecops");
-        //if no industries are added, the game wont crash...
+        //if no industries are added, the game won't crash...
         //colonies will have a -10 stability rating
         //there will be no supply or demand for goods under ''commodities'' though there will be procurement missions
         //once population is added, there will be supply/demand for supplies
@@ -189,8 +187,8 @@ public class MySystemOne {
         market.addSubmarket(Submarkets.SUBMARKET_OPEN);
         market.addSubmarket("oldlegion_hangar");
         market.addCondition("oldlegion_automation");
-        //Market needs to be added to the global economy after sub-markets and industries
-        //if you dont do this, at best commodities will be 1$, at worst the game will crash
+        //Market needs to be added to the global economy after submarkets and industries
+        //if you don't do this, at best commodities will be 1$, at worst the game will crash
         market.setEconGroup(market.getFactionId());
         market.addTag("market_no_officer_spawn");
         Global.getSector().getEconomy().addMarket(market, false); //the ''WithJunkerAndChatter'' flag. it will add space debris in orbit and radio chatter sound effects.

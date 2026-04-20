@@ -1,7 +1,7 @@
 {
-  "variantId": "domain_capital_test",
+  "variantId": "domain_capital_experimental",
   "hullId": "domain_capital",
-  "displayName": "Test Outfit",
+  "displayName": "Experimental",
   "goalVariant": true,
   "fluxCapacitors": 50,
   "fluxVents": 50,
@@ -17,10 +17,9 @@
       "autofire": false,
       "mode": "LINKED",
       "weapons": {
-        "WS0001": "abyssal_glare",
-        "WS0002": "abyssal_glare",
-        "WS0003": "abyssal_glare",
-        "WS0008": "abyssal_glare"
+        "WS0001": "tachyonlance",
+        "WS0002": "tachyonlance",
+        "WS0008": "plasma"
       }
     },
     {
@@ -31,6 +30,20 @@
         "WS0005": "annihilatorpod",
         "WS0006": "annihilatorpod",
         "WS0007": "annihilatorpod"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0003": "lightdualmg",
+        "WS0009": "lightdualmg",
+        "WS0010": "lightdualmg",
+        "WS0011": "lightdualmg",
+        "WS0012": "lightdualmg",
+        "WS0013": "lightdualmg",
+        "WS0014": "lightdualmg",
+        "WS0015": "lightdualmg"
       }
     }
   ],
