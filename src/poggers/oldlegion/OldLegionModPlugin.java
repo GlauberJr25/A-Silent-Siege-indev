@@ -28,6 +28,7 @@ public class OldLegionModPlugin extends BaseModPlugin {
     // TODO: fix intro quest marker disappearing (low priority because how the F am I supposed to fix that honestly???)
     // TODO: change music: independent music for the market music; Heg for fleet music
     // TODO: change domain capital to reworked sprite
+    // TODO: add stuff to destroyed hypershunt already
 
     private void addListenersIfNeeded() {
         ListenerManagerAPI l = Global.getSector().getListenerManager();
