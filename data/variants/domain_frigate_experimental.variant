@@ -1,0 +1,34 @@
+{
+  "variantId": "domain_frigate_experimental",
+  "hullId": "domain_frigate",
+  "displayName": "experimental",
+  "goalVariant": true,
+  "fluxCapacitors": 10,
+  "fluxVents": 10,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "ballistic_rangefinder"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "heavyac"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0003": "lightdualmg",
+        "WS0004": "lightdualmg",
+        "WS0005": "lightdualmg",
+        "WS0006": "lightdualmg"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

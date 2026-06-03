@@ -1,0 +1,85 @@
+{
+  "hullName": "Crawling Chaos",
+  "hullId": "domain_frigate",
+  "hullSize": "FRIGATE",
+  "spriteName": "graphics/ships/domint_frigate.png",
+  "style": "HIGH_TECH",
+  "height": 104,
+  "width": 104,
+  "center": [52, 50],
+  "collisionRadius": 60,
+  "shieldCenter": [0, -0],
+  "shieldRadius": 60,
+  "viewOffset": 0,
+  "builtInMods": [
+    "DomainEngineeringMod"
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS0003",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [7.5, 26]
+    },
+    {
+      "id": "WS0004",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -0,
+      "locations": [7.5, -26]
+    },
+    {
+      "id": "WS0005",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [26.5, 15]
+    },
+    {
+      "id": "WS0006",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -0,
+      "locations": [26.5, -15]
+    },
+    {
+      "id": "WS0001",
+      "size": "MEDIUM",
+      "type": "UNIVERSAL",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [1, -0]
+    }
+  ],
+  "engineSlots": [],
+  "bounds": [
+    -29, -10,
+    -44, -18,
+    -48, -28.5,
+    -27.5, -23.5,
+    -27.5, -37.5,
+    -4.5, -30.5,
+    16, -20,
+    32.5, -11,
+    51, -5,
+    51, 5,
+    32.5, 11,
+    16, 20,
+    -4.5, 30.5,
+    -27.5, 37.5,
+    -27.5, 23.5,
+    -48, 28.5,
+    -44, 18,
+    -29, 10
+  ]
+}
