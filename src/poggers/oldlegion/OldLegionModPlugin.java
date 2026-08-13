@@ -27,8 +27,8 @@ public class OldLegionModPlugin extends BaseModPlugin {
     // TODO: maaaybe add the seed as the domain id when talking?
     // TODO: fix intro quest marker disappearing (low priority because how the F am I supposed to fix that honestly???)
     // TODO: change music: independent music for the market music; Heg for fleet music
-    // TODO: change domain capital to reworked sprite
     // TODO: add stuff to destroyed hypershunt already
+    // TODO: change oldlegion mentions to silentsiege
 
     private void addListenersIfNeeded() {
         ListenerManagerAPI l = Global.getSector().getListenerManager();

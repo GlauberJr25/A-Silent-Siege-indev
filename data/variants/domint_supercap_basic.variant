@@ -1,0 +1,70 @@
+{
+  "variantId": "domint_supercap_basic",
+  "hullId": "domint_supercap",
+  "displayName": "Base Variant",
+  "goalVariant": true,
+  "fluxCapacitors": 50,
+  "fluxVents": 45,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "dedicated_targeting_core"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "lightdualmg",
+        "WS0002": "lightdualmg",
+        "WS0007": "lightdualmg",
+        "WS0008": "lightdualmg",
+        "WS0009": "lightdualmg",
+        "WS0010": "lightdualmg",
+        "WS0011": "lightdualmg",
+        "WS0012": "lightdualmg",
+        "WS0013": "lightdualmg",
+        "WS0014": "lightdualmg",
+        "WS0015": "lightdualmg",
+        "WS0016": "lightdualmg",
+        "WS0017": "lightdualmg",
+        "WS0018": "lightdualmg",
+        "WS0019": "lightdualmg",
+        "WS0020": "lightdualmg"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0003": "heavymg",
+        "WS0004": "heavymg",
+        "WS0021": "heavymg",
+        "WS0022": "heavymg",
+        "WS0023": "heavymg",
+        "WS0024": "heavymg"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0005": "hephag",
+        "WS0006": "hephag"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0025": "hephag",
+        "WS0026": "hephag",
+        "WS0027": "hephag",
+        "WS0028": "hephag",
+        "WS0029": "hephag"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}
